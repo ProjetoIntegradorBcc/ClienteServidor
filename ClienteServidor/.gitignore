@@ -1,7 +1,0 @@
-*.swp
-/build/*
-/build/utils/*.class
-/test/build/*
-/nbproject/private/
-/build/
-/dist/
