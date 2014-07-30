@@ -11,7 +11,7 @@ disciplinasConcluidas Varchar(100)
 );
 
 CREATE TABLE Professor(
-idProfessoralunos INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+idProfessor INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 RA INT,
 nome Varchar(50),
 idade Integer,
