@@ -79,8 +79,8 @@
         <Container class="javax.swing.JPanel" name="jpAulas">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="tab5">
-                <Property name="tabTitle" type="java.lang.String" value="tab5"/>
+              <JTabbedPaneConstraints tabName="Aulas">
+                <Property name="tabTitle" type="java.lang.String" value="Aulas"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>

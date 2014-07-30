@@ -50,7 +50,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         Aulas.addTab("Salas", jpSalas);
 
         jpAulas.setLayout(new java.awt.BorderLayout());
-        Aulas.addTab("tab5", jpAulas);
+        Aulas.addTab("Aulas", jpAulas);
 
         getContentPane().add(Aulas, java.awt.BorderLayout.CENTER);
 
