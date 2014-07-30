@@ -1,5 +1,6 @@
 CREATE TABLE Alunos(
-RA integer Integer PRIMARY KEY AUTO_INCREMENT NOT NULL,
+idAluno INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+RA INT,
 nome Varchar(50),
 idade Integer,
 endereco Varchar(150),
@@ -10,7 +11,8 @@ disciplinasConcluidas Varchar(100)
 );
 
 CREATE TABLE Professor(
-RA integer Integer PRIMARY KEY AUTO_INCREMENT NOT NULL,
+idProfessoralunos INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+RA INT,
 nome Varchar(50),
 idade Integer,
 endereco Varchar(150),
@@ -20,7 +22,7 @@ linhasPesquisa Varchar(100)
 );
 
 CREATE TABLE Disciplinas(
-idDisciplina integer Integer PRIMARY KEY AUTO_INCREMENT NOT NULL,
+idDisciplina INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 titulo Varchar(50),
 preRequisitos Varchar(150),
 metodoAvaliacao Varchar(150),
@@ -29,7 +31,7 @@ disciplinasDependentes Varchar(150)
 );
 
 CREATE TABLE Salas(
-idSala integer Integer PRIMARY KEY AUTO_INCREMENT NOT NULL,
+idSala INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 descricaoLaboratorio Varchar(50),
 numeroComputadores Integer,
 recursosDidaticos Varchar(150),
@@ -38,10 +40,9 @@ capacidadeMaxima Integer
 );
 
 CREATE TABLE Aulas(
-idAula integer Integer PRIMARY KEY AUTO_INCREMENT NOT NULL,
+idAula INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 conteudoProgramatico Varchar(510),
 disciplinaAssociada Varchar(150),
 salaAulaAssociada Varchar(150),
 alunosPresentes Varchar(150)
 );
-
