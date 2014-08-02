@@ -1,4 +1,4 @@
-package Servidor;
+package servidor;
 
 import java.awt.List;
 import java.sql.Connection;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 //Início da classe de conexão//
-public class Conexao {
+public class Banco {
 
     public Connection getConnection() {
         try {
@@ -21,7 +21,7 @@ public class Conexao {
 
     public void Inserir(int ra, String nome, int idade, String endereco, String departamento, String disciplinasMinistra, String linhasPesquisa) {
 
-        Connection con = new Conexao().getConnection();
+        Connection con = new Banco().getConnection();
 
         String sql = "INSERT INTO professor(RA, nome, idade, endereco, departamento, disciplinasMinistra, linhasPesquisa) VALUES(?,?,?,?,?,?,?)";
 
@@ -44,7 +44,7 @@ public class Conexao {
 
     public void Editar(int cod, int ra, String nome, int idade, String endereco, String departamento, String disciplinasMinistra, String linhasPesquisa) {
 
-        Connection con = new Conexao().getConnection();
+        Connection con = new Banco().getConnection();
 
         String sql = "UPDATE professor SET RA = ?, nome = ?, idade = ?, endereco = ?, departamento = ?, disciplinasMinistra = ?, linhasPesquisa = ? WHERE idProfessor = ?";
 
@@ -67,7 +67,7 @@ public class Conexao {
     }
 
     public void Deletar(int id) {
-        Connection con = new Conexao().getConnection();
+        Connection con = new Banco().getConnection();
 
         String sql = "DELETE FROM professor WHERE idAula = ?";
 
@@ -77,16 +77,16 @@ public class Conexao {
             stmt.execute();
             stmt.close();
 
-        } catch (SQLException u) {
-            throw new RuntimeException(u);
+            } catch (SQLException u) {
+                throw new RuntimeException(u);
+            }
+
         }
 
-    }
+        public int ConsultarProfessor(int RA) {
 
-    public int ConsultarProfessor(int RA) {
-
-        int codigo;
-        Connection con = new Conexao().getConnection();
+            int codigo;
+        Connection con = new Banco().getConnection();
         String sql = "SELECT idProfessor FROM professor where RA = ?";
 
         try {
@@ -108,7 +108,7 @@ public class Conexao {
 
        
         ArrayList<vo.ProfessorVO> lista = new ArrayList<vo.ProfessorVO>();
-        Connection con = new Conexao().getConnection();
+        Connection con = new Banco().getConnection();
         String sql = "SELECT * FROM professor";
 
         try {

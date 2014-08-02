@@ -6,6 +6,7 @@
 
 package visao;
 
+import javax.swing.JOptionPane;
 import regraDeNegocio.ClienteRN;
 import vo.ProfessorVO;
 
@@ -194,7 +195,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         PVO.setDisciplinas(jTextAreaDisciplinasProfessor.getText());
         PVO.setPesquisa(jTextFieldPesquisaProfessor.getText());
         
-        CRN.insereProfessor(PVO);
+        System.out.println(CRN.insereProfessor(PVO));
     }//GEN-LAST:event_jButtonInserirProfessorActionPerformed
 
     /**

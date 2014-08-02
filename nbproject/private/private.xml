@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Jonas/Documents/NetBeansProjects/ClienteServidor/src/Servidor/ServidorSalas.java</file>
-            <file>file:/C:/Users/Jonas/Documents/NetBeansProjects/ClienteServidor/src/regraDeNegocio/ClienteRN.java</file>
-            <file>file:/C:/Users/Jonas/Documents/NetBeansProjects/ClienteServidor/src/vo/ProfessorVO.java</file>
-            <file>file:/C:/Users/Jonas/Documents/NetBeansProjects/ClienteServidor/src/conexao/ClienteServidor.java</file>
-            <file>file:/C:/Users/Jonas/Documents/NetBeansProjects/ClienteServidor/src/Servidor/Conexao.java</file>
-            <file>file:/C:/Users/Jonas/Documents/NetBeansProjects/ClienteServidor/src/Visao/ClienteVisao.java</file>
+            <file>file:/home/diogo/Documentos/utfpr/sistemas%20distribuidos/ClienteServidor/src/visao/ClienteVisao.java</file>
+            <file>file:/home/diogo/Documentos/utfpr/sistemas%20distribuidos/ClienteServidor/src/vo/ProfessorVO.java</file>
+            <file>file:/home/diogo/Documentos/utfpr/sistemas%20distribuidos/ClienteServidor/src/regraDeNegocio/ClienteRN.java</file>
+            <file>file:/home/diogo/Documentos/utfpr/sistemas%20distribuidos/ClienteServidor/src/servidor/Banco.java</file>
+            <file>file:/home/diogo/Documentos/utfpr/sistemas%20distribuidos/ClienteServidor/src/conexao/ConexaoServidor.java</file>
+            <file>file:/home/diogo/Documentos/utfpr/sistemas%20distribuidos/ClienteServidor/src/regraDeNegocio/ProfessorRN.java</file>
         </group>
     </open-files>
 </project-private>

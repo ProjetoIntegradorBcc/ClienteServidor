@@ -4,6 +4,6 @@ package conexao;
  *
  * @author diogo
  */
-public class ClienteServidor {
+public class ConexaoServidor {
     
 }

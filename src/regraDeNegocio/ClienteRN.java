@@ -7,6 +7,7 @@
 package regraDeNegocio;
 
 import vo.ProfessorVO;
+import conexao.ConexaoServidor;
 
 /**
  *
@@ -20,7 +21,15 @@ public class ClienteRN {
      */
     public String insereProfessor(ProfessorVO PVO) {
         ProfessorRN PRN = new ProfessorRN();
-        return PRN.validaCampos(PVO);
+        ConexaoServidor conexao = new ConexaoServidor();
+        
+        String mensagemVOInvalido = PRN.validaCampos(PVO);
+        if(mensagemVOInvalido != null){
+            return mensagemVOInvalido;
+        }
+        else{
+            return "deu bom";
+        }
     }
     /**
      * 
