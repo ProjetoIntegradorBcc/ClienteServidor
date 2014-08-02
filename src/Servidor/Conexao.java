@@ -116,10 +116,10 @@ public class Conexao {
             ResultSet resultado = stmt.executeQuery();
             while (resultado.next()) {
                 vo.ProfessorVO prof = new vo.ProfessorVO();
-                prof.setCodigo(resultado.getInt("idProfessor"));
-                prof.setRa(resultado.getInt("RA"));
+                prof.setCodigo(resultado.getString("idProfessor"));
+                prof.setRa(resultado.getString("RA"));
                 prof.setNome(resultado.getString("nome"));
-                prof.setIdade(resultado.getInt("idade"));
+                prof.setIdade(resultado.getString("idade"));
                 prof.setEndereco(resultado.getString("endereco"));
                 prof.setDepartamento(resultado.getString("departamento"));
                 prof.setDisciplinas(resultado.getString("disciplinasMinistra"));
