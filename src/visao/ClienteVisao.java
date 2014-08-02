@@ -186,15 +186,15 @@ public class ClienteVisao extends javax.swing.JFrame {
         ProfessorVO PVO = new ProfessorVO();
         ClienteRN CRN = new ClienteRN();
         
+        PVO.setRa(jTextFieldRAProfessor.getText());
+        PVO.setNome(jTextFieldNomeProfessor.getText());
+        PVO.setIdade(jTextFieldIdadeProfessor.getText());
+        PVO.setEndereco(jTextFieldEnderecoProfessor.getText());
         PVO.setDepartamento(jTextFieldDepartamentoProfessor.getText());
         PVO.setDisciplinas(jTextAreaDisciplinasProfessor.getText());
-        PVO.setEndereco(jTextFieldEnderecoProfessor.getText());
-        PVO.setIdade(jTextFieldIdadeProfessor.getText());
-        PVO.setNome(jTextFieldNomeProfessor.getText());
         PVO.setPesquisa(jTextFieldPesquisaProfessor.getText());
-        PVO.setRa(jTextFieldRAProfessor.getText());
         
-        CRN.verificaProfessor(PVO);
+        CRN.insereProfessor(PVO);
     }//GEN-LAST:event_jButtonInserirProfessorActionPerformed
 
     /**
