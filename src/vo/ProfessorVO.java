@@ -13,51 +13,47 @@ package vo;
 public class ProfessorVO {
 
     /**
-     * campos numericos da tabela professor.
-     */
-    private int codigo, ra, idade;
-    /**
      * campos string da tabela professor.
      */
-    private String nome, endereco, departamento, disciplinas, pesquisa;
+    private String codigo, ra, idade, nome, endereco, departamento, disciplinas, pesquisa;
     /**
      * @return codigo do professor
      */
-    public int getCodigo(){
+    public String getCodigo(){
         return this.codigo;
     }
     /**
      * @param codigo novo codigo para o professor
      */
-    public void setCodigo(int codigo){
+    public void setCodigo(String codigo){
         this.codigo = codigo;
     }
     /**
      * 
      * @return ra do professor
      */
-    public int getRa(){
+    public String getRa(){
         return this.ra;
     }
 
     /**
      * @param ra novo numero de ra para o professor
      */
-    public void setRa(int ra) {
+    public void setRa(String ra) {
         this.ra = ra;
     }
 
     /**
      * @return idade do professor.
      */
-    public int getIdade() {
+    public String getIdade() {
         return idade;
     }
 
     /**
      * @param idade nova idade para o professor
      */
-    public void setIdade(int idade) {
+    public void setIdade(String idade) {
         this.idade = idade;
     }
 
