@@ -2,13 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/home/diogo/Documentos/utfpr/sistemas%20distribuidos/ClienteServidor/src/visao/ClienteVisao.java</file>
-            <file>file:/home/diogo/Documentos/utfpr/sistemas%20distribuidos/ClienteServidor/src/vo/ProfessorVO.java</file>
-            <file>file:/home/diogo/Documentos/utfpr/sistemas%20distribuidos/ClienteServidor/src/regraDeNegocio/ClienteRN.java</file>
-            <file>file:/home/diogo/Documentos/utfpr/sistemas%20distribuidos/ClienteServidor/src/servidor/Banco.java</file>
-            <file>file:/home/diogo/Documentos/utfpr/sistemas%20distribuidos/ClienteServidor/src/conexao/ConexaoServidor.java</file>
-            <file>file:/home/diogo/Documentos/utfpr/sistemas%20distribuidos/ClienteServidor/src/regraDeNegocio/ProfessorRN.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
