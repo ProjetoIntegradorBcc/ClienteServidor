@@ -28,7 +28,7 @@ public class ClienteRN {
             return mensagemVOInvalido;
         }
         else{
-            return "deu bom";
+            return conexao.enviaDataGrama(PVO);
         }
     }
     /**
