@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Visao;
+package visao;
 
 /**
  *
@@ -13,7 +13,7 @@ package Visao;
 public class ClienteVisao extends javax.swing.JFrame {
 
     /**
-     * Creates new form ClienteVisao
+     * Creates new form ClienteVisao.
      */
     public ClienteVisao() {
         initComponents();
