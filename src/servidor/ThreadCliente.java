@@ -2,14 +2,20 @@ package servidor;
 
 import java.net.*;
 import java.io.*;
+import java.util.ArrayList;
 
-public class ThreadCliente extends Thread {
+class ThreadCliente extends Thread {
 
     private DatagramSocket ds;
+    private int porta;
 
+    public ThreadCliente(DatagramSocket ds, int porta) {
+        this.porta = porta;
+        this.ds = ds;
+    }
+    
     @Override
     public void run() {
-
         try {
             byte[] msg = new byte[256];
             DatagramPacket pkg = new DatagramPacket(msg, msg.length);
@@ -22,6 +28,7 @@ public class ThreadCliente extends Thread {
                 porta = pkg.getPort();
                 ip = pkg.getAddress();
                 mensagem = new String(pkg.getData(), 0, pkg.getLength());
+                System.out.println(""+mensagem);
                 switch (pacote.substring(0, 3)) {
                     case "21#":
                         break;
