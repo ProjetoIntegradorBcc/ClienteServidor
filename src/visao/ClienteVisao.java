@@ -31,30 +31,30 @@ public class ClienteVisao extends javax.swing.JFrame {
         Aulas = new javax.swing.JTabbedPane();
         jpAlunos = new javax.swing.JPanel();
         jpProfessor = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        jLabelPesquisarProfessor = new javax.swing.JLabel();
+        jLabelRAProfessor = new javax.swing.JLabel();
+        jLabelNomeProfessor = new javax.swing.JLabel();
+        jLabelIdadeProfessor = new javax.swing.JLabel();
+        jLabelEnderecoProfessor = new javax.swing.JLabel();
+        jLabelDepartamentoProfessor = new javax.swing.JLabel();
+        jLabelDisciplinasProfessor = new javax.swing.JLabel();
+        jLabelPesquisaProfessor = new javax.swing.JLabel();
+        jTextFieldEnderecoProfessor = new javax.swing.JTextField();
+        jTextFieldCodigoProfessor = new javax.swing.JTextField();
+        jTextFieldRAProfessor = new javax.swing.JTextField();
+        jTextFieldPesquisarProfessor = new javax.swing.JTextField();
+        jTextFieldIdadeProfessor = new javax.swing.JTextField();
+        jTextFieldDepartamentoProfessor = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField8 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        jTablePesquisarProfessor = new javax.swing.JTable();
+        jTextFieldNomeProfessor = new javax.swing.JTextField();
+        jLabelCodigoProfessor = new javax.swing.JLabel();
+        jTextFieldPesquisaProfessor = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jTextAreaDisciplinasProfessor = new javax.swing.JTextArea();
+        jButtonExcluirProfessor = new javax.swing.JButton();
+        jButtonInserirProfessor = new javax.swing.JButton();
+        jButtonEditarProfessor = new javax.swing.JButton();
         jpDisciplinas = new javax.swing.JPanel();
         jpSalas = new javax.swing.JPanel();
         jpAulas = new javax.swing.JPanel();
@@ -70,87 +70,87 @@ public class ClienteVisao extends javax.swing.JFrame {
         jpProfessor.setPreferredSize(new java.awt.Dimension(950, 370));
         jpProfessor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel1.setText("Pesquisar");
-        jpProfessor.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, -1));
+        jLabelPesquisarProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelPesquisarProfessor.setText("Pesquisar");
+        jpProfessor.add(jLabelPesquisarProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("RA:");
-        jpProfessor.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 30, -1));
+        jLabelRAProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelRAProfessor.setText("RA:");
+        jpProfessor.add(jLabelRAProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 30, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel3.setText("Nome:");
-        jpProfessor.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 40, -1));
+        jLabelNomeProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelNomeProfessor.setText("Nome:");
+        jpProfessor.add(jLabelNomeProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 40, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel4.setText("Idade:");
-        jpProfessor.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 40, -1));
+        jLabelIdadeProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelIdadeProfessor.setText("Idade:");
+        jpProfessor.add(jLabelIdadeProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 40, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel5.setText("Endereço:");
-        jpProfessor.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 60, -1));
+        jLabelEnderecoProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelEnderecoProfessor.setText("Endereço:");
+        jpProfessor.add(jLabelEnderecoProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 60, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel6.setText("Departamento:");
-        jpProfessor.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 100, -1));
+        jLabelDepartamentoProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelDepartamentoProfessor.setText("Departamento:");
+        jpProfessor.add(jLabelDepartamentoProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 100, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel7.setText("Disciplinas que ministra:");
-        jpProfessor.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 692, -1));
+        jLabelDisciplinasProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelDisciplinasProfessor.setText("Disciplinas que ministra:");
+        jpProfessor.add(jLabelDisciplinasProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 692, -1));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel8.setText("Linhas de pesquisa:");
-        jpProfessor.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 110, -1));
+        jLabelPesquisaProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelPesquisaProfessor.setText("Linhas de pesquisa:");
+        jpProfessor.add(jLabelPesquisaProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 110, -1));
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldEnderecoProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextFieldEnderecoProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextFieldEnderecoProfessorActionPerformed(evt);
             }
         });
-        jpProfessor.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 350, -1));
+        jpProfessor.add(jTextFieldEnderecoProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 350, -1));
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldCodigoProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextFieldCodigoProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jTextFieldCodigoProfessorActionPerformed(evt);
             }
         });
-        jpProfessor.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 40, -1));
+        jpProfessor.add(jTextFieldCodigoProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 40, -1));
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldRAProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextFieldRAProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jTextFieldRAProfessorActionPerformed(evt);
             }
         });
-        jpProfessor.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 150, -1));
+        jpProfessor.add(jTextFieldRAProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 150, -1));
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldPesquisarProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextFieldPesquisarProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                jTextFieldPesquisarProfessorActionPerformed(evt);
             }
         });
-        jpProfessor.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 290, -1));
+        jpProfessor.add(jTextFieldPesquisarProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 290, -1));
 
-        jTextField6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldIdadeProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextFieldIdadeProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                jTextFieldIdadeProfessorActionPerformed(evt);
             }
         });
-        jpProfessor.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 60, -1));
+        jpProfessor.add(jTextFieldIdadeProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 60, -1));
 
-        jTextField7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldDepartamentoProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextFieldDepartamentoProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                jTextFieldDepartamentoProfessorActionPerformed(evt);
             }
         });
-        jpProfessor.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 350, -1));
+        jpProfessor.add(jTextFieldDepartamentoProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 350, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTablePesquisarProfessor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -161,47 +161,47 @@ public class ClienteVisao extends javax.swing.JFrame {
                 "Código", "RA", "Nome", "Departamento"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane1.setViewportView(jTablePesquisarProfessor);
+        if (jTablePesquisarProfessor.getColumnModel().getColumnCount() > 0) {
+            jTablePesquisarProfessor.getColumnModel().getColumn(1).setResizable(false);
         }
 
         jpProfessor.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 290, 310));
 
-        jTextField8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldNomeProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextFieldNomeProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                jTextFieldNomeProfessorActionPerformed(evt);
             }
         });
-        jpProfessor.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 350, -1));
+        jpProfessor.add(jTextFieldNomeProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 350, -1));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel9.setText("Código:");
-        jpProfessor.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        jLabelCodigoProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelCodigoProfessor.setText("Código:");
+        jpProfessor.add(jLabelCodigoProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        jTextField9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldPesquisaProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextFieldPesquisaProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                jTextFieldPesquisaProfessorActionPerformed(evt);
             }
         });
-        jpProfessor.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 350, -1));
+        jpProfessor.add(jTextFieldPesquisaProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 350, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
+        jTextAreaDisciplinasProfessor.setColumns(20);
+        jTextAreaDisciplinasProfessor.setRows(5);
+        jScrollPane3.setViewportView(jTextAreaDisciplinasProfessor);
 
         jpProfessor.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 350, -1));
 
-        jButton1.setText("Excluir");
-        jpProfessor.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 390, 120, 50));
+        jButtonExcluirProfessor.setText("Excluir");
+        jpProfessor.add(jButtonExcluirProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 390, 120, 50));
 
-        jButton2.setText("Inserir");
-        jpProfessor.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 120, 50));
+        jButtonInserirProfessor.setText("Inserir");
+        jpProfessor.add(jButtonInserirProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 120, 50));
 
-        jButton3.setText("Editar");
-        jpProfessor.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 120, 50));
+        jButtonEditarProfessor.setText("Editar");
+        jpProfessor.add(jButtonEditarProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 120, 50));
 
         Aulas.addTab("Professor", jpProfessor);
 
@@ -219,37 +219,37 @@ public class ClienteVisao extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFieldEnderecoProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEnderecoProfessorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFieldEnderecoProfessorActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTextFieldCodigoProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoProfessorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jTextFieldCodigoProfessorActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jTextFieldRAProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRAProfessorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jTextFieldRAProfessorActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void jTextFieldPesquisarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarProfessorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_jTextFieldPesquisarProfessorActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void jTextFieldIdadeProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIdadeProfessorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_jTextFieldIdadeProfessorActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void jTextFieldDepartamentoProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDepartamentoProfessorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_jTextFieldDepartamentoProfessorActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void jTextFieldNomeProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeProfessorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_jTextFieldNomeProfessorActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void jTextFieldPesquisaProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisaProfessorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_jTextFieldPesquisaProfessorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,30 +288,30 @@ public class ClienteVisao extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane Aulas;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton jButtonEditarProfessor;
+    private javax.swing.JButton jButtonExcluirProfessor;
+    private javax.swing.JButton jButtonInserirProfessor;
+    private javax.swing.JLabel jLabelCodigoProfessor;
+    private javax.swing.JLabel jLabelDepartamentoProfessor;
+    private javax.swing.JLabel jLabelDisciplinasProfessor;
+    private javax.swing.JLabel jLabelEnderecoProfessor;
+    private javax.swing.JLabel jLabelIdadeProfessor;
+    private javax.swing.JLabel jLabelNomeProfessor;
+    private javax.swing.JLabel jLabelPesquisaProfessor;
+    private javax.swing.JLabel jLabelPesquisarProfessor;
+    private javax.swing.JLabel jLabelRAProfessor;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTable jTablePesquisarProfessor;
+    private javax.swing.JTextArea jTextAreaDisciplinasProfessor;
+    private javax.swing.JTextField jTextFieldCodigoProfessor;
+    private javax.swing.JTextField jTextFieldDepartamentoProfessor;
+    private javax.swing.JTextField jTextFieldEnderecoProfessor;
+    private javax.swing.JTextField jTextFieldIdadeProfessor;
+    private javax.swing.JTextField jTextFieldNomeProfessor;
+    private javax.swing.JTextField jTextFieldPesquisaProfessor;
+    private javax.swing.JTextField jTextFieldPesquisarProfessor;
+    private javax.swing.JTextField jTextFieldRAProfessor;
     private javax.swing.JPanel jpAlunos;
     private javax.swing.JPanel jpAulas;
     private javax.swing.JPanel jpDisciplinas;
