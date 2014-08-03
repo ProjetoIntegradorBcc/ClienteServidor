@@ -33,7 +33,7 @@ public class ServidorSalas {
             }
             do {
                 DatagramSocket ds = new DatagramSocket(porta);
-                new ThreadCliente(ds, porta).start();
+                new ThreadCliente(ds).start();
             } while (true);
         } catch (IOException ioe) { }
     }

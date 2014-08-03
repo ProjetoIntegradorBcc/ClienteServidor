@@ -1,38 +1,41 @@
 package servidor;
 
 import SGDB.Professor;
-import java.net.*;
-import java.io.*;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 
+/**
+ * Thread faz o servidor receber um datagrama do cliente.
+ *
+ * @author Jonas
+ */
 class ThreadCliente extends Thread {
+    /**
+     * criando datagrama.
+     */
+    private final DatagramSocket ds;
 
-    private DatagramSocket ds;
-    private int porta;
-
-    public ThreadCliente(DatagramSocket ds, int porta) {
-        this.porta = porta;
+    public ThreadCliente(DatagramSocket ds) {
         this.ds = ds;
     }
 
     @Override
     public void run() {
         try {
-
-            int i;
+            String ip;
+            int i, porta;
 
             byte[] msg = new byte[256];
             DatagramPacket pkg = new DatagramPacket(msg, msg.length);
-            int porta;
-            String ip;
-            String mensagem, pacote;
+
+            String mensagem = "";
             do {
-                pacote = mensagem = "";
                 ds.receive(pkg);
                 porta = pkg.getPort();
                 ip = pkg.getAddress().getHostAddress();
                 mensagem = new String(pkg.getData(), 0, pkg.getLength());
-                System.out.println("" + mensagem);
                 switch (mensagem.substring(0, 1)) {
                     case "1":
                         System.out.println("ALUNOS");
@@ -40,7 +43,7 @@ class ThreadCliente extends Thread {
                     case "2":
                         switch (mensagem.substring(1, 2)) {
                             case "1":
-                                String RA = "";
+                                String ra = "";
                                 String nome = "";
                                 String idade = "";
                                 String endereco = "";
@@ -48,11 +51,11 @@ class ThreadCliente extends Thread {
                                 String disciplinas = "";
                                 String linhasPesquisa = "";
 
-                                System.out.println("" + mensagem);
+                                System.out.println("recebeu:" + mensagem);
 
                                 i = 3;
                                 while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
-                                    RA = (RA + mensagem.substring(i, i + 1));
+                                    ra = (ra + mensagem.substring(i, i + 1));
                                     i++;
                                 }
                                 i++;
@@ -87,13 +90,10 @@ class ThreadCliente extends Thread {
                                 }
 
                                 Professor banco = new Professor();
-                                mensagem = banco.Inserir(RA, nome, idade, endereco, departamento, disciplinas, linhasPesquisa) + "#" + banco.ConsultarProfessor(Integer.parseInt(RA)) + "#";
+                                mensagem = banco.Inserir(ra, nome, idade, endereco, departamento, disciplinas, linhasPesquisa) + "#";
                                 DatagramPacket pkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
                                 ds.send(pkgo);
-                                System.out.println("" + ip);
-                                System.out.println("" + porta);
-                                System.out.println("" + mensagem);
-
+                                System.out.println("enviou:" + mensagem);
                                 break;
                             case "2":
                                 System.out.println("PROFESSOR - EDITAR");
@@ -120,7 +120,7 @@ class ThreadCliente extends Thread {
                         String recursosDidaticos4 = "";
                         String departamento4 = "";
                         String capacidadeMaximaAlunos4 = "";
-                        
+
                         switch (mensagem.substring(1, 2)) {
                             case "1":
                                 i = 3;

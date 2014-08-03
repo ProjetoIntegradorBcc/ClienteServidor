@@ -3,6 +3,7 @@ package SGDB;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 //Início da classe de conexão//
@@ -78,8 +79,50 @@ public class Salas {
 
     }
 
-    public void Consultar() {
+    public String ConsultarSalas(int id) {
 
+        Connection con = new Professor().getConnection();
+        String sql = "SELECT * FROM salas where idSala = ?";
+        String mensagem = "0#";
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet resultado = stmt.executeQuery();
+            resultado.next();
+            mensagem = mensagem + resultado.getInt("idSala") + "#"
+                    + resultado.getString("descricaoLaboratorio") + "#"
+                    + resultado.getInt("numeroComputadores") + "#"
+                    + resultado.getString("recursosDidaticos") + "#"
+                    + resultado.getString("departamento") + "#"
+                    + resultado.getInt("capacidadeMaxima") + "#";
+            stmt.close();
+            return mensagem;
+
+        } catch (SQLException u) {
+            return "1#";
+        }
+
+    }
+
+    public String ConsultarSalas() {
+        String mensagem = "0#";
+        Connection con = new Professor().getConnection();
+        String sql = "SELECT * FROM salas";
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet resultado = stmt.executeQuery();
+            while (resultado.next()) {
+                mensagem = mensagem + resultado.getString("idSala") + "#" + resultado.getString("descricaoLaboratorio") + "#";
+            }
+            stmt.close();
+            return mensagem;
+
+        } catch (SQLException u) {
+            mensagem = "1#";
+            return mensagem;
+        }
     }
 
 }
