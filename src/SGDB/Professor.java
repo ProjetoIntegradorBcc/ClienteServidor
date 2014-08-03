@@ -1,4 +1,4 @@
-package servidor;
+package SGDB;
 
 import java.awt.List;
 import java.sql.Connection;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 //Início da classe de conexão//
-public class Banco {
+public class Professor {
 
     public Connection getConnection() {
         try {
@@ -21,7 +21,7 @@ public class Banco {
 
     public int Inserir(String ra, String nome, String idade, String endereco, String departamento, String disciplinasMinistra, String linhasPesquisa) {
 
-        Connection con = new Banco().getConnection();
+        Connection con = new Professor().getConnection();
 
         String sql = "INSERT INTO professor(RA, nome, idade, endereco, departamento, disciplinasMinistra, linhasPesquisa) VALUES(?,?,?,?,?,?,?)";
 
@@ -45,7 +45,7 @@ public class Banco {
 
     public void Editar(int cod, int ra, String nome, int idade, String endereco, String departamento, String disciplinasMinistra, String linhasPesquisa) {
 
-        Connection con = new Banco().getConnection();
+        Connection con = new Professor().getConnection();
 
         String sql = "UPDATE professor SET RA = ?, nome = ?, idade = ?, endereco = ?, departamento = ?, disciplinasMinistra = ?, linhasPesquisa = ? WHERE idProfessor = ?";
 
@@ -68,7 +68,7 @@ public class Banco {
     }
 
     public void Deletar(int id) {
-        Connection con = new Banco().getConnection();
+        Connection con = new Professor().getConnection();
 
         String sql = "DELETE FROM professor WHERE idAula = ?";
 
@@ -87,7 +87,7 @@ public class Banco {
         public int ConsultarProfessor(int RA) {
 
         int codigo;
-        Connection con = new Banco().getConnection();
+        Connection con = new Professor().getConnection();
         String sql = "SELECT idProfessor FROM professor where RA = ?";
 
         try {
@@ -109,7 +109,7 @@ public class Banco {
 
        
         ArrayList<vo.ProfessorVO> lista = new ArrayList<vo.ProfessorVO>();
-        Connection con = new Banco().getConnection();
+        Connection con = new Professor().getConnection();
         String sql = "SELECT * FROM professor";
 
         try {
