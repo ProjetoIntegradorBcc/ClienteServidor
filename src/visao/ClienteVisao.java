@@ -15,12 +15,15 @@ import vo.ProfessorVO;
  * @author lucas
  */
 public class ClienteVisao extends javax.swing.JFrame {
+    
+    ClienteRN CRN = new ClienteRN();
 
     /**
      * Creates new form ClienteVisao.
      */
     public ClienteVisao() {
         initComponents();
+        iniciaConexao();
     }
     
     @SuppressWarnings("unchecked")
@@ -182,10 +185,9 @@ public class ClienteVisao extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jButtonInserirProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirProfessorActionPerformed
         ProfessorVO PVO = new ProfessorVO();
-        ClienteRN CRN = new ClienteRN();
         
         PVO.setRa(jTextFieldRAProfessor.getText());
         PVO.setNome(jTextFieldNomeProfessor.getText());
@@ -198,6 +200,27 @@ public class ClienteVisao extends javax.swing.JFrame {
         System.out.println(CRN.insereProfessor(PVO));
     }//GEN-LAST:event_jButtonInserirProfessorActionPerformed
 
+    private void iniciaConexao() {
+        String ip, porta, mensagemValidacaoConexao;
+        mensagemValidacaoConexao = "Informe o ip do servidor";
+        do{
+            ip = JOptionPane.showInputDialog(mensagemValidacaoConexao);
+            mensagemValidacaoConexao = CRN.validaIP(ip);
+            if(!mensagemValidacaoConexao.isEmpty()){
+                System.out.println("Informe o ip do servidor " + mensagemValidacaoConexao);
+            }
+        }while(!mensagemValidacaoConexao.isEmpty());
+        mensagemValidacaoConexao = "Informe a porta do servidor";
+        do{
+            porta = JOptionPane.showInputDialog(mensagemValidacaoConexao);
+            mensagemValidacaoConexao = CRN.validaPorta(porta);
+            if(!mensagemValidacaoConexao.isEmpty()){
+                System.out.println("Informe a porta do servidor " + mensagemValidacaoConexao);
+            }
+        }while(!mensagemValidacaoConexao.isEmpty());
+        JOptionPane.showMessageDialog(rootPane, CRN.validaConexao(ip, porta), "Conexao", WIDTH);
+    }
+        
     /**
      * @param args the command line arguments
      */

@@ -1,5 +1,13 @@
 package conexao;
 
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import vo.ProfessorVO;
 
 /**
@@ -7,11 +15,22 @@ import vo.ProfessorVO;
  * @author diogo
  */
 public class ConexaoServidor {
-
+    
+    private DatagramSocket ds;
+    private InetAddress ip;
+    private int porta;
+    private DatagramPacket pacote;
+    
     public String enviaDataGrama(ProfessorVO PVO) {
-        String mensagem = VO2DataGrama(PVO);
+        String mensagem  = VO2DataGrama(PVO);
+        byte[] msg = mensagem.getBytes();
+        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
+        try {
+            this.ds.send(pacote);
+        } catch (IOException ex) {
+            return "Erro ao enviar";
+        }
         return null;
-        
     }
 
     private String VO2DataGrama(ProfessorVO PVO) {
@@ -19,5 +38,20 @@ public class ConexaoServidor {
             +"#"+PVO.getEndereco()+"#"+PVO.getDepartamento()+"#"
             +PVO.getDisciplinas()+"#"+PVO.getPesquisa()+"#";
         return mensagem;
+    }
+
+    public String estabeleceConexao(String ip, String porta) {
+        try {
+            this.ip = InetAddress.getByName(ip);
+        } catch (UnknownHostException ex) {
+            return "Erro - ip invalido";
+        }
+        this.porta = Integer.parseInt(porta);
+        try {
+            this.ds = new DatagramSocket();
+        } catch (SocketException ex) {
+            return "Erro na criacao do DatagramSocket";
+        }
+        return "Conexao Estabelecida";
     }
 }

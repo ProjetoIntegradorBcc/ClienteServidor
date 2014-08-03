@@ -61,7 +61,7 @@ public class ProfessorRN {
      */
     String validaRA(String campoRA){
         int ra;
-        if(campoRA.length() == 0){
+        if(campoRA.isEmpty()){
             return "RA invalido - campo vazio";
         }
         else{
@@ -89,7 +89,7 @@ public class ProfessorRN {
      * Mensagem de erro em caso de campo invalido
      */
     private String validaNome(String campoNome) {
-        if(campoNome.length() == 0){
+        if(campoNome.isEmpty()){
             return "Nome invalido - campo vazio";
         }
         else if(campoNome.length() > 50){
@@ -110,7 +110,7 @@ public class ProfessorRN {
      */
     private String validaIdade(String campoIdade) {
         int idade;
-        if(campoIdade.length() == 0){
+        if(campoIdade.isEmpty()){
             return "Idade invalida - campo vazio";
         }
         else{
@@ -138,7 +138,7 @@ public class ProfessorRN {
      * Mensagem de erro em caso de campo invalido
      */
     private String validaDepartamento(String campoDepartamento) {
-        if(campoDepartamento.length() == 0){
+        if(campoDepartamento.isEmpty()){
             return "Departamento invalido - campo vazio";
         }
         else if(campoDepartamento.length() > 40){
@@ -158,7 +158,7 @@ public class ProfessorRN {
      * Mensagem de erro em caso de campo invalido
      */
     private String validaDisciplinas(String campoDisciplinas) {
-        if(campoDisciplinas.length() == 0){
+        if(campoDisciplinas.isEmpty()){
             return "Disciplinas invalidas - campo vazio";
         }
         else if(campoDisciplinas.length() > 100){
@@ -178,7 +178,7 @@ public class ProfessorRN {
      * Mensagem de erro em caso de campo invalido
      */
     private String validaEndereco(String campoEndereco) {
-        if(campoEndereco.length() == 0){
+        if(campoEndereco.isEmpty()){
             return "Endereco invalido - campo vazio";
         }
         else if(campoEndereco.length() > 150){
@@ -198,7 +198,7 @@ public class ProfessorRN {
      * Mensagem de erro em caso de campo invalido
      */
     private String validaPesquisa(String campoPesquisa) {
-        if(campoPesquisa.length() == 0){
+        if(campoPesquisa.isEmpty()){
             return "Pesquisa invalida - campo vazio";
         }
         else if(campoPesquisa.length() > 100){
