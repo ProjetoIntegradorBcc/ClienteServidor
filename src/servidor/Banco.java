@@ -19,7 +19,7 @@ public class Banco {
         }
     }
 
-    public void Inserir(int ra, String nome, int idade, String endereco, String departamento, String disciplinasMinistra, String linhasPesquisa) {
+    public int Inserir(String ra, String nome, String idade, String endereco, String departamento, String disciplinasMinistra, String linhasPesquisa) {
 
         Connection con = new Banco().getConnection();
 
@@ -27,18 +27,19 @@ public class Banco {
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, ra);
+            stmt.setInt(1, Integer.parseInt(ra));
             stmt.setString(2, nome);
-            stmt.setInt(3, idade);
+            stmt.setInt(3, Integer.parseInt(idade));
             stmt.setString(4, endereco);
             stmt.setString(5, departamento);
             stmt.setString(6, disciplinasMinistra);
             stmt.setString(7, linhasPesquisa);
             stmt.execute();
             stmt.close();
+            return 0;
 
         } catch (SQLException u) {
-            throw new RuntimeException(u);
+            return 1;
         }
     }
 
@@ -85,23 +86,23 @@ public class Banco {
 
         public int ConsultarProfessor(int RA) {
 
-            int codigo;
+        int codigo;
         Connection con = new Banco().getConnection();
         String sql = "SELECT idProfessor FROM professor where RA = ?";
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
-            System.out.println(""+RA);
             stmt.setInt(1, RA);
             ResultSet resultado = stmt.executeQuery();
             resultado.next();
             codigo = resultado.getInt("idProfessor");
             stmt.close();
+           return codigo;
 
         } catch (SQLException u) {
             throw new RuntimeException(u);
         }
-        return codigo;
+        
     }
 
     public void ConsultarProfessor() {

@@ -8,7 +8,6 @@ package servidor;
 
 import java.io.IOException;
 import java.net.DatagramSocket;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,7 +17,7 @@ import javax.swing.JOptionPane;
 public class ServidorSalas {
 
    
-         public static void main(String[] args) {
+         public static void main(String[] targs) {
 
         try {
             String p = (JOptionPane.showInputDialog("porta servidor"));
