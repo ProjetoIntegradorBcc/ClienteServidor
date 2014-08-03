@@ -79,12 +79,7 @@ public class ClienteRN {
         }
     }
 
-    public ArrayList<ProfessorVO> pesquisaProfessor(String nome) {
-        ProfessorRN PRN = new ProfessorRN();
-        String mensagemCampoInvalido = PRN.validaNome(nome);
-        if(mensagemCampoInvalido != null){
-            return null;
-        }
-        return conexao.pesquisaProfessor(nome);
+    public ArrayList<ProfessorVO> buscaProfessor() {
+        return conexao.buscaProfessor();
     }
 }

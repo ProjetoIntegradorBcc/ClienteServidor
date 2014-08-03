@@ -24,7 +24,7 @@ public class ConexaoServidor {
     
     public String enviaDataGrama(ProfessorVO PVO) {
         
-        String mensagem  = VO2DataGrama(PVO);
+        String mensagem  = VOParaDataGrama(PVO);
         byte[] msg = mensagem.getBytes();
         this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
         try {
@@ -49,7 +49,7 @@ public class ConexaoServidor {
             }
     }
     
-    private String VO2DataGrama(ProfessorVO PVO) {
+    private String VOParaDataGrama(ProfessorVO PVO) {
         String mensagem = "21#"+PVO.getRa()+"#"+PVO.getNome()+"#"+PVO.getIdade()
             +"#"+PVO.getEndereco()+"#"+PVO.getDepartamento()+"#"
             +PVO.getDisciplinas()+"#"+PVO.getPesquisa()+"#";
@@ -71,9 +71,9 @@ public class ConexaoServidor {
         return "Conexao Estabelecida";
     }
 
-    public ArrayList<ProfessorVO> pesquisaProfessor(String nome) {
+    public ArrayList<ProfessorVO> buscaProfessor() {
         
-        String mensagem = "24#"+nome+"#";
+        String mensagem = "25#";
         byte[] msg = mensagem.getBytes();
         this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
         try {
@@ -82,6 +82,57 @@ public class ConexaoServidor {
             return null;
         }
         
+        String resposta = recebeDataGrama();
+        
+        return dataGramaParaVO(resposta);
+    }
+
+    private ArrayList<ProfessorVO> dataGramaParaVO(String resposta) {
+        switch(resposta.substring(0, 2)){
+            case "4#":
+                return null;
+            case "5#":
+                return converteDataGramaPesquisaProfessor(resposta);
+            default:
+                return null;
+        }
+    }
+
+    private ArrayList<ProfessorVO> converteDataGramaPesquisaProfessor(String mensagem) {
+        String nome = "", id = "";
+        ArrayList<ProfessorVO> professores = new ArrayList<>();
+        if (!mensagem.isEmpty()) {
+            int i = 2;
+            while (i < mensagem.length()) {
+                ProfessorVO p = new ProfessorVO();
+                nome = "";
+                id = "";
+                while (i < mensagem.length()) {
+                    if (!"#".equals(mensagem.substring(i, i + 1))) {
+                        id = id + mensagem.substring(i, i + 1);
+                    } else {
+                        break;
+                    }
+                    i++;
+                }
+                i++;
+                while (i < mensagem.length()) {
+                    if (!"#".equals(mensagem.substring(i, i + 1))) {
+                        nome = nome + mensagem.substring(i, i + 1);
+                    } else {
+                        break;
+                    }
+                    i++;
+                }
+                p.setNome(nome);
+                p.setCodigo(id);
+                professores.add(p);
+                i++;
+            }
+            return professores;
+        } else {
+            return null;
+        }
     }
     
 }

@@ -251,7 +251,6 @@ public class ClienteVisao extends javax.swing.JFrame {
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         String nome = jTextFieldPesquisarProfessor.getText();
-        CRN.pesquisaProfessor(nome);
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void iniciaConexao() {
@@ -276,10 +275,11 @@ public class ClienteVisao extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, CRN.validaConexao(ip, porta), "Conexao", WIDTH);
     }
 
-    private void AtualizaTabela(ArrayList<vo.ProfessorVO> lista) {
-
+    private void AtualizaTabela(){
+        
+        ArrayList<ProfessorVO> lista = CRN.buscaProfessor();
         DefaultTableModel model = (DefaultTableModel) jTablePesquisarProfessor.getModel();
-        for (vo.ProfessorVO item : lista) {
+        for (ProfessorVO item : lista) {
             Object[] linha = {item.getCodigo(), item.getNome()};
             model.addRow(linha);
         }
