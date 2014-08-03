@@ -9,7 +9,6 @@ package regraDeNegocio;
 import vo.ProfessorVO;
 import conexao.ConexaoServidor;
 import java.net.InetAddress;
-import java.net.SocketException;
 import java.net.UnknownHostException;
 
 /**
@@ -48,16 +47,13 @@ public class ClienteRN {
     }
     
     public String validaIP(String campoIP){
-        if(campoIP.isEmpty()){
-            return "IP invalido - campo vazio";
+        ValidadorIP vip = new ValidadorIP();
+        if(vip.validaIP(campoIP)){
+            return "";
         }
-        try {
-            InetAddress ip = InetAddress.getByName(campoIP);
-        } catch (UnknownHostException ex) {
-            return "Ip invalido";
+        else{
+            return "IP invalido";
         }
-        return "";
-        
     }
     
     public String validaPorta(String campoPorta){

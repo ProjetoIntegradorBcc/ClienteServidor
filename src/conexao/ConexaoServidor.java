@@ -22,15 +22,25 @@ public class ConexaoServidor {
     private DatagramPacket pacote;
     
     public String enviaDataGrama(ProfessorVO PVO) {
+        
         String mensagem  = VO2DataGrama(PVO);
         byte[] msg = mensagem.getBytes();
+        byte[] resposta = new byte[256];
         this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
         try {
             this.ds.send(pacote);
         } catch (IOException ex) {
             return "Erro ao enviar";
         }
-        return null;
+        pacote = new DatagramPacket(resposta, resposta.length);
+        try {
+            ds.receive(pacote);
+            String r = new String(pacote.getData(), 0, pacote.getLength());
+            System.out.println(r);
+            return r;
+        } catch (IOException ex) {
+            return "3";
+        }
     }
 
     private String VO2DataGrama(ProfessorVO PVO) {
