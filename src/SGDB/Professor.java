@@ -1,12 +1,10 @@
 package SGDB;
 
-import java.awt.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 //Início da classe de conexão//
 public class Professor {
@@ -78,37 +76,42 @@ public class Professor {
             stmt.execute();
             stmt.close();
 
-            } catch (SQLException u) {
-                throw new RuntimeException(u);
-            }
-
-        }
-
-        public int ConsultarProfessor(int RA) {
-
-        int codigo;
-        Connection con = new Professor().getConnection();
-        String sql = "SELECT idProfessor FROM professor where RA = ?";
-
-        try {
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, RA);
-            ResultSet resultado = stmt.executeQuery();
-            resultado.next();
-            codigo = resultado.getInt("idProfessor");
-            stmt.close();
-           return codigo;
-
         } catch (SQLException u) {
             throw new RuntimeException(u);
         }
-        
+
     }
 
-    public void ConsultarProfessor() {
+    public String ConsultarProfessor(int id) {
 
-       
-        ArrayList<vo.ProfessorVO> lista = new ArrayList<vo.ProfessorVO>();
+        Connection con = new Professor().getConnection();
+        String sql = "SELECT * FROM professor where idProfessor = ?";
+        String mensagem = "0#";
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet resultado = stmt.executeQuery();
+            resultado.next();
+            mensagem = mensagem + resultado.getInt("idProfessor") + "#"
+                    + resultado.getInt("RA") + "#"
+                    + resultado.getString("nome") + "#"
+                    + resultado.getInt("idade") + "#"
+                    + resultado.getString("endereco") + "#"
+                    + resultado.getString("departamento") + "#"
+                    + resultado.getString("disciplinasMinistra") + "#"
+                    + resultado.getString("linhasPesquisa") + "#";
+            stmt.close();
+            return mensagem;
+
+        } catch (SQLException u) {
+            return "1#";
+        }
+
+    }
+
+    public String ConsultarProfessor() {
+        String mensagem = "0#";
         Connection con = new Professor().getConnection();
         String sql = "SELECT * FROM professor";
 
@@ -116,22 +119,14 @@ public class Professor {
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet resultado = stmt.executeQuery();
             while (resultado.next()) {
-                vo.ProfessorVO prof = new vo.ProfessorVO();
-                prof.setCodigo(resultado.getString("idProfessor"));
-                prof.setRa(resultado.getString("RA"));
-                prof.setNome(resultado.getString("nome"));
-                prof.setIdade(resultado.getString("idade"));
-                prof.setEndereco(resultado.getString("endereco"));
-                prof.setDepartamento(resultado.getString("departamento"));
-                prof.setDisciplinas(resultado.getString("disciplinasMinistra"));
-                prof.setPesquisa(resultado.getString("linhasPesquisa"));
-
-                lista.add(prof);
+                mensagem = mensagem + resultado.getString("idProfessor") + "#" + resultado.getString("nome") + "#";
             }
             stmt.close();
+            return mensagem;
 
         } catch (SQLException u) {
-            throw new RuntimeException(u);
+            mensagem = "1#";
+            return mensagem;
         }
     }
 
