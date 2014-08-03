@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,10 +6,10 @@
  */
 package servidor;
 
-import servidor.Banco;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.io.IOException;
+import java.net.DatagramSocket;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,11 +17,26 @@ import java.sql.SQLException;
  */
 public class ServidorSalas {
 
-    public static void main(String[] args) {
-        Banco con = new Banco();
-        //con.Inserir(1234, "Joao", 34, "Rua das palmeiras", "DAINF", "Matemárica e afins", "doutor");
-        //con.Deletar(2);
-        //con.Editar(3,1234, "JONASAAA", 34, "Rua das palmeiras OLIVEEIRA", "DAINFSSEM", "MAAAAAAAAatemárica e afins", "douEEEEEEEEtor");
-        //System.out.println(""+con.ConsultarProfessor(1234));
+   
+         public static void main(String[] args) {
+
+        try {
+            String p = (JOptionPane.showInputDialog("porta servidor"));
+            int porta;
+            if(!p.isEmpty()){
+                porta = Integer.parseInt(p);
+            }
+            else{
+                while(p.isEmpty()){
+                    p = (JOptionPane.showInputDialog("porta servidor"));
+                }
+                porta = Integer.parseInt(p);
+            }
+            do {
+                DatagramSocket ds = new DatagramSocket(porta);
+                new ThreadCliente(ds, porta).start();
+            } while (true);
+        } catch (IOException ioe) { }
     }
+    
 }
