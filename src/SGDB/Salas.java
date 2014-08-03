@@ -83,7 +83,7 @@ public class Salas {
 
         Connection con = new Professor().getConnection();
         String sql = "SELECT * FROM salas where idSala = ?";
-        String mensagem = "0#";
+        String mensagem = "04#";
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -106,7 +106,7 @@ public class Salas {
     }
 
     public String ConsultarSalas() {
-        String mensagem = "0#";
+        String mensagem = "05#";
         Connection con = new Professor().getConnection();
         String sql = "SELECT * FROM salas";
 
