@@ -6,7 +6,10 @@
 
 package visao;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import regraDeNegocio.ClienteRN;
 import vo.ProfessorVO;
 
@@ -57,18 +60,22 @@ public class ClienteVisao extends javax.swing.JFrame {
         jButtonExcluirProfessor = new javax.swing.JButton();
         jButtonInserirProfessor = new javax.swing.JButton();
         jButtonEditarProfessor = new javax.swing.JButton();
+        jButtonPesquisar = new javax.swing.JButton();
         jpDisciplinas = new javax.swing.JPanel();
         jpSalas = new javax.swing.JPanel();
         jpAulas = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        Aulas.setMaximumSize(new java.awt.Dimension(900, 600));
+        Aulas.setMinimumSize(new java.awt.Dimension(900, 600));
         Aulas.setPreferredSize(new java.awt.Dimension(950, 600));
         Aulas.setRequestFocusEnabled(false);
 
         jpAlunos.setLayout(new java.awt.BorderLayout());
         Aulas.addTab("Alunos", jpAlunos);
 
+        jpProfessor.setMaximumSize(null);
         jpProfessor.setPreferredSize(new java.awt.Dimension(950, 370));
         jpProfessor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -78,7 +85,7 @@ public class ClienteVisao extends javax.swing.JFrame {
 
         jLabelRAProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelRAProfessor.setText("RA:");
-        jpProfessor.add(jLabelRAProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 30, -1));
+        jpProfessor.add(jLabelRAProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 30, -1));
 
         jLabelNomeProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelNomeProfessor.setText("Nome:");
@@ -90,7 +97,7 @@ public class ClienteVisao extends javax.swing.JFrame {
 
         jLabelEnderecoProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelEnderecoProfessor.setText("Endereço:");
-        jpProfessor.add(jLabelEnderecoProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 60, -1));
+        jpProfessor.add(jLabelEnderecoProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 110, -1));
 
         jLabelDepartamentoProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelDepartamentoProfessor.setText("Departamento:");
@@ -98,63 +105,72 @@ public class ClienteVisao extends javax.swing.JFrame {
 
         jLabelDisciplinasProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelDisciplinasProfessor.setText("Disciplinas que ministra:");
-        jpProfessor.add(jLabelDisciplinasProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 692, -1));
+        jpProfessor.add(jLabelDisciplinasProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 160, -1));
 
         jLabelPesquisaProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelPesquisaProfessor.setText("Linhas de pesquisa:");
         jpProfessor.add(jLabelPesquisaProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 110, -1));
 
         jTextFieldEnderecoProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jpProfessor.add(jTextFieldEnderecoProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 350, -1));
+        jpProfessor.add(jTextFieldEnderecoProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 350, -1));
 
         jTextFieldCodigoProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jpProfessor.add(jTextFieldCodigoProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 40, -1));
+        jpProfessor.add(jTextFieldCodigoProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 40, -1));
 
         jTextFieldRAProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jpProfessor.add(jTextFieldRAProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 150, -1));
+        jpProfessor.add(jTextFieldRAProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 150, -1));
 
         jTextFieldPesquisarProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jpProfessor.add(jTextFieldPesquisarProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 290, -1));
+        jpProfessor.add(jTextFieldPesquisarProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 200, 30));
 
         jTextFieldIdadeProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jpProfessor.add(jTextFieldIdadeProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 60, -1));
+        jpProfessor.add(jTextFieldIdadeProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 60, -1));
 
         jTextFieldDepartamentoProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jpProfessor.add(jTextFieldDepartamentoProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 350, -1));
+        jpProfessor.add(jTextFieldDepartamentoProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 350, -1));
 
         jTablePesquisarProfessor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Código", "RA", "Nome", "Departamento"
+                "Nome"
             }
-        ));
-        jScrollPane1.setViewportView(jTablePesquisarProfessor);
-        if (jTablePesquisarProfessor.getColumnModel().getColumnCount() > 0) {
-            jTablePesquisarProfessor.getColumnModel().getColumn(1).setResizable(false);
-        }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false
+            };
 
-        jpProfessor.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 290, 310));
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTablePesquisarProfessor);
+
+        jpProfessor.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, 290, 380));
 
         jTextFieldNomeProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jpProfessor.add(jTextFieldNomeProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 350, -1));
+        jpProfessor.add(jTextFieldNomeProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 350, -1));
 
         jLabelCodigoProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelCodigoProfessor.setText("Código:");
         jpProfessor.add(jLabelCodigoProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jTextFieldPesquisaProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jpProfessor.add(jTextFieldPesquisaProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 350, -1));
+        jpProfessor.add(jTextFieldPesquisaProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 350, -1));
 
         jTextAreaDisciplinasProfessor.setColumns(20);
         jTextAreaDisciplinasProfessor.setRows(5);
         jScrollPane3.setViewportView(jTextAreaDisciplinasProfessor);
 
-        jpProfessor.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 350, -1));
+        jpProfessor.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 350, -1));
 
         jButtonExcluirProfessor.setText("Excluir");
         jpProfessor.add(jButtonExcluirProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 390, 120, 50));
@@ -169,6 +185,14 @@ public class ClienteVisao extends javax.swing.JFrame {
 
         jButtonEditarProfessor.setText("Editar");
         jpProfessor.add(jButtonEditarProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 120, 50));
+
+        jButtonPesquisar.setText("Pesquisar");
+        jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisarActionPerformed(evt);
+            }
+        });
+        jpProfessor.add(jButtonPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, 90, 30));
 
         Aulas.addTab("Professor", jpProfessor);
 
@@ -197,10 +221,42 @@ public class ClienteVisao extends javax.swing.JFrame {
         PVO.setDisciplinas(jTextAreaDisciplinasProfessor.getText());
         PVO.setPesquisa(jTextFieldPesquisaProfessor.getText());
         
-        System.out.println(CRN.insereProfessor(PVO));
+        String resposta = (CRN.insereProfessor(PVO));
+        switch(resposta){                
+            case "0#":
+                JOptionPane.showMessageDialog(rootPane,
+                "Inserido com sucesso :)", "Inserção no Banco de dados", WIDTH);
+                break;
+            case "1#":
+                JOptionPane.showMessageDialog(rootPane,
+                "Erro na insercao no Banco de dados",
+                "Inserção no Banco de dados", WIDTH);
+                break;
+            case "2#":
+                JOptionPane.showMessageDialog(rootPane,
+                "Erro ao enviar o Datagrama",
+                "Transmissão do Datagrama", WIDTH);
+                break;
+            case "3#":
+                JOptionPane.showMessageDialog(rootPane,
+                "Erro ao enviar o Datagrama - Tempo limite excedido",
+                "Transmissão do Datagrama", WIDTH);
+                break;
+            default:
+                JOptionPane.showMessageDialog(rootPane,
+                "Erro inesperado: " + resposta,
+                "Insercao", WIDTH);
+                break;
+        }
     }//GEN-LAST:event_jButtonInserirProfessorActionPerformed
 
+    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+        String nome = jTextFieldPesquisarProfessor.getText();
+        CRN.pesquisaProfessor(nome);
+    }//GEN-LAST:event_jButtonPesquisarActionPerformed
+
     private void iniciaConexao() {
+
         String ip, porta, mensagemValidacaoConexao;
         mensagemValidacaoConexao = "Informe o ip do servidor";
         do{
@@ -261,6 +317,7 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEditarProfessor;
     private javax.swing.JButton jButtonExcluirProfessor;
     private javax.swing.JButton jButtonInserirProfessor;
+    private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JLabel jLabelCodigoProfessor;
     private javax.swing.JLabel jLabelDepartamentoProfessor;
     private javax.swing.JLabel jLabelDisciplinasProfessor;

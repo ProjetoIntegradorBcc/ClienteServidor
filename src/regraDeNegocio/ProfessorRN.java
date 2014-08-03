@@ -59,7 +59,7 @@ public class ProfessorRN {
      * @return null em caso de campo valido
      * mensagem de erro em caso de campo invalido
      */
-    String validaRA(String campoRA){
+    private String validaRA(String campoRA){
         int ra;
         if(campoRA.isEmpty()){
             return "RA invalido - campo vazio";
@@ -88,7 +88,7 @@ public class ProfessorRN {
      * @return null em caso de campo valido
      * Mensagem de erro em caso de campo invalido
      */
-    private String validaNome(String campoNome) {
+    public String validaNome(String campoNome) {
         if(campoNome.isEmpty()){
             return "Nome invalido - campo vazio";
         }

@@ -6,6 +6,7 @@
 
 package regraDeNegocio;
 
+import com.sun.tracing.Probe;
 import vo.ProfessorVO;
 import conexao.ConexaoServidor;
 import java.net.InetAddress;
@@ -75,5 +76,14 @@ public class ClienteRN {
                 return "Porta invalida - insira um valor numerico";
             }
         }
+    }
+
+    public ProfessorVO pesquisaProfessor(String nome) {
+        ProfessorRN PRN = new ProfessorRN();
+        String mensagemCampoInvalido = PRN.validaNome(nome);
+        if(mensagemCampoInvalido != null){
+            return null;
+        }
+        return  null;
     }
 }

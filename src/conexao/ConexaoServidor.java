@@ -25,24 +25,29 @@ public class ConexaoServidor {
         
         String mensagem  = VO2DataGrama(PVO);
         byte[] msg = mensagem.getBytes();
-        byte[] resposta = new byte[256];
         this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
         try {
             this.ds.send(pacote);
         } catch (IOException ex) {
             return "Erro ao enviar";
         }
-        pacote = new DatagramPacket(resposta, resposta.length);
-        try {
-            ds.receive(pacote);
-            String r = new String(pacote.getData(), 0, pacote.getLength());
-            System.out.println(r);
-            return r;
-        } catch (IOException ex) {
-            return "3";
-        }
+        return recebeDataGrama();
     }
 
+    public String recebeDataGrama(){
+
+        byte[] resposta = new byte[256];
+        pacote = new DatagramPacket(resposta, resposta.length);
+        //tratar tempo limite excedido aqui
+            try {
+                ds.receive(pacote);
+                String r = new String(pacote.getData(), 0, pacote.getLength());
+                return r;
+            } catch (IOException ex) {
+                return "2#";
+            }
+    }
+    
     private String VO2DataGrama(ProfessorVO PVO) {
         String mensagem = "21#"+PVO.getRa()+"#"+PVO.getNome()+"#"+PVO.getIdade()
             +"#"+PVO.getEndereco()+"#"+PVO.getDepartamento()+"#"
