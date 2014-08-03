@@ -277,11 +277,27 @@ public class ClienteVisao extends javax.swing.JFrame {
     }
 
     private void AtualizaTabela(ArrayList<vo.ProfessorVO> lista) {
-        
+
         DefaultTableModel model = (DefaultTableModel) jTablePesquisarProfessor.getModel();
-        for (vo.ProfessorVO item : lista){
-        Object[] linha = {item.getCodigo(), item.getNome()};
-        model.addRow(linha);
+        for (vo.ProfessorVO item : lista) {
+            Object[] linha = {item.getCodigo(), item.getNome()};
+            model.addRow(linha);
+        }
+    }
+
+    private void RetornaCamposPesquisa(ArrayList<vo.ProfessorVO> lista) {
+
+        DefaultTableModel model = (DefaultTableModel) jTablePesquisarProfessor.getModel();
+        for (vo.ProfessorVO item : lista) {
+            jTextFieldCodigoProfessor.setText(item.getCodigo());
+            jTextFieldRAProfessor.setText(item.getRa());
+            jTextFieldNomeProfessor.setText(item.getNome());
+            jTextFieldIdadeProfessor.setText(item.getIdade());
+            jTextFieldEnderecoProfessor.setText(item.getEndereco());
+            jTextFieldDepartamentoProfessor.setText(item.getDepartamento());
+            jTextAreaDisciplinasProfessor.setText(item.getDisciplinas());
+            jTextFieldPesquisaProfessor.setText(item.getPesquisa());
+
         }
     }
 
