@@ -6,6 +6,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import vo.ProfessorVO;
@@ -69,4 +70,18 @@ public class ConexaoServidor {
         }
         return "Conexao Estabelecida";
     }
+
+    public ArrayList<ProfessorVO> pesquisaProfessor(String nome) {
+        
+        String mensagem = "24#"+nome+"#";
+        byte[] msg = mensagem.getBytes();
+        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
+        try {
+            this.ds.send(pacote);
+        } catch (IOException ex) {
+            return null;
+        }
+        
+    }
+    
 }

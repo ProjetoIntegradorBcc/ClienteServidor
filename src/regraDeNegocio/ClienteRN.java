@@ -7,10 +7,11 @@
 package regraDeNegocio;
 
 import com.sun.tracing.Probe;
-import vo.ProfessorVO;
 import conexao.ConexaoServidor;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import vo.ProfessorVO;
 
 /**
  *
@@ -78,12 +79,12 @@ public class ClienteRN {
         }
     }
 
-    public ProfessorVO pesquisaProfessor(String nome) {
+    public ArrayList<ProfessorVO> pesquisaProfessor(String nome) {
         ProfessorRN PRN = new ProfessorRN();
         String mensagemCampoInvalido = PRN.validaNome(nome);
         if(mensagemCampoInvalido != null){
             return null;
         }
-        return  null;
+        return conexao.pesquisaProfessor(nome);
     }
 }
