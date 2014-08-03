@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package visao;
 
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ import vo.ProfessorVO;
  * @author lucas
  */
 public class ClienteVisao extends javax.swing.JFrame {
-    
+
     ClienteRN CRN = new ClienteRN();
 
     /**
@@ -28,7 +27,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         initComponents();
         iniciaConexao();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -209,10 +208,10 @@ public class ClienteVisao extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void jButtonInserirProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirProfessorActionPerformed
         ProfessorVO PVO = new ProfessorVO();
-        
+
         PVO.setRa(jTextFieldRAProfessor.getText());
         PVO.setNome(jTextFieldNomeProfessor.getText());
         PVO.setIdade(jTextFieldIdadeProfessor.getText());
@@ -220,32 +219,32 @@ public class ClienteVisao extends javax.swing.JFrame {
         PVO.setDepartamento(jTextFieldDepartamentoProfessor.getText());
         PVO.setDisciplinas(jTextAreaDisciplinasProfessor.getText());
         PVO.setPesquisa(jTextFieldPesquisaProfessor.getText());
-        
+
         String resposta = (CRN.insereProfessor(PVO));
-        switch(resposta){                
+        switch (resposta) {
             case "0#":
                 JOptionPane.showMessageDialog(rootPane,
-                "Inserido com sucesso :)", "Inserção no Banco de dados", WIDTH);
+                        "Inserido com sucesso :)", "Inserção no Banco de dados", WIDTH);
                 break;
             case "1#":
                 JOptionPane.showMessageDialog(rootPane,
-                "Erro na insercao no Banco de dados",
-                "Inserção no Banco de dados", WIDTH);
+                        "Erro na insercao no Banco de dados",
+                        "Inserção no Banco de dados", WIDTH);
                 break;
             case "2#":
                 JOptionPane.showMessageDialog(rootPane,
-                "Erro ao enviar o Datagrama",
-                "Transmissão do Datagrama", WIDTH);
+                        "Erro ao enviar o Datagrama",
+                        "Transmissão do Datagrama", WIDTH);
                 break;
             case "3#":
                 JOptionPane.showMessageDialog(rootPane,
-                "Erro ao enviar o Datagrama - Tempo limite excedido",
-                "Transmissão do Datagrama", WIDTH);
+                        "Erro ao enviar o Datagrama - Tempo limite excedido",
+                        "Transmissão do Datagrama", WIDTH);
                 break;
             default:
                 JOptionPane.showMessageDialog(rootPane,
-                "Erro inesperado: " + resposta,
-                "Insercao", WIDTH);
+                        "Erro inesperado: " + resposta,
+                        "Insercao", WIDTH);
                 break;
         }
     }//GEN-LAST:event_jButtonInserirProfessorActionPerformed
@@ -259,24 +258,33 @@ public class ClienteVisao extends javax.swing.JFrame {
 
         String ip, porta, mensagemValidacaoConexao;
         mensagemValidacaoConexao = "Informe o ip do servidor";
-        do{
+        do {
             ip = JOptionPane.showInputDialog(mensagemValidacaoConexao);
             mensagemValidacaoConexao = CRN.validaIP(ip);
-            if(!mensagemValidacaoConexao.isEmpty()){
+            if (!mensagemValidacaoConexao.isEmpty()) {
                 System.out.println("Informe o ip do servidor " + mensagemValidacaoConexao);
             }
-        }while(!mensagemValidacaoConexao.isEmpty());
+        } while (!mensagemValidacaoConexao.isEmpty());
         mensagemValidacaoConexao = "Informe a porta do servidor";
-        do{
+        do {
             porta = JOptionPane.showInputDialog(mensagemValidacaoConexao);
             mensagemValidacaoConexao = CRN.validaPorta(porta);
-            if(!mensagemValidacaoConexao.isEmpty()){
+            if (!mensagemValidacaoConexao.isEmpty()) {
                 System.out.println("Informe a porta do servidor " + mensagemValidacaoConexao);
             }
-        }while(!mensagemValidacaoConexao.isEmpty());
+        } while (!mensagemValidacaoConexao.isEmpty());
         JOptionPane.showMessageDialog(rootPane, CRN.validaConexao(ip, porta), "Conexao", WIDTH);
     }
+
+    private void AtualizaTabela(ArrayList<vo.ProfessorVO> lista) {
         
+        DefaultTableModel model = (DefaultTableModel) jTablePesquisarProfessor.getModel();
+        for (vo.ProfessorVO item : lista){
+        Object[] linha = {item.getCodigo(), item.getNome()};
+        model.addRow(linha);
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
