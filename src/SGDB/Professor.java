@@ -113,7 +113,7 @@ public class Professor {
     public String ConsultarProfessor() {
         String mensagem = "05#";
         Connection con = new Professor().getConnection();
-        String sql = "SELECT * FROM professor";
+        String sql = "SELECT * FROM professor ORDER BY nome";
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
