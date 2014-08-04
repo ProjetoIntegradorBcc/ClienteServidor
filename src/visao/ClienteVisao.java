@@ -8,7 +8,6 @@ package visao;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import regraDeNegocio.ClienteRN;
 import vo.ProfessorVO;
 
@@ -18,8 +17,15 @@ import vo.ProfessorVO;
  */
 public class ClienteVisao extends javax.swing.JFrame {
 
-    ClienteRN CRN = new ClienteRN();
-    ArrayList<ProfessorVO> listaProfessor;
+    /**
+     * instanciacao de um objeto da classe ClienteRN.
+     */
+    private final ClienteRN crn = new ClienteRN();
+    /**
+     * Criação de um ArrayList de objeto ProfessorVO,
+     * utilizado para armazenar os objetos que preenchem a jTable.
+     */
+    private ArrayList<ProfessorVO> listaProfessor = null;
 
     /**
      * Creates new form ClienteVisao.
@@ -28,7 +34,9 @@ public class ClienteVisao extends javax.swing.JFrame {
         initComponents();
         iniciaConexao();
     }
-
+    /**
+     * Definições de layout.
+     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -210,22 +218,48 @@ public class ClienteVisao extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Atribui ao objeto pvo os dados dos campos da tela.
+     * Envia este objeto para a validacao pela regra de negocio.
+     * caso algum campo esteja invalido,
+     * uma mensagem será exibida informando o erro.
+     * Caso todos estejam corretos, o objeto será enviado para o servidor.
+     * @param evt clique do mouse
+     */
     private void jButtonInserirProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirProfessorActionPerformed
-        ProfessorVO PVO = new ProfessorVO();
+        /*
+            Criacao do objetto pvo.
+        */
+        ProfessorVO pvo = new ProfessorVO();
 
-        PVO.setRa(jTextFieldRAProfessor.getText());
-        PVO.setNome(jTextFieldNomeProfessor.getText());
-        PVO.setIdade(jTextFieldIdadeProfessor.getText());
-        PVO.setEndereco(jTextFieldEnderecoProfessor.getText());
-        PVO.setDepartamento(jTextFieldDepartamentoProfessor.getText());
-        PVO.setDisciplinas(jTextAreaDisciplinasProfessor.getText());
-        PVO.setPesquisa(jTextFieldPesquisaProfessor.getText());
+        /*
+            Atribui ao objeto os valores dos campos JtextField
+        */
+        pvo.setRa(jTextFieldRAProfessor.getText());
+        pvo.setNome(jTextFieldNomeProfessor.getText());
+        pvo.setIdade(jTextFieldIdadeProfessor.getText());
+        pvo.setEndereco(jTextFieldEnderecoProfessor.getText());
+        pvo.setDepartamento(jTextFieldDepartamentoProfessor.getText());
+        pvo.setDisciplinas(jTextAreaDisciplinasProfessor.getText());
+        pvo.setPesquisa(jTextFieldPesquisaProfessor.getText());
 
-        String resposta = (CRN.insereProfessor(PVO));
+        /*
+            Envia o objeto para a regra de negocio.
+            Recebe uma string com o código da resposta
+            como definido no protocolo.
+        */
+        String resposta = (crn.insereProfessor(pvo));
+
+        /*
+            Informa ao usuario a resposta da regra de negocio.
+            Caso a insercao seja efetuada com sucesso, a jTable sera atualizada.
+        */
         switch (resposta) {
             case "0#":
+                AtualizaTabela();
                 JOptionPane.showMessageDialog(rootPane,
-                        "Inserido com sucesso :)", "Inserção no Banco de dados", WIDTH);
+                        "Inserido com sucesso :)",
+                        "Inserção no Banco de dados", WIDTH);
                 break;
             case "1#":
                 JOptionPane.showMessageDialog(rootPane,
@@ -248,9 +282,12 @@ public class ClienteVisao extends javax.swing.JFrame {
                         "Insercao", WIDTH);
                 break;
         }
-        AtualizaTabela();
     }//GEN-LAST:event_jButtonInserirProfessorActionPerformed
 
+    /**
+     * Atualiza a jTable ao fazer uma pesquisa.
+     * @param evt clique do mouse
+     */
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         AtualizaTabela();
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
@@ -261,7 +298,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         mensagemValidacaoConexao = "Informe o ip do servidor";
         do {
             ip = JOptionPane.showInputDialog(mensagemValidacaoConexao);
-            mensagemValidacaoConexao = CRN.validaIP(ip);
+            mensagemValidacaoConexao = crn.validaIP(ip);
             if (!mensagemValidacaoConexao.isEmpty()) {
                 System.out.println("Informe o ip do servidor " + mensagemValidacaoConexao);
             }
@@ -269,17 +306,17 @@ public class ClienteVisao extends javax.swing.JFrame {
         mensagemValidacaoConexao = "Informe a porta do servidor";
         do {
             porta = JOptionPane.showInputDialog(mensagemValidacaoConexao);
-            mensagemValidacaoConexao = CRN.validaPorta(porta);
+            mensagemValidacaoConexao = crn.validaPorta(porta);
             if (!mensagemValidacaoConexao.isEmpty()) {
                 System.out.println("Informe a porta do servidor " + mensagemValidacaoConexao);
             }
         } while (!mensagemValidacaoConexao.isEmpty());
-        JOptionPane.showMessageDialog(rootPane, CRN.validaConexao(ip, porta), "Conexao", WIDTH);
+        JOptionPane.showMessageDialog(rootPane, crn.validaConexao(ip, porta), "Conexao", WIDTH);
     }
 
     private void AtualizaTabela() {
 
-        listaProfessor = CRN.buscaProfessor();
+        listaProfessor = crn.buscaProfessor();
         if (listaProfessor == null) {
             DefaultTableModel tabela = (DefaultTableModel) jTablePesquisarProfessor.getModel();
             tabela.setNumRows(0);
