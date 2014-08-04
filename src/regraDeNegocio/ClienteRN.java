@@ -6,10 +6,7 @@
 
 package regraDeNegocio;
 
-import com.sun.tracing.Probe;
 import conexao.ConexaoServidor;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import vo.ProfessorVO;
 
@@ -80,6 +77,7 @@ public class ClienteRN {
     }
 
     public ArrayList<ProfessorVO> buscaProfessor() {
+        System.out.println("Busca Professor");
         return conexao.buscaProfessor();
     }
 }

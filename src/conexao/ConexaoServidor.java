@@ -81,17 +81,21 @@ public class ConexaoServidor {
         } catch (IOException ex) {
             return null;
         }
-        
+        System.out.println("Enviou");
         String resposta = recebeDataGrama();
-        
+        System.out.println(resposta);
+        System.out.println("***");
         return dataGramaParaVO(resposta);
     }
 
     private ArrayList<ProfessorVO> dataGramaParaVO(String resposta) {
-        switch(resposta.substring(0, 2)){
-            case "4#":
+        System.out.println(resposta);
+        System.out.println(resposta.substring(0, 3));
+        switch(resposta.substring(0, 3)){
+            case "04#":
                 return null;
-            case "5#":
+            case "05#":
+                System.out.println("dt2vo");
                 return converteDataGramaPesquisaProfessor(resposta);
             default:
                 return null;
@@ -102,7 +106,7 @@ public class ConexaoServidor {
         String nome = "", id = "";
         ArrayList<ProfessorVO> professores = new ArrayList<>();
         if (!mensagem.isEmpty()) {
-            int i = 2;
+            int i = 3;
             while (i < mensagem.length()) {
                 ProfessorVO p = new ProfessorVO();
                 nome = "";
@@ -124,6 +128,7 @@ public class ConexaoServidor {
                     }
                     i++;
                 }
+                System.out.println(nome + " " + id);
                 p.setNome(nome);
                 p.setCodigo(id);
                 professores.add(p);

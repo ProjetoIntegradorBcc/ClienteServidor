@@ -19,6 +19,7 @@ import vo.ProfessorVO;
 public class ClienteVisao extends javax.swing.JFrame {
 
     ClienteRN CRN = new ClienteRN();
+    ArrayList<ProfessorVO> listaProfessor;
 
     /**
      * Creates new form ClienteVisao.
@@ -247,10 +248,11 @@ public class ClienteVisao extends javax.swing.JFrame {
                         "Insercao", WIDTH);
                 break;
         }
+        AtualizaTabela();
     }//GEN-LAST:event_jButtonInserirProfessorActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-        String nome = jTextFieldPesquisarProfessor.getText();
+        AtualizaTabela();
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void iniciaConexao() {
@@ -275,13 +277,19 @@ public class ClienteVisao extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, CRN.validaConexao(ip, porta), "Conexao", WIDTH);
     }
 
-    private void AtualizaTabela(){
-        
-        ArrayList<ProfessorVO> lista = CRN.buscaProfessor();
-        DefaultTableModel model = (DefaultTableModel) jTablePesquisarProfessor.getModel();
-        for (ProfessorVO item : lista) {
-            Object[] linha = {item.getCodigo(), item.getNome()};
-            model.addRow(linha);
+    private void AtualizaTabela() {
+
+        listaProfessor = CRN.buscaProfessor();
+        if (listaProfessor == null) {
+            DefaultTableModel tabela = (DefaultTableModel) jTablePesquisarProfessor.getModel();
+            tabela.setNumRows(0);
+        } else {
+            DefaultTableModel tabela = (DefaultTableModel) jTablePesquisarProfessor.getModel();
+            tabela.setNumRows(0);
+            for (ProfessorVO item : listaProfessor) {
+                Object[] linha = {item.getNome()};
+                tabela.addRow(linha);
+            }
         }
     }
 
