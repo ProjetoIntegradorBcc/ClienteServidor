@@ -12,10 +12,11 @@ import java.net.InetAddress;
  * @author Jonas
  */
 class ThreadCliente extends Thread {
+
     /**
      * criando datagrama.
      */
-    private final DatagramSocket ds;
+    private DatagramSocket ds;
 
     public ThreadCliente(DatagramSocket ds) {
         this.ds = ds;
@@ -26,12 +27,12 @@ class ThreadCliente extends Thread {
         try {
             String ip;
             int i, porta;
-
             byte[] msg = new byte[256];
             DatagramPacket pkg = new DatagramPacket(msg, msg.length);
 
-            String mensagem = "";
+            
             do {
+                String mensagem = "";
                 ds.receive(pkg);
                 porta = pkg.getPort();
                 ip = pkg.getAddress().getHostAddress();
@@ -41,6 +42,7 @@ class ThreadCliente extends Thread {
                         System.out.println("ALUNOS");
                         break;
                     case "2":
+                        SGDB.Professor banco = new SGDB.Professor();
                         switch (mensagem.substring(1, 2)) {
                             case "1":
                                 String ra = "";
@@ -88,12 +90,11 @@ class ThreadCliente extends Thread {
                                     linhasPesquisa = linhasPesquisa + mensagem.substring(i, i + 1);
                                     i++;
                                 }
-
-                                Professor banco = new Professor();
                                 mensagem = banco.Inserir(ra, nome, idade, endereco, departamento, disciplinas, linhasPesquisa) + "#";
                                 DatagramPacket pkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
                                 ds.send(pkgo);
                                 System.out.println("enviou:" + mensagem);
+                                mensagem = "";
                                 break;
                             case "2":
                                 System.out.println("PROFESSOR - EDITAR");
@@ -104,10 +105,16 @@ class ThreadCliente extends Thread {
                             case "4":
                                 System.out.println("PROFESSOR - CONSULTAR");
                                 break;
+                            case "5":
+                                System.out.println("recebeu:" + mensagem);
+                                mensagem = banco.ConsultarProfessor();
+                                pkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                ds.send(pkgo);
+                                System.out.println("enviou:" + mensagem);
+                                break;
                             default:
                         }
-
-                        while (true);
+                    break;
                     case "3":
                         System.out.println("DISCIPLINAS");
                         break;
@@ -198,11 +205,26 @@ class ThreadCliente extends Thread {
                                 ds.send(pacoteSalas);
                                 break;
                             case "4":
-                                System.out.println("SALAS - CONSULTAR");
+                                i = 3;
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
+                                    id4 = (id4 + mensagem.substring(i, i + 1));
+                                    i++;
+                                }
+                                mensagem = salas.ConsultarSalas(Integer.parseInt(id4));
+                                pacoteSalas = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                ds.send(pacoteSalas);
+                                break;
+                            case "5":
+                                mensagem = salas.ConsultarSalas();
+                                pacoteSalas = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                ds.send(pacoteSalas);
                                 break;
                             default:
+                                mensagem = "1#";
+                                pacoteSalas = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                ds.send(pacoteSalas);
                         }
-                        while (true);
+                    break;
                     case "5":
                         System.out.println("AULAS");
                         break;

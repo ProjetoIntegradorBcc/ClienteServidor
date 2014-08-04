@@ -86,7 +86,7 @@ public class Professor {
 
         Connection con = new Professor().getConnection();
         String sql = "SELECT * FROM professor where idProfessor = ?";
-        String mensagem = "0#";
+        String mensagem = "04#";
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -111,9 +111,9 @@ public class Professor {
     }
 
     public String ConsultarProfessor() {
-        String mensagem = "0#";
+        String mensagem = "05#";
         Connection con = new Professor().getConnection();
-        String sql = "SELECT * FROM professor";
+        String sql = "SELECT * FROM professor ORDER BY nome";
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
