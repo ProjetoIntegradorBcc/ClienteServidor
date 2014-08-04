@@ -71,6 +71,19 @@ public class ClienteVisao extends javax.swing.JFrame {
         jButtonPesquisar = new javax.swing.JButton();
         jpDisciplinas = new javax.swing.JPanel();
         jpSalas = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        IdSala = new javax.swing.JTextField();
+        Descricao = new javax.swing.JTextField();
+        Computadores = new javax.swing.JTextField();
+        Recursos = new javax.swing.JTextField();
+        Departamento = new javax.swing.JTextField();
+        Capacidade = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jpAulas = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,7 +96,6 @@ public class ClienteVisao extends javax.swing.JFrame {
         jpAlunos.setLayout(new java.awt.BorderLayout());
         Aulas.addTab("Alunos", jpAlunos);
 
-        jpProfessor.setMaximumSize(null);
         jpProfessor.setPreferredSize(new java.awt.Dimension(950, 370));
         jpProfessor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -208,6 +220,75 @@ public class ClienteVisao extends javax.swing.JFrame {
         Aulas.addTab("Disciplinas", jpDisciplinas);
 
         jpSalas.setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setText("Id Sala:");
+
+        jLabel2.setText("Descrição:");
+
+        jLabel3.setText("Número de computadores:");
+
+        jLabel4.setText("Recursos didáticos:");
+
+        jLabel5.setText("Departamento:");
+
+        jLabel6.setText("Capacidade máxima:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(64, 64, 64)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Recursos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(Departamento)
+                        .addComponent(Capacidade, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                    .addComponent(Computadores, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(IdSala, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 477, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(IdSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Descricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Computadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Recursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Departamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Capacidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addContainerGap(224, Short.MAX_VALUE))
+        );
+
+        jpSalas.add(jPanel1, java.awt.BorderLayout.CENTER);
+
         Aulas.addTab("Salas", jpSalas);
 
         jpAulas.setLayout(new java.awt.BorderLayout());
@@ -383,10 +464,22 @@ public class ClienteVisao extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane Aulas;
+    private javax.swing.JTextField Capacidade;
+    private javax.swing.JTextField Computadores;
+    private javax.swing.JTextField Departamento;
+    private javax.swing.JTextField Descricao;
+    private javax.swing.JTextField IdSala;
+    private javax.swing.JTextField Recursos;
     private javax.swing.JButton jButtonEditarProfessor;
     private javax.swing.JButton jButtonExcluirProfessor;
     private javax.swing.JButton jButtonInserirProfessor;
     private javax.swing.JButton jButtonPesquisar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelCodigoProfessor;
     private javax.swing.JLabel jLabelDepartamentoProfessor;
     private javax.swing.JLabel jLabelDisciplinasProfessor;
@@ -396,6 +489,7 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelPesquisaProfessor;
     private javax.swing.JLabel jLabelPesquisarProfessor;
     private javax.swing.JLabel jLabelRAProfessor;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTablePesquisarProfessor;
