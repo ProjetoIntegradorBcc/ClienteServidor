@@ -26,20 +26,19 @@ public class ServidorGeral {
             this.servidor = new DatagramSocket(this.porta);
             new ThreadServidor(servidor).start();
             
-        }catch (SocketException e) {
+        }catch(SocketException e) {
             System.out.println("Socket: " + e.getMessage());
-        }       
+        }
      }
-    
-    
-    public String SubString(String texto, int parte, String separador){        
+
+    public String SubString(String texto, int parte, String separador){
         String[] mensagem = texto.split(separador);
-        String resultado="";       
+        String resultado="";
         for (int count=0;count<mensagem.length;count++){
            if (count==parte){
                resultado = mensagem[count];
            }
-        }               
+        }
         resultado = resultado.trim();
         return resultado;
     }
