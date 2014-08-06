@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import regraDeNegocio.ClienteRN;
+import vo.AulaVO;
+import vo.DisciplinaVO;
 import vo.ProfessorVO;
+import vo.SalaVO;
 
 /**
  *
@@ -33,6 +36,7 @@ public class ClienteVisao extends javax.swing.JFrame {
     public ClienteVisao() {
         initComponents();
         iniciaConexao();
+        pesquisaCamposParaInserirComboBox();
     }
     /**
      * Definições de layout.
@@ -85,8 +89,27 @@ public class ClienteVisao extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jpAulas = new javax.swing.JPanel();
+        jpProfessor1 = new javax.swing.JPanel();
+        jLabelPesquisarProfessor1 = new javax.swing.JLabel();
+        jLabelRAProfessor1 = new javax.swing.JLabel();
+        jLabelNomeProfessor1 = new javax.swing.JLabel();
+        jLabelIdadeProfessor1 = new javax.swing.JLabel();
+        tPesquisarAula = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableAula = new javax.swing.JTable();
+        tNumAlunos = new javax.swing.JTextField();
+        jLabelCodigoProfessor1 = new javax.swing.JLabel();
+        btExcluirAula = new javax.swing.JButton();
+        btInserirAula = new javax.swing.JButton();
+        btEditarAula = new javax.swing.JButton();
+        btPesquisarAula = new javax.swing.JButton();
+        cbDisciplinaAula = new javax.swing.JComboBox();
+        cbSalaAula = new javax.swing.JComboBox();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tConteudo = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.BorderLayout());
 
         Aulas.setMaximumSize(new java.awt.Dimension(900, 600));
         Aulas.setMinimumSize(new java.awt.Dimension(900, 600));
@@ -255,7 +278,7 @@ public class ClienteVisao extends javax.swing.JFrame {
                     .addComponent(Computadores, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(IdSala, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 477, Short.MAX_VALUE))
+                .addGap(0, 523, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,7 +307,7 @@ public class ClienteVisao extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Capacidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addContainerGap(373, Short.MAX_VALUE))
         );
 
         jpSalas.add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -292,6 +315,97 @@ public class ClienteVisao extends javax.swing.JFrame {
         Aulas.addTab("Salas", jpSalas);
 
         jpAulas.setLayout(new java.awt.BorderLayout());
+
+        jpProfessor1.setPreferredSize(new java.awt.Dimension(950, 370));
+        jpProfessor1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabelPesquisarProfessor1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelPesquisarProfessor1.setText("Pesquisar");
+        jpProfessor1.add(jLabelPesquisarProfessor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, -1));
+
+        jLabelRAProfessor1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelRAProfessor1.setText("Sala Associada: ");
+        jpProfessor1.add(jLabelRAProfessor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 130, -1));
+
+        jLabelNomeProfessor1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelNomeProfessor1.setText("Alunos Presentes: ");
+        jpProfessor1.add(jLabelNomeProfessor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 120, -1));
+
+        jLabelIdadeProfessor1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelIdadeProfessor1.setText("Conteúdo Programático: ");
+        jpProfessor1.add(jLabelIdadeProfessor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 140, -1));
+
+        tPesquisarAula.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jpProfessor1.add(tPesquisarAula, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 200, 30));
+
+        tableAula.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tableAula);
+
+        jpProfessor1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, 290, 380));
+
+        tNumAlunos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jpProfessor1.add(tNumAlunos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 50, -1));
+
+        jLabelCodigoProfessor1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelCodigoProfessor1.setText("Disciplina Associada: ");
+        jpProfessor1.add(jLabelCodigoProfessor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        btExcluirAula.setText("Excluir");
+        jpProfessor1.add(btExcluirAula, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 390, 120, 50));
+
+        btInserirAula.setText("Inserir");
+        btInserirAula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btInserirAulaActionPerformed(evt);
+            }
+        });
+        jpProfessor1.add(btInserirAula, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 120, 50));
+
+        btEditarAula.setText("Editar");
+        jpProfessor1.add(btEditarAula, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 120, 50));
+
+        btPesquisarAula.setText("Pesquisar");
+        btPesquisarAula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPesquisarAulaActionPerformed(evt);
+            }
+        });
+        jpProfessor1.add(btPesquisarAula, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, 90, 30));
+
+        jpProfessor1.add(cbDisciplinaAula, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
+
+        jpProfessor1.add(cbSalaAula, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
+
+        tConteudo.setColumns(20);
+        tConteudo.setRows(5);
+        jScrollPane4.setViewportView(tConteudo);
+
+        jpProfessor1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 320, 200));
+
+        jpAulas.add(jpProfessor1, java.awt.BorderLayout.CENTER);
+
         Aulas.addTab("Aulas", jpAulas);
 
         getContentPane().add(Aulas, java.awt.BorderLayout.CENTER);
@@ -373,6 +487,38 @@ public class ClienteVisao extends javax.swing.JFrame {
         AtualizaTabela();
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
+    private void btInserirAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInserirAulaActionPerformed
+       
+        AulaVO avo = new AulaVO();
+
+        avo.setDisciplina((DisciplinaVO) cbDisciplinaAula.getSelectedItem());
+        avo.setSala((SalaVO) cbSalaAula.getSelectedItem());
+        avo.setAlunosPresentes(tNumAlunos.getText());
+        avo.setConteudoProgramatico(tConteudo.getText());
+        
+        String resposta = (crn.insereAula(avo));
+
+    }//GEN-LAST:event_btInserirAulaActionPerformed
+
+    private void btPesquisarAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarAulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btPesquisarAulaActionPerformed
+
+    private void pesquisaCamposParaInserirComboBox(){
+        //Trocar quando pesquisaDisciplina e pesquisaSala estiverem funcionando
+        cbDisciplinaAula.addItem("Escolha uma Disciplina");
+        cbDisciplinaAula.addItem("Mod 2");
+        cbDisciplinaAula.addItem("Análise de Algoritmos");
+        cbDisciplinaAula.addItem("Teoria dos Grafos");
+        cbDisciplinaAula.addItem("PLP");
+        
+        cbSalaAula.addItem("Escolha uma Sala");
+        cbSalaAula.addItem("C204");
+        cbSalaAula.addItem("C202");
+        cbSalaAula.addItem("L011");
+        cbSalaAula.addItem("L007");
+    }
+    
     private void iniciaConexao() {
 
         String ip, porta, mensagemValidacaoConexao;
@@ -470,6 +616,12 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JTextField Descricao;
     private javax.swing.JTextField IdSala;
     private javax.swing.JTextField Recursos;
+    private javax.swing.JButton btEditarAula;
+    private javax.swing.JButton btExcluirAula;
+    private javax.swing.JButton btInserirAula;
+    private javax.swing.JButton btPesquisarAula;
+    private javax.swing.JComboBox cbDisciplinaAula;
+    private javax.swing.JComboBox cbSalaAula;
     private javax.swing.JButton jButtonEditarProfessor;
     private javax.swing.JButton jButtonExcluirProfessor;
     private javax.swing.JButton jButtonInserirProfessor;
@@ -481,17 +633,24 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelCodigoProfessor;
+    private javax.swing.JLabel jLabelCodigoProfessor1;
     private javax.swing.JLabel jLabelDepartamentoProfessor;
     private javax.swing.JLabel jLabelDisciplinasProfessor;
     private javax.swing.JLabel jLabelEnderecoProfessor;
     private javax.swing.JLabel jLabelIdadeProfessor;
+    private javax.swing.JLabel jLabelIdadeProfessor1;
     private javax.swing.JLabel jLabelNomeProfessor;
+    private javax.swing.JLabel jLabelNomeProfessor1;
     private javax.swing.JLabel jLabelPesquisaProfessor;
     private javax.swing.JLabel jLabelPesquisarProfessor;
+    private javax.swing.JLabel jLabelPesquisarProfessor1;
     private javax.swing.JLabel jLabelRAProfessor;
+    private javax.swing.JLabel jLabelRAProfessor1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTablePesquisarProfessor;
     private javax.swing.JTextArea jTextAreaDisciplinasProfessor;
     private javax.swing.JTextField jTextFieldCodigoProfessor;
@@ -506,6 +665,11 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JPanel jpAulas;
     private javax.swing.JPanel jpDisciplinas;
     private javax.swing.JPanel jpProfessor;
+    private javax.swing.JPanel jpProfessor1;
     private javax.swing.JPanel jpSalas;
+    private javax.swing.JTextArea tConteudo;
+    private javax.swing.JTextField tNumAlunos;
+    private javax.swing.JTextField tPesquisarAula;
+    private javax.swing.JTable tableAula;
     // End of variables declaration//GEN-END:variables
 }

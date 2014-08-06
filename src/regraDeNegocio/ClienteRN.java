@@ -8,6 +8,7 @@ package regraDeNegocio;
 
 import conexao.ConexaoServidor;
 import java.util.ArrayList;
+import vo.AulaVO;
 import vo.ProfessorVO;
 
 /**
@@ -33,11 +34,20 @@ public class ClienteRN {
             return conexao.enviaDataGrama(PVO);
         }
     }
-    /**
-     * 
-     * @param PVO
-     * @return mensagem 
-     */
+    
+    public String insereAula(AulaVO AVO) {
+        AulaRN ARN = new AulaRN();
+        
+        String mensagemVOInvalido = ARN.validaCampos(AVO);
+        if(mensagemVOInvalido != null){
+            return mensagemVOInvalido;
+        }
+        else{
+  //          return conexao.enviaDataGrama(AVO); Mecher aqui
+            return "";
+        }
+    }
+    
     public String alteraProfessor(ProfessorVO PVO){
         return "mensagem";
     }
