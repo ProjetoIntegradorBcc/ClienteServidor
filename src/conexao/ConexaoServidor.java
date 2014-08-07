@@ -9,6 +9,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import vo.AulaVO;
 import vo.ProfessorVO;
 
 /**
@@ -33,8 +34,8 @@ public class ConexaoServidor {
             return "Erro ao enviar";
         }
         return recebeDataGrama();
-    }
-
+    }    
+     
     public String recebeDataGrama(){
 
         byte[] resposta = new byte[256];
@@ -55,6 +56,8 @@ public class ConexaoServidor {
             +PVO.getDisciplinas()+"#"+PVO.getPesquisa()+"#";
         return mensagem;
     }
+    
+    
 
     public String estabeleceConexao(String ip, String porta) {
         try {
