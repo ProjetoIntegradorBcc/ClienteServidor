@@ -46,11 +46,21 @@ public class AulaRN {
     }
     
     private String validaDisciplina(String campoDisciplina) {
-        return "";
+        if(campoDisciplina.equals("Escolha uma Disciplina")){
+            return "Disciplina associada inválida - escolha uma disciplina";
+        }
+        else{
+            return null;
+        }
     }
     
-    private String validaSala(String campoAluno) {
-        return "";
+    private String validaSala(String campoSala) {
+       if(campoSala.equals("Escolha uma Sala")){
+            return "Sala associada inválida - escolha uma sala";
+        }
+        else{
+            return null;
+        }
     }
     
     public String validaConteudoProgramatico(String campoConteudo) {
