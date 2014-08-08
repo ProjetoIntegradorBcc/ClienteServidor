@@ -35,6 +35,19 @@ public class ConexaoServidor {
         }
         return recebeDataGrama();
     }    
+    
+    public String enviaDataGrama(AulaVO AVO) {
+        
+        String mensagem  = VOParaDataGrama(AVO);
+        byte[] msg = mensagem.getBytes();
+        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
+        try {
+            this.ds.send(pacote);
+        } catch (IOException ex) {
+            return "Erro ao enviar";
+        }
+        return recebeDataGrama();
+    }    
      
     public String recebeDataGrama(){
 
@@ -54,6 +67,12 @@ public class ConexaoServidor {
         String mensagem = "21#"+PVO.getRa()+"#"+PVO.getNome()+"#"+PVO.getIdade()
             +"#"+PVO.getEndereco()+"#"+PVO.getDepartamento()+"#"
             +PVO.getDisciplinas()+"#"+PVO.getPesquisa()+"#";
+        return mensagem;
+    }
+    
+    private String VOParaDataGrama(AulaVO AVO) {
+        String mensagem = ""+AVO.getDisciplina()+"#"+AVO.getSala()+"#"+AVO.getAlunosPresentes()
+            +"#"+AVO.getConteudoProgramatico();
         return mensagem;
     }
     
@@ -90,6 +109,23 @@ public class ConexaoServidor {
         System.out.println("***");
         return dataGramaParaVO(resposta);
     }
+    
+    public ArrayList<AulaVO> buscaAula() {
+        
+        String mensagem = "25#";
+        byte[] msg = mensagem.getBytes();
+        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
+        try {
+            this.ds.send(pacote);
+        } catch (IOException ex) {
+            return null;
+        }
+        System.out.println("Enviou");
+        String resposta = recebeDataGrama();
+        System.out.println(resposta);
+        System.out.println("***");
+        return dataGramaParaVO(resposta);
+    }
 
     private ArrayList<ProfessorVO> dataGramaParaVO(String resposta) {
         System.out.println(resposta);
@@ -104,6 +140,20 @@ public class ConexaoServidor {
                 return null;
         }
     }
+    
+   /* private ArrayList<AulaVO> dataGramaParaVO(String resposta) {
+        System.out.println(resposta);
+        System.out.println(resposta.substring(0, 3));
+        switch(resposta.substring(0, 3)){
+            case "04#":
+                return null;
+            case "05#":
+                System.out.println("dt2vo");
+                return converteDataGramaPesquisaProfessor(resposta);
+            default:
+                return null;
+        }
+    }*/
 
     private ArrayList<ProfessorVO> converteDataGramaPesquisaProfessor(String mensagem) {
         String nome = "", id = "";

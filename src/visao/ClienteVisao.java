@@ -451,7 +451,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         */
         switch (resposta) {
             case "0#":
-                AtualizaTabela();
+                atualizaTabelaProfessor();
                 JOptionPane.showMessageDialog(rootPane,
                         "Inserido com sucesso :)",
                         "Inserção no Banco de dados", WIDTH);
@@ -484,7 +484,7 @@ public class ClienteVisao extends javax.swing.JFrame {
      * @param evt clique do mouse
      */
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-        AtualizaTabela();
+        atualizaTabelaProfessor();
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void btInserirAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInserirAulaActionPerformed
@@ -501,7 +501,7 @@ public class ClienteVisao extends javax.swing.JFrame {
     }//GEN-LAST:event_btInserirAulaActionPerformed
 
     private void btPesquisarAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarAulaActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btPesquisarAulaActionPerformed
 
     private void pesquisaCamposParaInserirComboBox(){
@@ -541,7 +541,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, crn.validaConexao(ip, porta), "Conexao", WIDTH);
     }
 
-    private void AtualizaTabela() {
+    private void atualizaTabelaProfessor() {
 
         listaProfessor = crn.buscaProfessor();
         if (listaProfessor == null) {
