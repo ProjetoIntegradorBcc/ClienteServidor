@@ -7,8 +7,6 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import vo.AulaVO;
 import vo.ProfessorVO;
 
@@ -71,7 +69,7 @@ public class ConexaoServidor {
     }
     
     private String VOParaDataGrama(AulaVO AVO) {
-        String mensagem = ""+AVO.getDisciplina()+"#"+AVO.getSala()+"#"+AVO.getAlunosPresentes()
+        String mensagem = "22#"+AVO.getDisciplina()+"#"+AVO.getSala()+"#"+AVO.getAlunosPresentes()
             +"#"+AVO.getConteudoProgramatico();
         return mensagem;
     }
@@ -107,7 +105,7 @@ public class ConexaoServidor {
         String resposta = recebeDataGrama();
         System.out.println(resposta);
         System.out.println("***");
-        return dataGramaParaVO(resposta);
+        return dataGramaProfessorParaVO(resposta);
     }
     
     public ArrayList<AulaVO> buscaAula() {
@@ -124,10 +122,10 @@ public class ConexaoServidor {
         String resposta = recebeDataGrama();
         System.out.println(resposta);
         System.out.println("***");
-        return dataGramaParaVO(resposta);
+        return dataGramaAulaParaVO(resposta);
     }
 
-    private ArrayList<ProfessorVO> dataGramaParaVO(String resposta) {
+    private ArrayList<ProfessorVO> dataGramaProfessorParaVO(String resposta) {
         System.out.println(resposta);
         System.out.println(resposta.substring(0, 3));
         switch(resposta.substring(0, 3)){
@@ -141,7 +139,7 @@ public class ConexaoServidor {
         }
     }
     
-   /* private ArrayList<AulaVO> dataGramaParaVO(String resposta) {
+    private ArrayList<AulaVO> dataGramaAulaParaVO(String resposta) {
         System.out.println(resposta);
         System.out.println(resposta.substring(0, 3));
         switch(resposta.substring(0, 3)){
@@ -149,11 +147,11 @@ public class ConexaoServidor {
                 return null;
             case "05#":
                 System.out.println("dt2vo");
-                return converteDataGramaPesquisaProfessor(resposta);
+                return converteDataGramaPesquisaAula(resposta);
             default:
                 return null;
         }
-    }*/
+    }
 
     private ArrayList<ProfessorVO> converteDataGramaPesquisaProfessor(String mensagem) {
         String nome = "", id = "";
@@ -188,6 +186,44 @@ public class ConexaoServidor {
                 i++;
             }
             return professores;
+        } else {
+            return null;
+        }
+    }
+    
+    private ArrayList<AulaVO> converteDataGramaPesquisaAula(String mensagem) {
+        String disciplina = "", sala = "";
+        ArrayList<AulaVO> aulas = new ArrayList<>();
+        if (!mensagem.isEmpty()) {
+            int i = 3;
+            while (i < mensagem.length()) {
+                AulaVO a = new AulaVO();
+                disciplina = "";
+                sala = "";
+                while (i < mensagem.length()) {
+                    if (!"#".equals(mensagem.substring(i, i + 1))) {
+                        sala = sala + mensagem.substring(i, i + 1);
+                    } else {
+                        break;
+                    }
+                    i++;
+                }
+                i++;
+                while (i < mensagem.length()) {
+                    if (!"#".equals(mensagem.substring(i, i + 1))) {
+                        disciplina = disciplina + mensagem.substring(i, i + 1);
+                    } else {
+                        break;
+                    }
+                    i++;
+                }
+                System.out.println(disciplina + " " + sala);
+                a.setDisciplina(disciplina);
+                a.setSala(sala);
+                aulas.add(a);
+                i++;
+            }
+            return aulas;
         } else {
             return null;
         }

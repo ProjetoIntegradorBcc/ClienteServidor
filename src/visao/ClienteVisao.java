@@ -491,13 +491,41 @@ public class ClienteVisao extends javax.swing.JFrame {
        
         AulaVO avo = new AulaVO();
 
-        avo.setDisciplina((DisciplinaVO) cbDisciplinaAula.getSelectedItem());
-        avo.setSala((SalaVO) cbSalaAula.getSelectedItem());
+        avo.setDisciplina(cbDisciplinaAula.getSelectedItem().toString());
+        avo.setSala(cbSalaAula.getSelectedItem().toString());
         avo.setAlunosPresentes(tNumAlunos.getText());
         avo.setConteudoProgramatico(tConteudo.getText());
         
         String resposta = (crn.insereAula(avo));
 
+        switch (resposta) {
+            case "0#":
+                atualizaTabelaProfessor();
+                JOptionPane.showMessageDialog(rootPane,
+                        "Inserido com sucesso :)",
+                        "Inserção no Banco de dados", WIDTH);
+                break;
+            case "1#":
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro na insercao no Banco de dados",
+                        "Inserção no Banco de dados", WIDTH);
+                break;
+            case "2#":
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro ao enviar o Datagrama",
+                        "Transmissão do Datagrama", WIDTH);
+                break;
+            case "3#":
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro ao enviar o Datagrama - Tempo limite excedido",
+                        "Transmissão do Datagrama", WIDTH);
+                break;
+            default:
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro inesperado: " + resposta,
+                        "Insercao", WIDTH);
+                break;
+        }
     }//GEN-LAST:event_btInserirAulaActionPerformed
 
     private void btPesquisarAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarAulaActionPerformed
@@ -506,12 +534,14 @@ public class ClienteVisao extends javax.swing.JFrame {
 
     private void pesquisaCamposParaInserirComboBox(){
         //Trocar quando pesquisaDisciplina e pesquisaSala estiverem funcionando
+        //buscaDisciplina();
         cbDisciplinaAula.addItem("Escolha uma Disciplina");
         cbDisciplinaAula.addItem("Mod 2");
         cbDisciplinaAula.addItem("Análise de Algoritmos");
         cbDisciplinaAula.addItem("Teoria dos Grafos");
         cbDisciplinaAula.addItem("PLP");
         
+        //buscaSala();
         cbSalaAula.addItem("Escolha uma Sala");
         cbSalaAula.addItem("C204");
         cbSalaAula.addItem("C202");
@@ -520,7 +550,6 @@ public class ClienteVisao extends javax.swing.JFrame {
     }
     
     private void iniciaConexao() {
-
         String ip, porta, mensagemValidacaoConexao;
         mensagemValidacaoConexao = "Informe o ip do servidor";
         do {
@@ -558,8 +587,7 @@ public class ClienteVisao extends javax.swing.JFrame {
     }
     
     private void atualizaTabelaAula() {
-
-        listaAula = crn.buscaProfessor();
+        listaAula = crn.buscaAula();
         if (listaAula == null) {
             DefaultTableModel tabela = (DefaultTableModel) tableAula.getModel();
             tabela.setNumRows(0);

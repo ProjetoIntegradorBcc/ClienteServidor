@@ -43,8 +43,7 @@ public class ClienteRN {
             return mensagemVOInvalido;
         }
         else{
-  //          return conexao.enviaDataGrama(AVO); Mecher aqui
-            return "";
+            return conexao.enviaDataGrama(AVO); 
         }
     }
     

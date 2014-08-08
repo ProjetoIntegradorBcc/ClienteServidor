@@ -2,24 +2,24 @@
 package vo;
 
 public class AulaVO {
-    private DisciplinaVO disciplina;
-    private SalaVO sala;
+    private String disciplina;
+    private String sala;
     private String alunosPresentes;
     private String conteudoProgramatico;
-   
-    public DisciplinaVO getDisciplina() {
+
+    public String getDisciplina() {
         return disciplina;
     }
 
-    public void setDisciplina(DisciplinaVO disciplina) {
+    public void setDisciplina(String disciplina) {
         this.disciplina = disciplina;
     }
 
-    public SalaVO getSala() {
+    public String getSala() {
         return sala;
     }
 
-    public void setSala(SalaVO sala) {
+    public void setSala(String sala) {
         this.sala = sala;
     }
 
