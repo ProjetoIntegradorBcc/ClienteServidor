@@ -90,4 +90,9 @@ public class ClienteRN {
         System.out.println("Busca Professor");
         return conexao.buscaProfessor();
     }
+    
+    public ArrayList<AulaVO> buscaAula() {
+        System.out.println("Busca Aula");
+        return conexao.buscaAula();
+    }
 }

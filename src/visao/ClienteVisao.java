@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -29,7 +29,7 @@ public class ClienteVisao extends javax.swing.JFrame {
      * utilizado para armazenar os objetos que preenchem a jTable.
      */
     private ArrayList<ProfessorVO> listaProfessor = null;
-
+    private ArrayList<AulaVO> listaAula = null;
     /**
      * Creates new form ClienteVisao.
      */
@@ -501,7 +501,7 @@ public class ClienteVisao extends javax.swing.JFrame {
     }//GEN-LAST:event_btInserirAulaActionPerformed
 
     private void btPesquisarAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarAulaActionPerformed
-        
+        atualizaTabelaAula();
     }//GEN-LAST:event_btPesquisarAulaActionPerformed
 
     private void pesquisaCamposParaInserirComboBox(){
@@ -552,6 +552,22 @@ public class ClienteVisao extends javax.swing.JFrame {
             tabela.setNumRows(0);
             for (ProfessorVO item : listaProfessor) {
                 Object[] linha = {item.getNome()};
+                tabela.addRow(linha);
+            }
+        }
+    }
+    
+    private void atualizaTabelaAula() {
+
+        listaAula = crn.buscaProfessor();
+        if (listaAula == null) {
+            DefaultTableModel tabela = (DefaultTableModel) tableAula.getModel();
+            tabela.setNumRows(0);
+        } else {
+            DefaultTableModel tabela = (DefaultTableModel) tableAula.getModel();
+            tabela.setNumRows(0);
+            for (AulaVO item : listaAula) {
+                Object[] linha = {item.getDisciplina()+""+item.getSala()};
                 tabela.addRow(linha);
             }
         }
