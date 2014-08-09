@@ -9,6 +9,7 @@ package servidor;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,12 +36,18 @@ public class ServidorGeral {
         String[] mensagem = texto.split(separador);
         String resultado="";
         for (int count=0;count<mensagem.length;count++){
-           if (count==parte){
+           if (count == parte){
                resultado = mensagem[count];
            }
         }
         resultado = resultado.trim();
         return resultado;
+    }
+    public static void main(String args[]) {
+        int porta = Integer.parseInt(JOptionPane.showInputDialog("Insira o número da porta"));
+        ServidorGeral server = new ServidorGeral(porta);
+        JOptionPane.showMessageDialog(null, "Servidor ouvindo a porta: "+porta);
+        
     }
 
 }
