@@ -47,7 +47,7 @@ public class Disciplinas {
         }
     }
 
-    public void Editar(String IdDisciplina, String Titulo, String PreRequisitos, String Avaliacao, String Ementa, String Dependencias) {
+    public void Editar(int IdDisciplina, String Titulo, String PreRequisitos, String Avaliacao, String Ementa, String Dependencias) {
 
         Connection con = new Disciplinas().getConnection();
 
@@ -60,7 +60,7 @@ public class Disciplinas {
             stmt.setString(3, Avaliacao);
             stmt.setString(4, Ementa);
             stmt.setString(5, Dependencias);
-            stmt.setInt(6, Integer.parseInt(IdDisciplina));
+            stmt.setInt(6, IdDisciplina);
             stmt.execute();
             stmt.close();
 

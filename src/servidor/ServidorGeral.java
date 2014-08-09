@@ -6,8 +6,10 @@
 
 package servidor;
 
+import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.SocketException;
 import javax.swing.JOptionPane;
 
@@ -17,8 +19,6 @@ import javax.swing.JOptionPane;
  */
 public class ServidorGeral {
     DatagramSocket servidor = null;
-    DatagramPacket entrada = null;
-    DatagramPacket saida = null;
     int porta;
     
     public ServidorGeral(int porta) {
@@ -31,6 +31,13 @@ public class ServidorGeral {
             System.out.println("Socket: " + e.getMessage());
         }
      }
+    
+    public void Enviar(String mensagem, InetAddress endereco, int porta) throws IOException{
+        byte[] buffer = mensagem.getBytes();        
+        DatagramPacket saida = new DatagramPacket(buffer, buffer.length, endereco, porta);
+        this.servidor.send(saida); 
+        //System.out.println("Enviado: "+ mensagem);
+    }
 
     public String SubString(String texto, int parte, String separador){
         String[] mensagem = texto.split(separador);
@@ -49,5 +56,7 @@ public class ServidorGeral {
         JOptionPane.showMessageDialog(null, "Servidor ouvindo a porta: "+porta);
         
     }
+
+    
 
 }

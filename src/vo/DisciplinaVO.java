@@ -11,7 +11,7 @@ package vo;
  * @author Marcelo
  */
 public class DisciplinaVO {
-    private String IdDisciplina;
+    private int IdDisciplina;
     private String Titulo;
     private String PreRequisitos;
     private String Avaliacao;
@@ -21,14 +21,14 @@ public class DisciplinaVO {
     /**
      * @return the IdDisciplina
      */
-    public String getIdDisciplina() {
+    public int getIdDisciplina() {
         return IdDisciplina;
     }
 
     /**
      * @param IdDisciplina the IdDisciplina to set
      */
-    public void setIdDisciplina(String IdDisciplina) {
+    public void setIdDisciplina(int IdDisciplina) {
         this.IdDisciplina = IdDisciplina;
     }
 

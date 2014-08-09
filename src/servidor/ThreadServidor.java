@@ -44,15 +44,11 @@ public class ThreadServidor extends Thread{
         int componente = Integer.getInteger(Server.SubString(mensagem, 0, "#"));
         switch(componente){
             case 1:/*Coloque aqui a chamada para a classe do seu componente*/;break; 
+            case 3: {
+                ServidorDisciplinas serv3 = new ServidorDisciplinas(entrada, mensagem);
+            }
         }
         
-    }
-    
-    public void Enviar(String mensagem, InetAddress endereco, int porta) throws IOException{
-        byte[] buffer = mensagem.getBytes();        
-        DatagramPacket saida = new DatagramPacket(buffer, buffer.length, endereco, porta);
-        this.servidor.send(saida); 
-        //System.out.println("Enviado: "+ mensagem);
     }
     
 }
