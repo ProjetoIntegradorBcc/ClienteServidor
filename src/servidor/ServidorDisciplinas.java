@@ -32,23 +32,26 @@ public class ServidorDisciplinas {
         default: System.out.println("Erro na mensagem!"); break;
         }
     }
-    public void Salvar(){
+    public void Salvar() throws IOException{
         vo.DisciplinaVO novo = Criar(1);
         SGDB.Disciplinas disc = new SGDB.Disciplinas();
         disc.Inserir(novo.getTitulo(), novo.getPreRequisitos(),
-                novo.getAvaliacao(), novo.getEmenta(), novo.getDependencias());
+        novo.getAvaliacao(), novo.getEmenta(), novo.getDependencias());
+        Enviar("0#", cliente.getAddress(), cliente.getPort());
     }
-    public void Atualizar(){
+    public void Atualizar() throws IOException{
         vo.DisciplinaVO novo = Criar(3);
         SGDB.Disciplinas disc = new SGDB.Disciplinas();
         disc.Editar(novo.getIdDisciplina(), novo.getTitulo(),
-                novo.getPreRequisitos(), novo.getAvaliacao(), novo.getEmenta(),
-                novo.getDependencias());
+        novo.getPreRequisitos(), novo.getAvaliacao(), novo.getEmenta(),
+        novo.getDependencias());
+        Enviar("0#", cliente.getAddress(), cliente.getPort());
     }
-    public void Deletar(){
+    public void Deletar() throws IOException{
         vo.DisciplinaVO novo = Criar(2);
         SGDB.Disciplinas disc = new SGDB.Disciplinas();
         disc.Deletar(novo.getIdDisciplina());
+        Enviar("0#", cliente.getAddress(), cliente.getPort());
     }
     public void Pesquisar() throws IOException{
         SGDB.Disciplinas disc = new SGDB.Disciplinas();

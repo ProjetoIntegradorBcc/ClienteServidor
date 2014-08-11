@@ -8,6 +8,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import vo.AulaVO;
+import vo.SalaVO;
 import vo.ProfessorVO;
 
 /**
@@ -32,7 +33,20 @@ public class ConexaoServidor {
             return "Erro ao enviar";
         }
         return recebeDataGrama();
-    }    
+    }
+    
+    public String enviaDataGrama(SalaVO SVO) {
+        
+        String mensagem  = VOParaDataGrama(SVO);
+        byte[] msg = mensagem.getBytes();
+        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
+        try {
+            this.ds.send(pacote);
+        } catch (IOException ex) {
+            return "Erro ao enviar";
+        }
+        return recebeDataGrama();
+    }
     
     public String enviaDataGrama(AulaVO AVO) {
         
@@ -65,6 +79,12 @@ public class ConexaoServidor {
         String mensagem = "21#"+PVO.getRa()+"#"+PVO.getNome()+"#"+PVO.getIdade()
             +"#"+PVO.getEndereco()+"#"+PVO.getDepartamento()+"#"
             +PVO.getDisciplinas()+"#"+PVO.getPesquisa()+"#";
+        return mensagem;
+    }
+    
+    private String VOParaDataGrama(SalaVO SVO) {
+        String mensagem = "41#"+SVO.getDescricao()+"#"+SVO.getNumComputadores()+"#"+SVO.getRecursos()+"#"
+                +SVO.getDepartamento()+"#"+SVO.getCapacidade();
         return mensagem;
     }
     
