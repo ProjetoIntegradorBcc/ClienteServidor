@@ -113,26 +113,26 @@ public class ClienteVisao extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         tConteudo = new javax.swing.JTextArea();
         jpAlunos = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jLabelRaAlunos = new javax.swing.JLabel();
+        jLabelNomeAlunos = new javax.swing.JLabel();
+        jLabelDataNascAlunos = new javax.swing.JLabel();
+        jLabelCursoAlunos = new javax.swing.JLabel();
+        jLabelAnoEntradaAlunos = new javax.swing.JLabel();
+        jLabelDiscMatriculadasAlunos = new javax.swing.JLabel();
+        jLabelDiscConcluidasAlunos = new javax.swing.JLabel();
+        jScrollPaneDiscConcluidasAlunos = new javax.swing.JScrollPane();
+        jTableDiscConcluidasAlunos = new javax.swing.JTable();
+        jButtonInserirAlunos = new javax.swing.JButton();
+        jButtonEditarAlunos = new javax.swing.JButton();
+        jButtonExcluirAlunos = new javax.swing.JButton();
+        jButtonBuscarAlunos = new javax.swing.JButton();
+        txtRaAlunos = new javax.swing.JTextField();
+        txtNomeAlunos = new javax.swing.JTextField();
+        txtDatasNascAlunos = new javax.swing.JTextField();
+        txtCursoAlunos = new javax.swing.JTextField();
+        txtAnoEntrada = new javax.swing.JTextField();
+        jScrollPaneDiscMatriculadasAlunos = new javax.swing.JScrollPane();
+        jTableDiscMatriculadasAlunos = new javax.swing.JTable();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -474,21 +474,21 @@ public class ClienteVisao extends javax.swing.JFrame {
 
         Aulas.addTab("Aulas", jpAulas);
 
-        jLabel7.setText("RA");
+        jLabelRaAlunos.setText("RA");
 
-        jLabel8.setText("Nome");
+        jLabelNomeAlunos.setText("Nome");
 
-        jLabel9.setText("Data de Nascimento");
+        jLabelDataNascAlunos.setText("Data de Nascimento");
 
-        jLabel10.setText("Curso");
+        jLabelCursoAlunos.setText("Curso");
 
-        jLabel11.setText("Ano de entrada");
+        jLabelAnoEntradaAlunos.setText("Ano de entrada");
 
-        jLabel12.setText("Disciplinas Matriculadas");
+        jLabelDiscMatriculadasAlunos.setText("Disciplinas Matriculadas");
 
-        jLabel13.setText("Disciplinas Concluídas");
+        jLabelDiscConcluidasAlunos.setText("Disciplinas Concluídas");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableDiscConcluidasAlunos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -508,22 +508,22 @@ public class ClienteVisao extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane6.setViewportView(jTable1);
+        jScrollPaneDiscConcluidasAlunos.setViewportView(jTableDiscConcluidasAlunos);
 
-        jButton1.setText("INSERIR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonInserirAlunos.setText("INSERIR");
+        jButtonInserirAlunos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonInserirAlunosActionPerformed(evt);
             }
         });
 
-        jButton2.setText("EDITAR");
+        jButtonEditarAlunos.setText("EDITAR");
 
-        jButton3.setText("EXCLUIR");
+        jButtonExcluirAlunos.setText("EXCLUIR");
 
-        jButton4.setText("BUSCAR");
+        jButtonBuscarAlunos.setText("BUSCAR");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableDiscMatriculadasAlunos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -543,7 +543,7 @@ public class ClienteVisao extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane7.setViewportView(jTable2);
+        jScrollPaneDiscMatriculadasAlunos.setViewportView(jTableDiscMatriculadasAlunos);
 
         javax.swing.GroupLayout jpAlunosLayout = new javax.swing.GroupLayout(jpAlunos);
         jpAlunos.setLayout(jpAlunosLayout);
@@ -555,46 +555,46 @@ public class ClienteVisao extends javax.swing.JFrame {
                         .addGroup(jpAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpAlunosLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel12))
+                                .addComponent(jLabelDiscMatriculadasAlunos))
                             .addGroup(jpAlunosLayout.createSequentialGroup()
                                 .addGap(20, 20, 20)
                                 .addGroup(jpAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jpAlunosLayout.createSequentialGroup()
-                                        .addComponent(jLabel10)
+                                        .addComponent(jLabelCursoAlunos)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField4))
+                                        .addComponent(txtCursoAlunos))
                                     .addGroup(jpAlunosLayout.createSequentialGroup()
-                                        .addComponent(jLabel9)
+                                        .addComponent(jLabelDataNascAlunos)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtDatasNascAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jpAlunosLayout.createSequentialGroup()
-                                        .addComponent(jLabel8)
+                                        .addComponent(jLabelNomeAlunos)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField2))
+                                        .addComponent(txtNomeAlunos))
                                     .addGroup(jpAlunosLayout.createSequentialGroup()
-                                        .addComponent(jLabel11)
+                                        .addComponent(jLabelAnoEntradaAlunos)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtAnoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jpAlunosLayout.createSequentialGroup()
-                                        .addComponent(jLabel7)
+                                        .addComponent(jLabelRaAlunos)
                                         .addGap(31, 31, 31)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(txtRaAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jpAlunosLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jScrollPaneDiscMatriculadasAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jpAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabelDiscConcluidasAlunos)
+                            .addComponent(jScrollPaneDiscConcluidasAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jpAlunosLayout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jButton1)
+                        .addComponent(jButtonInserirAlunos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
+                        .addComponent(jButtonEditarAlunos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(jButtonExcluirAlunos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)))
+                        .addComponent(jButtonBuscarAlunos)))
                 .addContainerGap(300, Short.MAX_VALUE))
         );
         jpAlunosLayout.setVerticalGroup(
@@ -602,38 +602,38 @@ public class ClienteVisao extends javax.swing.JFrame {
             .addGroup(jpAlunosLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jpAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelRaAlunos)
+                    .addComponent(txtRaAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(jpAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelNomeAlunos)
+                    .addComponent(txtNomeAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addComponent(txtDatasNascAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelDataNascAlunos))
                 .addGap(5, 5, 5)
                 .addGroup(jpAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelCursoAlunos)
+                    .addComponent(txtCursoAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addGroup(jpAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelAnoEntradaAlunos)
+                    .addComponent(txtAnoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jpAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel13))
+                    .addComponent(jLabelDiscMatriculadasAlunos)
+                    .addComponent(jLabelDiscConcluidasAlunos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPaneDiscConcluidasAlunos, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneDiscMatriculadasAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
                 .addGroup(jpAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(jButtonInserirAlunos)
+                    .addComponent(jButtonEditarAlunos)
+                    .addComponent(jButtonExcluirAlunos)
+                    .addComponent(jButtonBuscarAlunos))
                 .addContainerGap())
         );
 
@@ -805,9 +805,9 @@ public class ClienteVisao extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btInserirSalasActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonInserirAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirAlunosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonInserirAlunosActionPerformed
 
     private void pesquisaCamposParaInserirComboBox(){
         //Trocar quando pesquisaDisciplina e pesquisaSala estiverem funcionando
@@ -946,35 +946,34 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JButton btPesquisarAula;
     private javax.swing.JComboBox cbDisciplinaAula;
     private javax.swing.JComboBox cbSalaAula;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonBuscarAlunos;
+    private javax.swing.JButton jButtonEditarAlunos;
     private javax.swing.JButton jButtonEditarProfessor;
+    private javax.swing.JButton jButtonExcluirAlunos;
     private javax.swing.JButton jButtonExcluirProfessor;
+    private javax.swing.JButton jButtonInserirAlunos;
     private javax.swing.JButton jButtonInserirProfessor;
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelAnoEntradaAlunos;
     private javax.swing.JLabel jLabelCodigoProfessor;
     private javax.swing.JLabel jLabelCodigoProfessor1;
+    private javax.swing.JLabel jLabelCursoAlunos;
+    private javax.swing.JLabel jLabelDataNascAlunos;
     private javax.swing.JLabel jLabelDepartamentoProfessor;
+    private javax.swing.JLabel jLabelDiscConcluidasAlunos;
+    private javax.swing.JLabel jLabelDiscMatriculadasAlunos;
     private javax.swing.JLabel jLabelDisciplinasProfessor;
     private javax.swing.JLabel jLabelEnderecoProfessor;
     private javax.swing.JLabel jLabelIdadeProfessor;
     private javax.swing.JLabel jLabelIdadeProfessor1;
+    private javax.swing.JLabel jLabelNomeAlunos;
     private javax.swing.JLabel jLabelNomeProfessor;
     private javax.swing.JLabel jLabelNomeProfessor1;
     private javax.swing.JLabel jLabelPesquisaProfessor;
@@ -982,29 +981,20 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelPesquisarProfessor1;
     private javax.swing.JLabel jLabelRAProfessor;
     private javax.swing.JLabel jLabelRAProfessor1;
+    private javax.swing.JLabel jLabelRaAlunos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-<<<<<<< HEAD
-=======
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-<<<<<<< HEAD
-=======
-    private javax.swing.JTable jTable3;
->>>>>>> origin/master
->>>>>>> origin/master
+    private javax.swing.JScrollPane jScrollPaneDiscConcluidasAlunos;
+    private javax.swing.JScrollPane jScrollPaneDiscMatriculadasAlunos;
+    private javax.swing.JTable jTableDiscConcluidasAlunos;
+    private javax.swing.JTable jTableDiscMatriculadasAlunos;
     private javax.swing.JTable jTablePesquisarProfessor;
     private javax.swing.JTextArea jTextAreaDisciplinasProfessor;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextFieldCodigoProfessor;
     private javax.swing.JTextField jTextFieldDepartamentoProfessor;
     private javax.swing.JTextField jTextFieldEnderecoProfessor;
@@ -1023,5 +1013,10 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JTextField tNumAlunos;
     private javax.swing.JTextField tPesquisarAula;
     private javax.swing.JTable tableAula;
+    private javax.swing.JTextField txtAnoEntrada;
+    private javax.swing.JTextField txtCursoAlunos;
+    private javax.swing.JTextField txtDatasNascAlunos;
+    private javax.swing.JTextField txtNomeAlunos;
+    private javax.swing.JTextField txtRaAlunos;
     // End of variables declaration//GEN-END:variables
 }
