@@ -23,10 +23,10 @@ public class Aula {
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, disciplinaAssociada);
-            stmt.setString(2, nome);
-            stmt.setInt(3, Integer.parseInt(idade));
-            stmt.setString(4, endereco);
+            //stmt.setInt(1, disciplinaAssociada);
+            //stmt.setString(2, nome);
+            //stmt.setInt(3, Integer.parseInt(idade));
+            //stmt.setString(4, endereco);
             stmt.execute();
             stmt.close();
             return 0;
