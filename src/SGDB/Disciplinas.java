@@ -19,13 +19,15 @@ import java.sql.SQLException;
 public class Disciplinas {
  public Connection getConnection() {
         try {
-            return DriverManager.getConnection("jdbc:mysql://localhost/servidor", "root", "1234");
+            return DriverManager.getConnection(
+                    "jdbc:mysql://localhost/servidor", "root", "1234");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public int Inserir(String Titulo, String PreRequisitos, String Avaliacao, String Ementa, String Dependencias) {
+    public int Inserir(String Titulo, String PreRequisitos,
+            String Avaliacao, String Ementa, String Dependencias) {
 
         Connection con = new Disciplinas().getConnection();
 
@@ -47,7 +49,9 @@ public class Disciplinas {
         }
     }
 
-    public void Editar(int IdDisciplina, String Titulo, String PreRequisitos, String Avaliacao, String Ementa, String Dependencias) {
+    public void Editar(int IdDisciplina, String Titulo, 
+            String PreRequisitos, String Avaliacao, 
+            String Ementa, String Dependencias) {
 
         Connection con = new Disciplinas().getConnection();
 

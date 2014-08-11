@@ -16,27 +16,32 @@ import java.net.DatagramPacket;
 public class ServidorDisciplinas {
     ServidorGeral servidor;
     DatagramPacket cliente;
-    String mensagem;    
-    ServidorDisciplinas (DatagramPacket entrada ,String mensagem) throws IOException{
+    String mensagem;
+    ServidorDisciplinas (DatagramPacket entrada ,String mensagem)
+            throws IOException {
         this.mensagem = mensagem;
         this.cliente = entrada;
         int operacao = Integer.getInteger(servidor.SubString(mensagem, 1, "#"));
-        switch (operacao){
-        case 1: Salvar();break;
-        case 2: Atualizar();break;
-        case 3: Deletar();break;
-        case 4: Pesquisar();break;
+        switch (operacao) {
+        case 1: Salvar(); break;
+        case 2: Atualizar(); break;
+        case 3: Deletar(); break;
+        case 4: Pesquisar(); break;
+        default: System.out.println("Erro na mensagem!"); break;
         }
     }
     public void Salvar(){
         vo.DisciplinaVO novo = Criar(1);
         SGDB.Disciplinas disc = new SGDB.Disciplinas();
-        disc.Inserir(novo.getTitulo(), novo.getPreRequisitos(), novo.getAvaliacao(), novo.getEmenta(), novo.getDependencias());
+        disc.Inserir(novo.getTitulo(), novo.getPreRequisitos(),
+                novo.getAvaliacao(), novo.getEmenta(), novo.getDependencias());
     }
     public void Atualizar(){
         vo.DisciplinaVO novo = Criar(3);
         SGDB.Disciplinas disc = new SGDB.Disciplinas();
-        disc.Editar(novo.getIdDisciplina() ,novo.getTitulo(), novo.getPreRequisitos(), novo.getAvaliacao(), novo.getEmenta(), novo.getDependencias());
+        disc.Editar(novo.getIdDisciplina(), novo.getTitulo(),
+                novo.getPreRequisitos(), novo.getAvaliacao(), novo.getEmenta(),
+                novo.getDependencias());
     }
     public void Deletar(){
         vo.DisciplinaVO novo = Criar(2);
@@ -47,26 +52,31 @@ public class ServidorDisciplinas {
         SGDB.Disciplinas disc = new SGDB.Disciplinas();
         String ide = servidor.SubString(mensagem, 2, "#");
         String mens;
-        if (ide.equals("")) mens = disc.ConsultarDisciplinas();
-        else mens = disc.ConsultarDisciplina(Integer.parseInt(ide)); 
+        if (ide.equals("")) {
+            mens = disc.ConsultarDisciplinas();
+        }
+        else {
+            mens = disc.ConsultarDisciplina(Integer.parseInt(ide));
+        }
         servidor.Enviar(mens, cliente.getAddress(), cliente.getPort());
     }
     public vo.DisciplinaVO Criar(int tipo){
-        int count= 2;
+        int count = 2;
         vo.DisciplinaVO novo = new vo.DisciplinaVO();
-        if (tipo == 1){
+        if (tipo == 1) {
             novo.setIdDisciplina(0);
             count++;
         }
         else if (tipo == 2) {
-            novo.setIdDisciplina(Integer.parseInt(servidor.SubString(mensagem, count, "#")));
+            novo.setIdDisciplina(Integer.parseInt(
+                    servidor.SubString(mensagem, count, "#")));
             return novo;
         }
         else {
-            novo.setIdDisciplina(Integer.parseInt(servidor.SubString(mensagem, count, "#")));
+            novo.setIdDisciplina(Integer.parseInt(
+                    servidor.SubString(mensagem, count, "#")));
             count++;
         }
-        
         novo.setTitulo(servidor.SubString(mensagem, count, "#"));
         count++;
         novo.setPreRequisitos(servidor.SubString(mensagem, count, "#"));

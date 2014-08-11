@@ -116,6 +116,7 @@ class ThreadCliente extends Thread {
                         }
                     break;
                     case "3":
+                        ServidorDisciplinas serv3 = new ServidorDisciplinas(pkg, mensagem);
                         System.out.println("DISCIPLINAS");
                         break;
                     case "4":
