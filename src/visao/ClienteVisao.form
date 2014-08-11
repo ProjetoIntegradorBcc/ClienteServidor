@@ -898,14 +898,16 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                              <Component id="jButtonInserirAlunos" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jButtonEditarAlunos" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButtonExcluirAlunos" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButtonBuscarAlunos" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jButtonExcluirAlunos" pref="82" max="32767" attributes="0"/>
+                                  <Component id="jButtonInserirAlunos" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jButtonEditarAlunos" max="32767" attributes="0"/>
+                                  <Component id="jButtonBuscarAlunos" pref="83" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace pref="300" max="32767" attributes="0"/>
@@ -950,14 +952,17 @@
                           <Component id="jScrollPaneDiscConcluidasAlunos" pref="107" max="32767" attributes="0"/>
                           <Component id="jScrollPaneDiscMatriculadasAlunos" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="232" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonInserirAlunos" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonEditarAlunos" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonExcluirAlunos" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonBuscarAlunos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonInserirAlunos" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="jButtonEditarAlunos" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jButtonBuscarAlunos" pref="41" max="32767" attributes="0"/>
+                          <Component id="jButtonExcluirAlunos" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="141" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
