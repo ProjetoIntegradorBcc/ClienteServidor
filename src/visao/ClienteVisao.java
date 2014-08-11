@@ -27,7 +27,6 @@ public class ClienteVisao extends javax.swing.JFrame {
      * instanciacao de um objeto da classe ClienteRN.
      */
     private final ClienteRN crn = new ClienteRN();
-    private AlunosRN alunoRN = new AlunosRN();
     /**
      * Criação de um ArrayList de objeto ProfessorVO,
      * utilizado para armazenar os objetos que preenchem a jTable.
@@ -76,13 +75,14 @@ public class ClienteVisao extends javax.swing.JFrame {
         jTablePesquisarProfessor = new javax.swing.JTable();
         jTextFieldNomeProfessor = new javax.swing.JTextField();
         jLabelCodigoProfessor = new javax.swing.JLabel();
-        jTextFieldPesquisaProfessor = new javax.swing.JTextField();
+        jTextFieldLinhaPesquisaProfessor = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaDisciplinasProfessor = new javax.swing.JTextArea();
         jButtonExcluirProfessor = new javax.swing.JButton();
         jButtonInserirProfessor = new javax.swing.JButton();
         jButtonEditarProfessor = new javax.swing.JButton();
-        jButtonPesquisar = new javax.swing.JButton();
+        jButtonPesquisarProfessor = new javax.swing.JButton();
+        jpDisciplinas = new javax.swing.JPanel();
         jpSalas = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         IdSala = new javax.swing.JTextField();
@@ -275,8 +275,8 @@ public class ClienteVisao extends javax.swing.JFrame {
         jLabelCodigoProfessor.setText("Código:");
         jpProfessor.add(jLabelCodigoProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        jTextFieldPesquisaProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jpProfessor.add(jTextFieldPesquisaProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 350, -1));
+        jTextFieldLinhaPesquisaProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jpProfessor.add(jTextFieldLinhaPesquisaProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 350, -1));
 
         jTextAreaDisciplinasProfessor.setColumns(20);
         jTextAreaDisciplinasProfessor.setRows(5);
@@ -298,13 +298,13 @@ public class ClienteVisao extends javax.swing.JFrame {
         jButtonEditarProfessor.setText("Editar");
         jpProfessor.add(jButtonEditarProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 120, 50));
 
-        jButtonPesquisar.setText("Pesquisar");
-        jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPesquisarProfessor.setText("Pesquisar");
+        jButtonPesquisarProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPesquisarActionPerformed(evt);
+                jButtonPesquisarProfessorActionPerformed(evt);
             }
         });
-        jpProfessor.add(jButtonPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, 90, 30));
+        jpProfessor.add(jButtonPesquisarProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, 90, 30));
 
         Aulas.addTab("Professor", jpProfessor);
 
@@ -793,7 +793,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         pvo.setEndereco(jTextFieldEnderecoProfessor.getText());
         pvo.setDepartamento(jTextFieldDepartamentoProfessor.getText());
         pvo.setDisciplinas(jTextAreaDisciplinasProfessor.getText());
-        pvo.setPesquisa(jTextFieldPesquisaProfessor.getText());
+        pvo.setPesquisa(jTextFieldLinhaPesquisaProfessor.getText());
 
         /*
             Envia o objeto para a regra de negocio.
@@ -840,9 +840,9 @@ public class ClienteVisao extends javax.swing.JFrame {
      * Atualiza a jTable ao fazer uma pesquisa.
      * @param evt clique do mouse
      */
-    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+    private void jButtonPesquisarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarProfessorActionPerformed
         atualizaTabelaProfessor();
-    }//GEN-LAST:event_jButtonPesquisarActionPerformed
+    }//GEN-LAST:event_jButtonPesquisarProfessorActionPerformed
 
     private void btInserirAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInserirAulaActionPerformed
        
@@ -953,7 +953,7 @@ public class ClienteVisao extends javax.swing.JFrame {
             Envia o objeto para a regra de negocio.
             retornastring de resposta
         */
-        //String resposta = (alunoRN.(alunoVO));
+        String resposta = (crn.insereAlunos(alunoVO));
 
         /*
             Informa ao usuario a resposta da regra de negocio.
@@ -1045,7 +1045,7 @@ public class ClienteVisao extends javax.swing.JFrame {
             jTextFieldEnderecoProfessor.setText(item.getEndereco());
             jTextFieldDepartamentoProfessor.setText(item.getDepartamento());
             jTextAreaDisciplinasProfessor.setText(item.getDisciplinas());
-            jTextFieldPesquisaProfessor.setText(item.getPesquisa());
+            jTextFieldLinhaPesquisaProfessor.setText(item.getPesquisa());
 
         }
     }
@@ -1114,7 +1114,7 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JButton jButtonInserirAlunos;
     private javax.swing.JButton jButtonInserirDisciplina;
     private javax.swing.JButton jButtonInserirProfessor;
-    private javax.swing.JButton jButtonPesquisar;
+    private javax.swing.JButton jButtonPesquisarProfessor;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -1179,9 +1179,8 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldEnderecoProfessor;
     private javax.swing.JTextField jTextFieldIDDisciplina;
     private javax.swing.JTextField jTextFieldIdadeProfessor;
+    private javax.swing.JTextField jTextFieldLinhaPesquisaProfessor;
     private javax.swing.JTextField jTextFieldNomeProfessor;
-    private javax.swing.JTextField jTextFieldPesquisaProfessor;
-    private javax.swing.JTextField jTextFieldPesquisarDisciplina;
     private javax.swing.JTextField jTextFieldPesquisarProfessor;
     private javax.swing.JTextField jTextFieldRAProfessor;
     private javax.swing.JTextField jTextFieldTItulo;
