@@ -83,7 +83,6 @@ public class ClienteVisao extends javax.swing.JFrame {
         jButtonInserirProfessor = new javax.swing.JButton();
         jButtonEditarProfessor = new javax.swing.JButton();
         jButtonPesquisar = new javax.swing.JButton();
-        jpDisciplinas = new javax.swing.JPanel();
         jpSalas = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         IdSala = new javax.swing.JTextField();
@@ -143,6 +142,33 @@ public class ClienteVisao extends javax.swing.JFrame {
         txtAnoEntrada = new javax.swing.JTextField();
         jScrollPaneDiscMatriculadasAlunos = new javax.swing.JScrollPane();
         jTableDiscMatriculadasAlunos = new javax.swing.JTable();
+        jpDisciplinas = new javax.swing.JPanel();
+        jLabelCodigoDisciplina = new javax.swing.JLabel();
+        jLabelIdDisciplina = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
+        jLabelPreRequisitos = new javax.swing.JLabel();
+        jLabelMetodoAvaliacao = new javax.swing.JLabel();
+        Ementa = new javax.swing.JLabel();
+        jLabelDisciplinasDependentes = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTextAreaPreRequisitos = new javax.swing.JTextArea();
+        jTextFieldCodigoDisciplina = new javax.swing.JTextField();
+        jTextFieldIDDisciplina = new javax.swing.JTextField();
+        jTextFieldTItulo = new javax.swing.JTextField();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTextAreaMetodoAvaliacao = new javax.swing.JTextArea();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jTextAreaEmenta = new javax.swing.JTextArea();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jButtonInserirDisciplina = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
+        jButtonExcluir = new javax.swing.JButton();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jTableDisciplina = new javax.swing.JTable();
+        jLabelPesquisar = new javax.swing.JLabel();
+        jTextFieldPesquisarDisciplina = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -282,9 +308,6 @@ public class ClienteVisao extends javax.swing.JFrame {
 
         Aulas.addTab("Professor", jpProfessor);
 
-        jpDisciplinas.setLayout(new java.awt.BorderLayout());
-        Aulas.addTab("Disciplinas", jpDisciplinas);
-
         jpSalas.setLayout(new java.awt.BorderLayout());
 
         jLabel1.setText("Id Sala:");
@@ -349,7 +372,7 @@ public class ClienteVisao extends javax.swing.JFrame {
                         .addComponent(btEditarSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(btExcluirSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 475, Short.MAX_VALUE))
+                .addGap(0, 472, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -605,7 +628,7 @@ public class ClienteVisao extends javax.swing.JFrame {
                         .addComponent(jButtonExcluirAlunos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonBuscarAlunos)))
-                .addContainerGap(300, Short.MAX_VALUE))
+                .addContainerGap(290, Short.MAX_VALUE))
         );
         jpAlunosLayout.setVerticalGroup(
             jpAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -648,6 +671,99 @@ public class ClienteVisao extends javax.swing.JFrame {
         );
 
         Aulas.addTab("Alunos", jpAlunos);
+
+        jpDisciplinas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabelCodigoDisciplina.setText("Código");
+        jpDisciplinas.add(jLabelCodigoDisciplina, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
+
+        jLabelIdDisciplina.setText("ID Disciplina");
+        jpDisciplinas.add(jLabelIdDisciplina, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, -1));
+
+        jLabelTitulo.setText("Titulo");
+        jpDisciplinas.add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
+
+        jLabelPreRequisitos.setText("Pré-Requisitos");
+        jpDisciplinas.add(jLabelPreRequisitos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, -1, 50));
+
+        jLabelMetodoAvaliacao.setText("Método de Avaliação");
+        jpDisciplinas.add(jLabelMetodoAvaliacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, 50));
+
+        Ementa.setText("Ementa");
+        jpDisciplinas.add(Ementa, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, 50));
+
+        jLabelDisciplinasDependentes.setText("Disciplinas Dependentes");
+        jpDisciplinas.add(jLabelDisciplinasDependentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, 50));
+
+        jTextAreaPreRequisitos.setColumns(20);
+        jTextAreaPreRequisitos.setRows(5);
+        jScrollPane7.setViewportView(jTextAreaPreRequisitos);
+
+        jpDisciplinas.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 350, 60));
+        jpDisciplinas.add(jTextFieldCodigoDisciplina, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 110, -1));
+        jpDisciplinas.add(jTextFieldIDDisciplina, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 110, -1));
+        jpDisciplinas.add(jTextFieldTItulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 350, -1));
+
+        jTextAreaMetodoAvaliacao.setColumns(20);
+        jTextAreaMetodoAvaliacao.setRows(5);
+        jScrollPane8.setViewportView(jTextAreaMetodoAvaliacao);
+
+        jpDisciplinas.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 350, 60));
+
+        jTextAreaEmenta.setColumns(20);
+        jTextAreaEmenta.setRows(5);
+        jScrollPane9.setViewportView(jTextAreaEmenta);
+
+        jpDisciplinas.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 350, -1));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane10.setViewportView(jTextArea1);
+
+        jpDisciplinas.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 350, -1));
+
+        jButtonInserirDisciplina.setText("Inserir");
+        jButtonInserirDisciplina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInserirDisciplinaActionPerformed(evt);
+            }
+        });
+        jpDisciplinas.add(jButtonInserirDisciplina, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, 120, 50));
+
+        jButtonEditar.setText("Editar");
+        jpDisciplinas.add(jButtonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 490, 120, 50));
+
+        jButtonExcluir.setText("Excluir");
+        jpDisciplinas.add(jButtonExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 490, 120, 50));
+
+        jTableDisciplina.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "TItulo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane11.setViewportView(jTableDisciplina);
+
+        jpDisciplinas.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 300, 370));
+
+        jLabelPesquisar.setText("Pesquisar");
+        jpDisciplinas.add(jLabelPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, -1, -1));
+        jpDisciplinas.add(jTextFieldPesquisarDisciplina, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 220, -1));
+
+        jButton1.setText("Pesquisar");
+        jpDisciplinas.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 70, -1, -1));
+
+        Aulas.addTab("Disciplinas", jpDisciplinas);
 
         getContentPane().add(Aulas, java.awt.BorderLayout.CENTER);
 
@@ -845,6 +961,10 @@ public class ClienteVisao extends javax.swing.JFrame {
         */
     }//GEN-LAST:event_jButtonInserirAlunosActionPerformed
 
+    private void jButtonInserirDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirDisciplinaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonInserirDisciplinaActionPerformed
+
     private void pesquisaCamposParaInserirComboBox(){
         //Trocar quando pesquisaDisciplina e pesquisaSala estiverem funcionando
         //buscaDisciplina();
@@ -971,6 +1091,7 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JTextField Computadores;
     private javax.swing.JTextField Departamento;
     private javax.swing.JTextArea Descricao;
+    private javax.swing.JLabel Ementa;
     private javax.swing.JTextField IdSala;
     private javax.swing.JTextArea Recursos;
     private javax.swing.JButton btEditarAula;
@@ -982,12 +1103,16 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JButton btPesquisarAula;
     private javax.swing.JComboBox cbDisciplinaAula;
     private javax.swing.JComboBox cbSalaAula;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBuscarAlunos;
+    private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonEditarAlunos;
     private javax.swing.JButton jButtonEditarProfessor;
+    private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonExcluirAlunos;
     private javax.swing.JButton jButtonExcluirProfessor;
     private javax.swing.JButton jButtonInserirAlunos;
+    private javax.swing.JButton jButtonInserirDisciplina;
     private javax.swing.JButton jButtonInserirProfessor;
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JDialog jDialog1;
@@ -998,6 +1123,7 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelAnoEntradaAlunos;
+    private javax.swing.JLabel jLabelCodigoDisciplina;
     private javax.swing.JLabel jLabelCodigoProfessor;
     private javax.swing.JLabel jLabelCodigoProfessor1;
     private javax.swing.JLabel jLabelCursoAlunos;
@@ -1005,40 +1131,60 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelDepartamentoProfessor;
     private javax.swing.JLabel jLabelDiscConcluidasAlunos;
     private javax.swing.JLabel jLabelDiscMatriculadasAlunos;
+    private javax.swing.JLabel jLabelDisciplinasDependentes;
     private javax.swing.JLabel jLabelDisciplinasProfessor;
     private javax.swing.JLabel jLabelEnderecoProfessor;
+    private javax.swing.JLabel jLabelIdDisciplina;
     private javax.swing.JLabel jLabelIdadeProfessor;
     private javax.swing.JLabel jLabelIdadeProfessor1;
+    private javax.swing.JLabel jLabelMetodoAvaliacao;
     private javax.swing.JLabel jLabelNomeAlunos;
     private javax.swing.JLabel jLabelNomeProfessor;
     private javax.swing.JLabel jLabelNomeProfessor1;
     private javax.swing.JLabel jLabelPesquisaProfessor;
+    private javax.swing.JLabel jLabelPesquisar;
     private javax.swing.JLabel jLabelPesquisarProfessor;
     private javax.swing.JLabel jLabelPesquisarProfessor1;
+    private javax.swing.JLabel jLabelPreRequisitos;
     private javax.swing.JLabel jLabelRAProfessor;
     private javax.swing.JLabel jLabelRAProfessor1;
     private javax.swing.JLabel jLabelRaAlunos;
+    private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JScrollPane jScrollPaneDiscConcluidasAlunos;
     private javax.swing.JScrollPane jScrollPaneDiscMatriculadasAlunos;
     private javax.swing.JTable jTableDiscConcluidasAlunos;
     private javax.swing.JTable jTableDiscMatriculadasAlunos;
+    private javax.swing.JTable jTableDisciplina;
     private javax.swing.JTable jTablePesquisarProfessor;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextAreaDisciplinasProfessor;
+    private javax.swing.JTextArea jTextAreaEmenta;
+    private javax.swing.JTextArea jTextAreaMetodoAvaliacao;
+    private javax.swing.JTextArea jTextAreaPreRequisitos;
+    private javax.swing.JTextField jTextFieldCodigoDisciplina;
     private javax.swing.JTextField jTextFieldCodigoProfessor;
     private javax.swing.JTextField jTextFieldDepartamentoProfessor;
     private javax.swing.JTextField jTextFieldEnderecoProfessor;
+    private javax.swing.JTextField jTextFieldIDDisciplina;
     private javax.swing.JTextField jTextFieldIdadeProfessor;
     private javax.swing.JTextField jTextFieldNomeProfessor;
     private javax.swing.JTextField jTextFieldPesquisaProfessor;
+    private javax.swing.JTextField jTextFieldPesquisarDisciplina;
     private javax.swing.JTextField jTextFieldPesquisarProfessor;
     private javax.swing.JTextField jTextFieldRAProfessor;
+    private javax.swing.JTextField jTextFieldTItulo;
     private javax.swing.JPanel jpAlunos;
     private javax.swing.JPanel jpAulas;
     private javax.swing.JPanel jpDisciplinas;
