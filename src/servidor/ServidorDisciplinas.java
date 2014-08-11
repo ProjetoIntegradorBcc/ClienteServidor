@@ -8,20 +8,22 @@ package servidor;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 
 /**
  *
  * @author Marcelo
  */
 public class ServidorDisciplinas {
-    ServidorGeral servidor;
+    DatagramSocket servidor;
     DatagramPacket cliente;
     String mensagem;
     ServidorDisciplinas (DatagramPacket entrada ,String mensagem)
             throws IOException {
         this.mensagem = mensagem;
         this.cliente = entrada;
-        int operacao = Integer.getInteger(servidor.SubString(mensagem, 1, "#"));
+        int operacao = Integer.getInteger(SubString(mensagem, 1, "#"));
         switch (operacao) {
         case 1: Salvar(); break;
         case 2: Atualizar(); break;
@@ -50,7 +52,7 @@ public class ServidorDisciplinas {
     }
     public void Pesquisar() throws IOException{
         SGDB.Disciplinas disc = new SGDB.Disciplinas();
-        String ide = servidor.SubString(mensagem, 2, "#");
+        String ide = SubString(mensagem, 2, "#");
         String mens;
         if (ide.equals("")) {
             mens = disc.ConsultarDisciplinas();
@@ -58,7 +60,7 @@ public class ServidorDisciplinas {
         else {
             mens = disc.ConsultarDisciplina(Integer.parseInt(ide));
         }
-        servidor.Enviar(mens, cliente.getAddress(), cliente.getPort());
+        Enviar(mens, cliente.getAddress(), cliente.getPort());
     }
     public vo.DisciplinaVO Criar(int tipo){
         int count = 2;
@@ -69,23 +71,43 @@ public class ServidorDisciplinas {
         }
         else if (tipo == 2) {
             novo.setIdDisciplina(Integer.parseInt(
-                    servidor.SubString(mensagem, count, "#")));
+                    SubString(mensagem, count, "#")));
             return novo;
         }
         else {
             novo.setIdDisciplina(Integer.parseInt(
-                    servidor.SubString(mensagem, count, "#")));
+                    SubString(mensagem, count, "#")));
             count++;
         }
-        novo.setTitulo(servidor.SubString(mensagem, count, "#"));
+        novo.setTitulo(SubString(mensagem, count, "#"));
         count++;
-        novo.setPreRequisitos(servidor.SubString(mensagem, count, "#"));
+        novo.setPreRequisitos(SubString(mensagem, count, "#"));
         count++;
-        novo.setAvaliacao(servidor.SubString(mensagem, count, "#"));
+        novo.setAvaliacao(SubString(mensagem, count, "#"));
         count++;
-        novo.setEmenta(servidor.SubString(mensagem, count, "#"));
+        novo.setEmenta(SubString(mensagem, count, "#"));
         count++;
-        novo.setDependencias(servidor.SubString(mensagem, count, "#"));
+        novo.setDependencias(SubString(mensagem, count, "#"));
         return novo;
     }
+    
+    public void Enviar(String mensagem, InetAddress endereco, int porta) throws IOException{
+        byte[] buffer = mensagem.getBytes();        
+        DatagramPacket saida = new DatagramPacket(buffer, buffer.length, endereco, porta);
+        this.servidor.send(saida); 
+        //System.out.println("Enviado: "+ mensagem);
+    }
+    
+    public String SubString(String texto, int parte, String separador){
+        String[] mensagem = texto.split(separador);
+        String resultado="";
+        for (int count=0;count<mensagem.length;count++){
+           if (count == parte){
+               resultado = mensagem[count];
+           }
+        }
+        resultado = resultado.trim();
+        return resultado;
+    }
 }
+
