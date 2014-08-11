@@ -245,14 +245,14 @@ public class ClienteVisao extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome"
+                "ID", "Nome"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -261,6 +261,11 @@ public class ClienteVisao extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTablePesquisarProfessor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTablePesquisarProfessorMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTablePesquisarProfessor);
@@ -984,6 +989,24 @@ public class ClienteVisao extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonEditarProfessorActionPerformed
 
+    private void jTablePesquisarProfessorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePesquisarProfessorMouseClicked
+        
+        DefaultTableModel tabela = (DefaultTableModel) jTablePesquisarProfessor.getModel();
+        String id = (String) tabela.getValueAt(jTablePesquisarProfessor.getSelectedRow(), 0);
+        ProfessorVO pvo = crn.pesquisaProfessor(id);
+        if (pvo == null) {
+            JOptionPane.showMessageDialog(Departamento, "ERRO AO PROCURAR ELEMENTO", "ERRO", WIDTH);
+        } else {
+            jTextFieldRAProfessor.setText(pvo.getRa());
+            jTextFieldNomeProfessor.setText(pvo.getNome());
+            jTextFieldIdadeProfessor.setText(pvo.getIdade());
+            jTextFieldEnderecoProfessor.setText(pvo.getEndereco());
+            jTextFieldDepartamentoProfessor.setText(pvo.getDepartamento());
+            jTextAreaDisciplinasProfessor.setText(pvo.getDisciplinas());
+            jTextFieldLinhaPesquisaProfessor.setText(pvo.getPesquisa());
+        }        
+    }//GEN-LAST:event_jTablePesquisarProfessorMouseClicked
+
     private void pesquisaCamposParaInserirComboBox(){
         //Trocar quando pesquisaDisciplina e pesquisaSala estiverem funcionando
         //buscaDisciplina();
@@ -1032,7 +1055,7 @@ public class ClienteVisao extends javax.swing.JFrame {
             DefaultTableModel tabela = (DefaultTableModel) jTablePesquisarProfessor.getModel();
             tabela.setNumRows(0);
             for (ProfessorVO item : listaProfessor) {
-                Object[] linha = {item.getNome()};
+                Object[] linha = {item.getCodigo(), item.getNome()};
                 tabela.addRow(linha);
             }
         }

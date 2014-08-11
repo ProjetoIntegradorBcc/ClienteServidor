@@ -52,11 +52,9 @@ class ThreadCliente extends Thread {
                         String linhasPesquisa = "";
                         String id2 = "";
                         DatagramPacket pkgo;
+                        System.out.println("recebeu:" + mensagem);
                         switch (mensagem.substring(1, 2)) {
                             case "1":
-
-
-                                System.out.println("recebeu:" + mensagem);
 
                                 i = 3;
                                 while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
@@ -95,8 +93,8 @@ class ThreadCliente extends Thread {
                                 }
                                 mensagem = banco.Inserir(ra, nome, idade, endereco, departamento, disciplinas, linhasPesquisa) + "#";
                                 pkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
-                                ds.send(pkgo);
                                 System.out.println("enviou:" + mensagem);
+                                ds.send(pkgo);
                                 mensagem = "";
                                 break;
                             case "2":
@@ -156,12 +154,8 @@ class ThreadCliente extends Thread {
                                 ds.send(pkgo);
                                 break;
                             case "4":
-                                System.out.println("PROFESSOR - CONSULTAR");
                                 i = 3;
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
-                                    id2 = (id2 + mensagem.substring(i, i + 1));
-                                    i++;
-                                }
+                                id2 = (id2 + mensagem.substring(i, mensagem.length()));
                                 mensagem = banco.ConsultarProfessor(id2) + "#";
                                 pkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
                                 ds.send(pkgo);

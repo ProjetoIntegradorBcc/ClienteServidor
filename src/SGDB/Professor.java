@@ -91,7 +91,7 @@ public class Professor {
     public int Deletar(String id) {
         Connection con = new Professor().getConnection();
 
-        String sql = "DELETE FROM professor WHERE idAula = ?";
+        String sql = "DELETE FROM professor WHERE idProfessor = ?";
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);

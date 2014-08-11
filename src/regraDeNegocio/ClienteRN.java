@@ -115,6 +115,11 @@ public class ClienteRN {
         return conexao.buscaProfessor();
     }
     
+    public ProfessorVO pesquisaProfessor(String id) {
+        System.out.println("Pesquisa Professor");
+        return conexao.pesquisaProfessor(id);
+    }
+    
     public ArrayList<AulaVO> buscaAula() {
         System.out.println("Busca Aula");
         return conexao.buscaAula();
