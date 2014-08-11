@@ -249,6 +249,11 @@ public class ClienteVisao extends javax.swing.JFrame {
         jpProfessor.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 350, -1));
 
         jButtonExcluirProfessor.setText("Excluir");
+        jButtonExcluirProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirProfessorActionPerformed(evt);
+            }
+        });
         jpProfessor.add(jButtonExcluirProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 390, 120, 50));
 
         jButtonInserirProfessor.setText("Inserir");
@@ -260,6 +265,11 @@ public class ClienteVisao extends javax.swing.JFrame {
         jpProfessor.add(jButtonInserirProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 120, 50));
 
         jButtonEditarProfessor.setText("Editar");
+        jButtonEditarProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarProfessorActionPerformed(evt);
+            }
+        });
         jpProfessor.add(jButtonEditarProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 120, 50));
 
         jButtonPesquisar.setText("Pesquisar");
@@ -808,6 +818,14 @@ public class ClienteVisao extends javax.swing.JFrame {
     private void jButtonInserirAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirAlunosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonInserirAlunosActionPerformed
+
+    private void jButtonEditarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarProfessorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEditarProfessorActionPerformed
+
+    private void jButtonExcluirProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirProfessorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonExcluirProfessorActionPerformed
 
     private void pesquisaCamposParaInserirComboBox(){
         //Trocar quando pesquisaDisciplina e pesquisaSala estiverem funcionando

@@ -4,9 +4,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Jonas/Documents/NetBeansProjects/integrador/src/SGDB/Salas.java</file>
-            <file>file:/C:/Users/Jonas/Documents/NetBeansProjects/integrador/src/conexao/ConexaoServidor.java</file>
-            <file>file:/C:/Users/Jonas/Documents/NetBeansProjects/integrador/src/servidor/ThreadCliente.java</file>
+            <file>file:/E:/Documentos/GitHub/ClienteServidor/src/SGDB/Disciplinas.java</file>
+            <file>file:/E:/Documentos/GitHub/ClienteServidor/src/servidor/ServidorGeral.java</file>
+            <file>file:/E:/Documentos/GitHub/ClienteServidor/src/vo/DisciplinaVO.java</file>
+            <file>file:/E:/Documentos/GitHub/ClienteServidor/src/visao/ClienteVisao.java</file>
+            <file>file:/E:/Documentos/GitHub/ClienteServidor/src/servidor/ServidorDisciplinas.java</file>
         </group>
     </open-files>
 </project-private>
