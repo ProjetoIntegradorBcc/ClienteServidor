@@ -27,7 +27,6 @@ public class ClienteVisao extends javax.swing.JFrame {
      * instanciacao de um objeto da classe ClienteRN.
      */
     private final ClienteRN crn = new ClienteRN();
-    private AlunosRN alunoRN = new AlunosRN();
     /**
      * Criação de um ArrayList de objeto ProfessorVO,
      * utilizado para armazenar os objetos que preenchem a jTable.
@@ -837,7 +836,7 @@ public class ClienteVisao extends javax.swing.JFrame {
             Envia o objeto para a regra de negocio.
             retornastring de resposta
         */
-        //String resposta = (alunoRN.(alunoVO));
+        String resposta = (crn.insereAlunos(alunoVO));
 
         /*
             Informa ao usuario a resposta da regra de negocio.
