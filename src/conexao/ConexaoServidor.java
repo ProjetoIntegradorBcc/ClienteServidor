@@ -103,7 +103,7 @@ public class ConexaoServidor {
     }
     
     private String VOParaDataGrama(AulaVO AVO) {
-        String mensagem = "22#"+AVO.getDisciplina()+"#"+AVO.getSala()+"#"+AVO.getAlunosPresentes()
+        String mensagem = "51#"+AVO.getDisciplina()+"#"+AVO.getSala()+"#"+AVO.getAlunosPresentes()
             +"#"+AVO.getConteudoProgramatico();
         return mensagem;
     }
@@ -150,7 +150,7 @@ public class ConexaoServidor {
     
     public ArrayList<AulaVO> buscaAula() {
         
-        String mensagem = "25#";
+        String mensagem = "55#";
         byte[] msg = mensagem.getBytes();
         this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
         try {

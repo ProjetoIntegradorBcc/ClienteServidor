@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Thread faz o servidor receber um datagrama do cliente.
@@ -30,7 +32,6 @@ class ThreadCliente extends Thread {
             byte[] msg = new byte[256];
             DatagramPacket pkg = new DatagramPacket(msg, msg.length);
 
-
             do {
                 String mensagem = "";
                 ds.receive(pkg);
@@ -54,7 +55,6 @@ class ThreadCliente extends Thread {
                         DatagramPacket pkgo;
                         switch (mensagem.substring(1, 2)) {
                             case "1":
-
 
                                 System.out.println("recebeu:" + mensagem);
 
@@ -288,19 +288,19 @@ class ThreadCliente extends Thread {
                         }
 
                         break;
-    
-                    case "5":{
+
+                    case "5": {
                         DatagramPacket pacoteAulas;
                         SGDB.Aula bancoAula = new SGDB.Aula();
+                        String disciplinaAssociada = "";
+                        String salaAssociada = "";
+                        String alunosPresentes = "";
+                        String conteudoProgramatico = "";
+                        String idAula = "";
                         switch (mensagem.substring(1, 2)) {
                             case "1":
-                                String disciplinaAssociada = "";
-                                String salaAssociada = "";
-                                String alunosPresentes = "";
-                                String conteudoProgramatico = "";
-                                
-                                System.out.println("recebeu:" + mensagem);
 
+                                System.out.println("recebeu:" + mensagem);
 
                                 i = 3;
                                 while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
@@ -329,31 +329,73 @@ class ThreadCliente extends Thread {
                                 mensagem = "";
                                 break;
                             case "2":
-                                System.out.println("PROFESSOR - EDITAR");
+                                System.out.println("AULAS - EDITAR");
+                                i = 3;
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
+                                    idAula = (idAula + mensagem.substring(i, i + 1));
+                                    i++;
+                                }
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
+                                    disciplinaAssociada = (disciplinaAssociada + mensagem.substring(i, i + 1));
+                                    i++;
+                                }
+                                i++;
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
+                                    salaAssociada = salaAssociada + mensagem.substring(i, i + 1);
+                                    i++;
+                                }
+                                i++;
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
+                                    alunosPresentes = alunosPresentes + mensagem.substring(i, i + 1);
+                                    i++;
+                                }
+                                i++;
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
+                                    conteudoProgramatico = conteudoProgramatico + mensagem.substring(i, i + 1);
+                                    i++;
+                                }
+                                mensagem = bancoAula.Editar(idAula, disciplinaAssociada, salaAssociada, alunosPresentes, conteudoProgramatico) + "#";
+                                pkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                ds.send(pkgo);
                                 break;
                             case "3":
-                                System.out.println("PROFESSOR - DELETAR");
+                                System.out.println("AULA - DELETAR");
+                                i = 3;
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
+                                    idAula = (idAula + mensagem.substring(i, i + 1));
+                                    i++;
+                                }
+                                mensagem = bancoAula.Deletar(idAula) + "#";
+                                pkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                ds.send(pkgo);
                                 break;
                             case "4":
-                                System.out.println("PROFESSOR - CONSULTAR");
+                                System.out.println("AULA - CONSULTAR");
+                                i = 3;
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
+                                    id2 = (idAula + mensagem.substring(i, i + 1));
+                                    i++;
+                                }
+                                mensagem = bancoAula.ConsultarAula(idAula) + "#";
+                                pkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                ds.send(pkgo);
                                 break;
                             case "5":
                                 System.out.println("recebeu:" + mensagem);
-                                mensagem = bancoAula.ConsultarProfessor();
+                                mensagem = bancoAula.ConsultarAula();
                                 pkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
                                 ds.send(pkgo);
                                 System.out.println("enviou:" + mensagem);
                                 break;
                             default:
-                        }                   
+                        }
                     }
                 }
             } while (true);
-        } catch (IOException | NumberFormatException e) {
-            System.out.println("Excecao ocorrida na thread: " + e.getMessage());
-            try {
-            } catch (Exception ec) {
-            }
+        } catch (IOException ex) {
+            Logger.getLogger(ThreadCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NumberFormatException e) {
+            System.out.println("Excecao ocorrida na thread: " + e.getMessage());   
         }
     }
 }
