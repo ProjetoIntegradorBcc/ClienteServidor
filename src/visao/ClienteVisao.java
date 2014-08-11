@@ -725,7 +725,20 @@ public class ClienteVisao extends javax.swing.JFrame {
      * @param evt clique do mouse
      */
     private void jButtonPesquisarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarProfessorActionPerformed
-        atualizaTabelaProfessor();
+        if(jTextFieldPesquisarProfessor.getText().isEmpty()){
+            atualizaTabelaProfessor();
+        }
+        else{
+           String nome = jTextFieldPesquisarProfessor.getText();
+           DefaultTableModel tabela = (DefaultTableModel) jTablePesquisarProfessor.getModel();
+            tabela.setNumRows(0);
+            for (ProfessorVO item : listaProfessor) {
+                if(item.getNome().equals(nome)){
+                    Object[] linha = {item.getNome()};
+                    tabela.addRow(linha);
+                }
+            }
+        }
     }//GEN-LAST:event_jButtonPesquisarProfessorActionPerformed
 
     private void btInserirAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInserirAulaActionPerformed
