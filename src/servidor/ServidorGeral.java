@@ -16,10 +16,9 @@ import javax.swing.JOptionPane;
  * @author Jonas
  */
 public class ServidorGeral {
-    /**
-     * Classe Servidor.
-     */
+    
     public static void main(String[] targs) {
+
         try {
             String p = (JOptionPane.showInputDialog("porta servidor"));
             int porta;

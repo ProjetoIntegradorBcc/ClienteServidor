@@ -39,13 +39,8 @@ public class ValidadorIP {
     * @param ip ip a ser validado
     * @return verdadeiro se valido, falso se invalido
     */
-    public boolean validaIP(String ip){
-        if("localhost".equals(ip)){
-            return true;
-        }
-        else{    
-            matcher = pattern.matcher(ip);
-            return matcher.matches();
-        }
+    public boolean validaIP(final String ip){
+        matcher = pattern.matcher(ip);
+        return matcher.matches();
     }
 }

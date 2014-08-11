@@ -15,8 +15,7 @@ public class ProfessorVO {
     /**
      * campos string da tabela professor.
      */
-    private String codigo, ra, idade, nome, endereco,
-                   departamento, disciplinas, pesquisa;
+    private String codigo, ra, idade, nome, endereco, departamento, disciplinas, pesquisa;
     /**
      * @return codigo do professor
      */
@@ -30,6 +29,7 @@ public class ProfessorVO {
         this.codigo = codigo;
     }
     /**
+     * 
      * @return ra do professor
      */
     public String getRa(){

@@ -23,10 +23,10 @@ public class Aula {
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, disciplinaAssociada);
-            stmt.setString(2, salaAssociada);
-            stmt.setString(3, alunosPresentes);
-            stmt.setString(4, conteudoProgramatico);
+            //stmt.setInt(1, disciplinaAssociada);
+            //stmt.setString(2, nome);
+            //stmt.setInt(3, Integer.parseInt(idade));
+            //stmt.setString(4, endereco);
             stmt.execute();
             stmt.close();
             return 0;
@@ -36,60 +36,66 @@ public class Aula {
         }
     }
 
-    public int Editar(String idAula, String disciplinaAssociada, String salaAssociada, String alunosPesentes, String conteudoProgramatico) {
+    public void Editar(int cod, int ra, String nome, int idade, String endereco, String departamento, String disciplinasMinistra, String linhasPesquisa) {
 
-        Connection con = new Aula().getConnection();
+        Connection con = new Professor().getConnection();
 
-        String sql = "UPDATE aula SET disciplinaAssociada = ?, salaAssociada = ?, alunosPrsentes = ?, conteudoProgramatico = ? WHERE idAula = ?";
+        String sql = "UPDATE professor SET RA = ?, nome = ?, idade = ?, endereco = ?, departamento = ?, disciplinasMinistra = ?, linhasPesquisa = ? WHERE idProfessor = ?";
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, disciplinaAssociada);
-            stmt.setString(2, salaAssociada);
-            stmt.setString(3, alunosPesentes);
-            stmt.setString(4, conteudoProgramatico);
-            stmt.setInt(5, Integer.parseInt(idAula));
+            stmt.setInt(1, ra);
+            stmt.setString(2, nome);
+            stmt.setInt(3, idade);
+            stmt.setString(4, endereco);
+            stmt.setString(5, departamento);
+            stmt.setString(6, disciplinasMinistra);
+            stmt.setString(7, linhasPesquisa);
+            stmt.setInt(8, cod);
             stmt.execute();
             stmt.close();
-            return 0;
+
         } catch (SQLException u) {
-            return 1;
+            throw new RuntimeException(u);
         }
     }
 
-    public int Deletar(String id) {
-        Connection con = new Aula().getConnection();
+    public void Deletar(int id) {
+        Connection con = new Professor().getConnection();
 
-        String sql = "DELETE FROM aula WHERE idAula = ?";
+        String sql = "DELETE FROM professor WHERE idAula = ?";
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, Integer.parseInt(id));
+            stmt.setInt(1, id);
             stmt.execute();
             stmt.close();
-            return 0;
+
         } catch (SQLException u) {
-            return 1;
+            throw new RuntimeException(u);
         }
 
     }
 
-    public String ConsultarAula(String id) {
+    public String ConsultarProfessor(int id) {
 
-        Connection con = new Aula().getConnection();
-        String sql = "SELECT * FROM aula where idAula = ?";
+        Connection con = new Professor().getConnection();
+        String sql = "SELECT * FROM professor where idProfessor = ?";
         String mensagem = "04#";
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, Integer.parseInt(id));
+            stmt.setInt(1, id);
             ResultSet resultado = stmt.executeQuery();
             resultado.next();
-            mensagem = mensagem + resultado.getInt("idAula") + "#"
-                    + resultado.getString("disciplinaAssociada") + "#"
-                    + resultado.getString("salaAssociada") + "#"
-                    + resultado.getString("aluosPresentes") + "#"
-                    + resultado.getString("conteudoProgramatico") + "#";
+            mensagem = mensagem + resultado.getInt("idProfessor") + "#"
+                    + resultado.getInt("RA") + "#"
+                    + resultado.getString("nome") + "#"
+                    + resultado.getInt("idade") + "#"
+                    + resultado.getString("endereco") + "#"
+                    + resultado.getString("departamento") + "#"
+                    + resultado.getString("disciplinasMinistra") + "#"
+                    + resultado.getString("linhasPesquisa") + "#";
             stmt.close();
             return mensagem;
 
@@ -99,16 +105,16 @@ public class Aula {
 
     }
 
-    public String ConsultarAula() {
+    public String ConsultarProfessor() {
         String mensagem = "05#";
-        Connection con = new Aula().getConnection();
-        String sql = "SELECT * FROM aula ORDER BY disciplinaAssociada";
+        Connection con = new Professor().getConnection();
+        String sql = "SELECT * FROM professor ORDER BY nome";
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet resultado = stmt.executeQuery();
             while (resultado.next()) {
-                mensagem = mensagem + resultado.getString("idAula") + "#" + resultado.getString("disciplinaAssociada") + "#";
+                mensagem = mensagem + resultado.getString("idProfessor") + "#" + resultado.getString("nome") + "#";
             }
             stmt.close();
             return mensagem;

@@ -6,35 +6,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Início da classe de conexão.
- */
+//Início da classe de conexão//
 public class Professor {
-/**
- *
- * @return.
- */
+
     public Connection getConnection() {
         try {
-            return DriverManager.getConnection(
-                    "jdbc:mysql://localhost/servidor", "root", "1234");
+            return DriverManager.getConnection("jdbc:mysql://localhost/servidor", "root", "1234");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-/**
- * método inserir.
- * @return.
-*/
-    public int Inserir(String ra, String nome, String idade, String endereco, 
-                       String departamento, String disciplinasMinistra, 
-                       String linhasPesquisa){
+
+    public int Inserir(String ra, String nome, String idade, String endereco, String departamento, String disciplinasMinistra, String linhasPesquisa) {
 
         Connection con = new Professor().getConnection();
 
-        String sql = "INSERT INTO professor(RA, nome, idade, endereco, "
-                + "departamento, disciplinasMinistra, linhasPesquisa)"
-                + " VALUES(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO professor(RA, nome, idade, endereco, departamento, disciplinasMinistra, linhasPesquisa) VALUES(?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -53,20 +40,12 @@ public class Professor {
             return 1;
         }
     }
-/**
- *
- * @return.
- */
-    public int Editar(String cod, String ra, String nome, String idade, 
-                      String endereco, String departamento, 
-                      String disciplinasMinistra, 
-                      String linhasPesquisa) {
+
+    public int Editar(String cod, String ra, String nome, String idade, String endereco, String departamento, String disciplinasMinistra, String linhasPesquisa) {
 
         Connection con = new Professor().getConnection();
 
-        String sql = "UPDATE professor SET RA = ?, nome = ?, idade = ?,"
-                + " endereco = ?, departamento = ?, disciplinasMinistra = ?,"
-                + " linhasPesquisa = ? WHERE idProfessor = ?";
+        String sql = "UPDATE professor SET RA = ?, nome = ?, idade = ?, endereco = ?, departamento = ?, disciplinasMinistra = ?, linhasPesquisa = ? WHERE idProfessor = ?";
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -85,13 +64,11 @@ public class Professor {
             return 1;
         }
     }
-/**
- *@return.
- */
+
     public int Deletar(String id) {
         Connection con = new Professor().getConnection();
 
-        String sql = "DELETE FROM professor WHERE idProfessor = ?";
+        String sql = "DELETE FROM professor WHERE idAula = ?";
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -104,9 +81,7 @@ public class Professor {
         }
 
     }
-/**
- *@return.
- */
+
     public String ConsultarProfessor(String id) {
 
         Connection con = new Professor().getConnection();
@@ -134,9 +109,7 @@ public class Professor {
         }
 
     }
-/**
- *@return.
- */
+
     public String ConsultarProfessor() {
         String mensagem = "05#";
         Connection con = new Professor().getConnection();
