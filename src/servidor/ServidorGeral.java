@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author Jonas
  */
-public class ServidorSalas {
+public class ServidorGeral {
     
     public static void main(String[] targs) {
 
