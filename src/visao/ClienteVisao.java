@@ -837,7 +837,7 @@ public class ClienteVisao extends javax.swing.JFrame {
             Envia o objeto para a regra de negocio.
             retornastring de resposta
         */
-        String resposta = (crn.insereProfessor(alunoVO));
+        //String resposta = (alunoRN.(alunoVO));
 
         /*
             Informa ao usuario a resposta da regra de negocio.
