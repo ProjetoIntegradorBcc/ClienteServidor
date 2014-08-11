@@ -10,6 +10,7 @@ import conexao.ConexaoServidor;
 import java.util.ArrayList;
 import vo.AlunosVO;
 import vo.AulaVO;
+import vo.DisciplinaVO;
 import vo.SalaVO;
 import vo.ProfessorVO;
 
@@ -72,6 +73,18 @@ public class ClienteRN {
         }
     }
     
+     public String insereDisciplina(DisciplinaVO DVO) {
+         DisciplinaRN DRN= new DisciplinaRN();
+        
+        String mensagemVOInvalido = DRN.validaCampos(DVO);
+        if(mensagemVOInvalido != null){
+            return mensagemVOInvalido;
+        }
+        else{
+            return conexao.enviaDataGrama(DVO); 
+        }
+    }
+    
     public String alteraProfessor(ProfessorVO PVO){
         return "mensagem";
     }
@@ -118,5 +131,10 @@ public class ClienteRN {
     public ArrayList<AulaVO> buscaAula() {
         System.out.println("Busca Aula");
         return conexao.buscaAula();
+    }
+    
+     public ArrayList<DisciplinaVO> buscaDisciplina() {
+        System.out.println("Busca Disciplina");
+        return conexao.buscaDisciplina();
     }
 }

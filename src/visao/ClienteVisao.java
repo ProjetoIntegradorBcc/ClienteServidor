@@ -39,6 +39,13 @@ public class ClienteVisao extends javax.swing.JFrame {
      * utilizado para armazenar os objetos que preenchem a jTable.
      */
     private ArrayList<AlunosVO>listaAlunos= null;
+    
+    /**
+     * Criação de um ArrayList de objeto DisciplinaVO,
+     * utilizado para armazenar os objetos que preenchem a jTable.
+     */
+    private ArrayList<DisciplinaVO>listaDisciplinas= null;
+
     /**
      * Creates new form ClienteVisao.
      */
@@ -159,12 +166,12 @@ public class ClienteVisao extends javax.swing.JFrame {
         jScrollPane9 = new javax.swing.JScrollPane();
         jTextAreaEmenta = new javax.swing.JTextArea();
         jScrollPane10 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextAreaDisciplinasDependentes = new javax.swing.JTextArea();
         jButtonInserirDisciplina = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
         jScrollPane11 = new javax.swing.JScrollPane();
-        jTableDisciplina = new javax.swing.JTable();
+        jTablePesquisarDisciplina = new javax.swing.JTable();
         jLabelPesquisar = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jTextFieldPesquisarDisciplina = new javax.swing.JTextField();
@@ -677,7 +684,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         jpDisciplinas.add(jLabelCodigoDisciplina, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
 
         jLabelIdDisciplina.setText("ID Disciplina");
-        jpDisciplinas.add(jLabelIdDisciplina, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, -1));
+        jpDisciplinas.add(jLabelIdDisciplina, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
 
         jLabelTitulo.setText("Titulo");
         jpDisciplinas.add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
@@ -715,9 +722,9 @@ public class ClienteVisao extends javax.swing.JFrame {
 
         jpDisciplinas.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 350, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane10.setViewportView(jTextArea1);
+        jTextAreaDisciplinasDependentes.setColumns(20);
+        jTextAreaDisciplinasDependentes.setRows(5);
+        jScrollPane10.setViewportView(jTextAreaDisciplinasDependentes);
 
         jpDisciplinas.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 350, -1));
 
@@ -735,7 +742,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         jButtonExcluir.setText("Excluir");
         jpDisciplinas.add(jButtonExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 490, 120, 50));
 
-        jTableDisciplina.setModel(new javax.swing.table.DefaultTableModel(
+        jTablePesquisarDisciplina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -751,7 +758,7 @@ public class ClienteVisao extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane11.setViewportView(jTableDisciplina);
+        jScrollPane11.setViewportView(jTablePesquisarDisciplina);
 
         jpDisciplinas.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 300, 370));
 
@@ -962,6 +969,60 @@ public class ClienteVisao extends javax.swing.JFrame {
 
     private void jButtonInserirDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirDisciplinaActionPerformed
         // TODO add your handling code here:
+        /*
+            Criacao do objetto dvo.
+        */
+        DisciplinaVO dvo = new DisciplinaVO();
+
+        /*
+            Atribui ao objeto os valores dos campos JtextField
+        */
+        dvo.setIdDisciplina(Integer.parseInt(jTextFieldIDDisciplina.getText()));
+        dvo.setTitulo(jTextFieldTItulo.getText());
+        dvo.setPreRequisitos(jTextAreaPreRequisitos.getText());
+        dvo.setAvaliacao(jTextAreaMetodoAvaliacao.getText());
+        dvo.setEmenta(jTextAreaEmenta.getText());
+        dvo.setDependencias(jTextAreaDisciplinasDependentes.getText());
+        
+        /*
+            Envia o objeto para a regra de negocio.
+            Recebe uma string com o código da resposta
+            como definido no protocolo.
+        */
+        String resposta = (crn.insereDisciplina(dvo));
+        
+        /*
+            Informa ao usuario a resposta da regra de negocio.
+            Caso a insercao seja efetuada com sucesso, a jTable sera atualizada.
+        */
+        switch (resposta) {
+            case "0#":
+                atualizaTabelaDisciplina();
+                JOptionPane.showMessageDialog(rootPane,
+                        "Inserido com sucesso :)",
+                        "Inserção no Banco de dados", WIDTH);
+                break;
+            case "1#":
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro na insercao no Banco de dados",
+                        "Inserção no Banco de dados", WIDTH);
+                break;
+            case "2#":
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro ao enviar o Datagrama",
+                        "Transmissão do Datagrama", WIDTH);
+                break;
+            case "3#":
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro ao enviar o Datagrama - Tempo limite excedido",
+                        "Transmissão do Datagrama", WIDTH);
+                break;
+            default:
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro inesperado: " + resposta,
+                        "Insercao", WIDTH);
+                break;
+        }
     }//GEN-LAST:event_jButtonInserirDisciplinaActionPerformed
 
     private void pesquisaCamposParaInserirComboBox(){
@@ -1032,6 +1093,22 @@ public class ClienteVisao extends javax.swing.JFrame {
             }
         }
     }
+    
+    private void atualizaTabelaDisciplina() {
+
+        listaDisciplinas = crn.buscaDisciplina();
+        if (listaDisciplinas == null) {
+            DefaultTableModel tabela = (DefaultTableModel) jTablePesquisarDisciplina.getModel();
+            tabela.setNumRows(0);
+        } else {
+            DefaultTableModel tabela = (DefaultTableModel) jTablePesquisarDisciplina.getModel();
+            tabela.setNumRows(0);
+            for (DisciplinaVO item : listaDisciplinas) {
+                Object[] linha = {item.getTitulo()};
+                tabela.addRow(linha);
+            }
+        }
+    }
 
     private void RetornaCamposPesquisa(ArrayList<vo.ProfessorVO> lista) {
 
@@ -1046,6 +1123,19 @@ public class ClienteVisao extends javax.swing.JFrame {
             jTextAreaDisciplinasProfessor.setText(item.getDisciplinas());
             jTextFieldLinhaPesquisaProfessor.setText(item.getPesquisa());
 
+        }
+    }
+    
+    private void RetornaCamposPesquisaDisciplina(ArrayList<vo.DisciplinaVO> lista) {
+
+        DefaultTableModel model = (DefaultTableModel) jTablePesquisarDisciplina.getModel();
+        for (vo.DisciplinaVO item : lista) {
+            jTextFieldIDDisciplina.setText(String.valueOf(item.getIdDisciplina()));
+            jTextFieldTItulo.setText(item.getTitulo());
+            jTextAreaPreRequisitos.setText(item.getPreRequisitos());
+            jTextAreaMetodoAvaliacao.setText(item.getAvaliacao());
+            jTextAreaEmenta.setText(item.getEmenta());
+            jTextAreaDisciplinasDependentes.setText(item.getDependencias());
         }
     }
 
@@ -1165,9 +1255,9 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPaneDiscMatriculadasAlunos;
     private javax.swing.JTable jTableDiscConcluidasAlunos;
     private javax.swing.JTable jTableDiscMatriculadasAlunos;
-    private javax.swing.JTable jTableDisciplina;
+    private javax.swing.JTable jTablePesquisarDisciplina;
     private javax.swing.JTable jTablePesquisarProfessor;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextAreaDisciplinasDependentes;
     private javax.swing.JTextArea jTextAreaDisciplinasProfessor;
     private javax.swing.JTextArea jTextAreaEmenta;
     private javax.swing.JTextArea jTextAreaMetodoAvaliacao;
