@@ -8,11 +8,14 @@ package visao;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import regraDeNegocio.AlunosRN;
 import regraDeNegocio.ClienteRN;
 import vo.AulaVO;
 import vo.DisciplinaVO;
 import vo.ProfessorVO;
 import vo.SalaVO;
+import vo.AlunosVO;
+
 
 /**
  *
@@ -24,12 +27,19 @@ public class ClienteVisao extends javax.swing.JFrame {
      * instanciacao de um objeto da classe ClienteRN.
      */
     private final ClienteRN crn = new ClienteRN();
+    private AlunosRN alunoRN = new AlunosRN();
     /**
      * Criação de um ArrayList de objeto ProfessorVO,
      * utilizado para armazenar os objetos que preenchem a jTable.
      */
     private ArrayList<ProfessorVO> listaProfessor = null;
     private ArrayList<AulaVO> listaAula = null;
+    
+    /**
+     * Criação de um ArrayList de objeto AlunosVO,
+     * utilizado para armazenar os objetos que preenchem a jTable.
+     */
+    private ArrayList<AlunosVO>listaAlunos= null;
     /**
      * Creates new form ClienteVisao.
      */
@@ -807,6 +817,32 @@ public class ClienteVisao extends javax.swing.JFrame {
 
     private void jButtonInserirAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirAlunosActionPerformed
         // TODO add your handling code here:
+        /*
+            Criacao do objeto vo.
+        */
+        AlunosVO alunoVO = new AlunosVO();
+
+        /*
+            Atribui ao objeto os valores dos campos 
+        */
+        alunoVO.setRA(txtRaAlunos.getText());
+        alunoVO.setNome(txtNomeAlunos.getText());
+        alunoVO.setDatanasc(txtDatasNascAlunos.getText());
+        alunoVO.setCurso(txtCursoAlunos.getText());
+        alunoVO.setAnoDeEntrada(txtAnoEntrada.getText());
+        //alunoVO.setDisciplinasMatriculadas(jTableDiscMatriculadasAlunos.getText());
+        
+
+        /*
+            Envia o objeto para a regra de negocio.
+            retornastring de resposta
+        */
+        String resposta = (crn.insereProfessor(alunoVO));
+
+        /*
+            Informa ao usuario a resposta da regra de negocio.
+            Caso a insercao seja efetuada com sucesso, a jTable sera atualizada.
+        */
     }//GEN-LAST:event_jButtonInserirAlunosActionPerformed
 
     private void pesquisaCamposParaInserirComboBox(){
