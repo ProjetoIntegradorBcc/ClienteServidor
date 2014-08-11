@@ -902,14 +902,16 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                              <Component id="jButtonInserirAlunos" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jButtonEditarAlunos" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButtonExcluirAlunos" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButtonBuscarAlunos" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jButtonExcluirAlunos" pref="82" max="32767" attributes="0"/>
+                                  <Component id="jButtonInserirAlunos" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jButtonEditarAlunos" max="32767" attributes="0"/>
+                                  <Component id="jButtonBuscarAlunos" pref="83" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace pref="300" max="32767" attributes="0"/>
@@ -954,14 +956,17 @@
                           <Component id="jScrollPaneDiscConcluidasAlunos" pref="107" max="32767" attributes="0"/>
                           <Component id="jScrollPaneDiscMatriculadasAlunos" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="232" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonInserirAlunos" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonEditarAlunos" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonExcluirAlunos" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonBuscarAlunos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonInserirAlunos" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="jButtonEditarAlunos" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jButtonBuscarAlunos" pref="41" max="32767" attributes="0"/>
+                          <Component id="jButtonExcluirAlunos" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="141" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1098,7 +1103,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="90" y="70" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="100" y="70" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1245,7 +1250,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="jTextArea1">
+                <Component class="javax.swing.JTextArea" name="jTextAreaDisciplinasDependentes">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
@@ -1298,7 +1303,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTableDisciplina">
+                <Component class="javax.swing.JTable" name="jTablePesquisarDisciplina">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="1" rowCount="0">

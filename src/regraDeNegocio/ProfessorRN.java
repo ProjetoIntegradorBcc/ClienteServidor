@@ -110,8 +110,9 @@ public class ProfessorRN {
         } else {
             try {
                 idade = Integer.parseInt(campoIdade);
-                if (idade < 0) {
-                    return "Idade invalida - insira um valor positivo";
+                if (idade <= 0) {
+                    return "Idade invalida - insira um valor positivo"
+                            + " e maior que 0";
                 } else {
                     return null;
                 }
