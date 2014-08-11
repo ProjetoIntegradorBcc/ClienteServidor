@@ -59,7 +59,7 @@ public class ProfessorRN {
      * @return null em caso de campo valido
      * mensagem de erro em caso de campo invalido
      */
-    private String validaRA(String campoRA){
+    public String validaRA(String campoRA){
         int ra;
         if(campoRA.isEmpty()){
             return "RA invalido - campo vazio";
@@ -108,7 +108,7 @@ public class ProfessorRN {
      * @return null em caso de campo valido
      * mensagem de erro em caso de campo invalido
      */
-    private String validaIdade(String campoIdade) {
+    public String validaIdade(String campoIdade) {
         int idade;
         if(campoIdade.isEmpty()){
             return "Idade invalida - campo vazio";
@@ -137,7 +137,7 @@ public class ProfessorRN {
      * @return null em caso de campo valido
      * Mensagem de erro em caso de campo invalido
      */
-    private String validaDepartamento(String campoDepartamento) {
+    public String validaDepartamento(String campoDepartamento) {
         if(campoDepartamento.isEmpty()){
             return "Departamento invalido - campo vazio";
         }
@@ -157,7 +157,7 @@ public class ProfessorRN {
      * @return null em caso de campo valido
      * Mensagem de erro em caso de campo invalido
      */
-    private String validaDisciplinas(String campoDisciplinas) {
+    public String validaDisciplinas(String campoDisciplinas) {
         if(campoDisciplinas.isEmpty()){
             return "Disciplinas invalidas - campo vazio";
         }
@@ -177,7 +177,7 @@ public class ProfessorRN {
      * @return null em caso de campo valido
      * Mensagem de erro em caso de campo invalido
      */
-    private String validaEndereco(String campoEndereco) {
+    public String validaEndereco(String campoEndereco) {
         if(campoEndereco.isEmpty()){
             return "Endereco invalido - campo vazio";
         }
@@ -197,7 +197,7 @@ public class ProfessorRN {
      * @return null em caso de campo valido
      * Mensagem de erro em caso de campo invalido
      */
-    private String validaPesquisa(String campoPesquisa) {
+    public String validaPesquisa(String campoPesquisa) {
         if(campoPesquisa.isEmpty()){
             return "Pesquisa invalida - campo vazio";
         }
