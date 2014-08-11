@@ -43,8 +43,7 @@ public class ClienteRN {
             return mensagemVOInvalido;
         }
         else{
-  //          return conexao.enviaDataGrama(AVO); Mecher aqui
-            return "";
+            return conexao.enviaDataGrama(AVO); 
         }
     }
     
@@ -89,5 +88,10 @@ public class ClienteRN {
     public ArrayList<ProfessorVO> buscaProfessor() {
         System.out.println("Busca Professor");
         return conexao.buscaProfessor();
+    }
+    
+    public ArrayList<AulaVO> buscaAula() {
+        System.out.println("Busca Aula");
+        return conexao.buscaAula();
     }
 }

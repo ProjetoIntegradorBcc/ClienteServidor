@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -29,7 +29,7 @@ public class ClienteVisao extends javax.swing.JFrame {
      * utilizado para armazenar os objetos que preenchem a jTable.
      */
     private ArrayList<ProfessorVO> listaProfessor = null;
-
+    private ArrayList<AulaVO> listaAula = null;
     /**
      * Creates new form ClienteVisao.
      */
@@ -88,6 +88,9 @@ public class ClienteVisao extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        btInserirAula1 = new javax.swing.JButton();
+        btEditarAula1 = new javax.swing.JButton();
+        btExcluirAula1 = new javax.swing.JButton();
         jpAulas = new javax.swing.JPanel();
         jpProfessor1 = new javax.swing.JPanel();
         jLabelPesquisarProfessor1 = new javax.swing.JLabel();
@@ -109,7 +112,6 @@ public class ClienteVisao extends javax.swing.JFrame {
         tConteudo = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.BorderLayout());
 
         Aulas.setMaximumSize(new java.awt.Dimension(900, 600));
         Aulas.setMinimumSize(new java.awt.Dimension(900, 600));
@@ -256,29 +258,49 @@ public class ClienteVisao extends javax.swing.JFrame {
 
         jLabel6.setText("Capacidade máxima:");
 
+        btInserirAula1.setText("Inserir");
+        btInserirAula1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btInserirAula1ActionPerformed(evt);
+            }
+        });
+
+        btEditarAula1.setText("Editar");
+
+        btExcluirAula1.setText("Excluir");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Recursos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(Departamento)
-                        .addComponent(Capacidade, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
-                    .addComponent(Computadores, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(IdSala, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 523, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(64, 64, 64)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Recursos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Departamento)
+                                .addComponent(Capacidade, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                            .addComponent(Computadores, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(IdSala, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(btInserirAula1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(btEditarAula1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(btExcluirAula1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 468, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,7 +329,12 @@ public class ClienteVisao extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Capacidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addContainerGap(373, Short.MAX_VALUE))
+                .addGap(136, 136, 136)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btInserirAula1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btEditarAula1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btExcluirAula1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
 
         jpSalas.add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -451,7 +478,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         */
         switch (resposta) {
             case "0#":
-                AtualizaTabela();
+                atualizaTabelaProfessor();
                 JOptionPane.showMessageDialog(rootPane,
                         "Inserido com sucesso :)",
                         "Inserção no Banco de dados", WIDTH);
@@ -484,34 +511,68 @@ public class ClienteVisao extends javax.swing.JFrame {
      * @param evt clique do mouse
      */
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-        AtualizaTabela();
+        atualizaTabelaProfessor();
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void btInserirAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInserirAulaActionPerformed
        
         AulaVO avo = new AulaVO();
 
-        avo.setDisciplina((DisciplinaVO) cbDisciplinaAula.getSelectedItem());
-        avo.setSala((SalaVO) cbSalaAula.getSelectedItem());
+        avo.setDisciplina(cbDisciplinaAula.getSelectedItem().toString());
+        avo.setSala(cbSalaAula.getSelectedItem().toString());
         avo.setAlunosPresentes(tNumAlunos.getText());
         avo.setConteudoProgramatico(tConteudo.getText());
         
         String resposta = (crn.insereAula(avo));
 
+        switch (resposta) {
+            case "0#":
+                atualizaTabelaProfessor();
+                JOptionPane.showMessageDialog(rootPane,
+                        "Inserido com sucesso :)",
+                        "Inserção no Banco de dados", WIDTH);
+                break;
+            case "1#":
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro na insercao no Banco de dados",
+                        "Inserção no Banco de dados", WIDTH);
+                break;
+            case "2#":
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro ao enviar o Datagrama",
+                        "Transmissão do Datagrama", WIDTH);
+                break;
+            case "3#":
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro ao enviar o Datagrama - Tempo limite excedido",
+                        "Transmissão do Datagrama", WIDTH);
+                break;
+            default:
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro inesperado: " + resposta,
+                        "Insercao", WIDTH);
+                break;
+        }
     }//GEN-LAST:event_btInserirAulaActionPerformed
 
     private void btPesquisarAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarAulaActionPerformed
-        // TODO add your handling code here:
+        atualizaTabelaAula();
     }//GEN-LAST:event_btPesquisarAulaActionPerformed
+
+    private void btInserirAula1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInserirAula1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btInserirAula1ActionPerformed
 
     private void pesquisaCamposParaInserirComboBox(){
         //Trocar quando pesquisaDisciplina e pesquisaSala estiverem funcionando
+        //buscaDisciplina();
         cbDisciplinaAula.addItem("Escolha uma Disciplina");
         cbDisciplinaAula.addItem("Mod 2");
         cbDisciplinaAula.addItem("Análise de Algoritmos");
         cbDisciplinaAula.addItem("Teoria dos Grafos");
         cbDisciplinaAula.addItem("PLP");
         
+        //buscaSala();
         cbSalaAula.addItem("Escolha uma Sala");
         cbSalaAula.addItem("C204");
         cbSalaAula.addItem("C202");
@@ -520,7 +581,6 @@ public class ClienteVisao extends javax.swing.JFrame {
     }
     
     private void iniciaConexao() {
-
         String ip, porta, mensagemValidacaoConexao;
         mensagemValidacaoConexao = "Informe o ip do servidor";
         do {
@@ -541,7 +601,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, crn.validaConexao(ip, porta), "Conexao", WIDTH);
     }
 
-    private void AtualizaTabela() {
+    private void atualizaTabelaProfessor() {
 
         listaProfessor = crn.buscaProfessor();
         if (listaProfessor == null) {
@@ -552,6 +612,21 @@ public class ClienteVisao extends javax.swing.JFrame {
             tabela.setNumRows(0);
             for (ProfessorVO item : listaProfessor) {
                 Object[] linha = {item.getNome()};
+                tabela.addRow(linha);
+            }
+        }
+    }
+    
+    private void atualizaTabelaAula() {
+        listaAula = crn.buscaAula();
+        if (listaAula == null) {
+            DefaultTableModel tabela = (DefaultTableModel) tableAula.getModel();
+            tabela.setNumRows(0);
+        } else {
+            DefaultTableModel tabela = (DefaultTableModel) tableAula.getModel();
+            tabela.setNumRows(0);
+            for (AulaVO item : listaAula) {
+                Object[] linha = {item.getDisciplina()+""+item.getSala()};
                 tabela.addRow(linha);
             }
         }
@@ -617,8 +692,11 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JTextField IdSala;
     private javax.swing.JTextField Recursos;
     private javax.swing.JButton btEditarAula;
+    private javax.swing.JButton btEditarAula1;
     private javax.swing.JButton btExcluirAula;
+    private javax.swing.JButton btExcluirAula1;
     private javax.swing.JButton btInserirAula;
+    private javax.swing.JButton btInserirAula1;
     private javax.swing.JButton btPesquisarAula;
     private javax.swing.JComboBox cbDisciplinaAula;
     private javax.swing.JComboBox cbSalaAula;

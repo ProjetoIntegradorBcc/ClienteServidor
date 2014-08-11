@@ -177,6 +177,7 @@ class ThreadCliente extends Thread {
                         }
                         break;
                     case "3":
+                        ServidorDisciplinas serv3 = new ServidorDisciplinas(pkg, mensagem);
                         System.out.println("DISCIPLINAS");
                         break;
                     case "4":
@@ -285,12 +286,71 @@ class ThreadCliente extends Thread {
                                 pacoteSalas = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
                                 ds.send(pacoteSalas);
                         }
+<<<<<<< HEAD
                         break;
                     case "5":
                         System.out.println("AULAS");
                         break;
                     default:
+=======
+                    break;
+                    case "5":{
+                        SGDB.Aula bancoAula = new SGDB.Aula();
+                        switch (mensagem.substring(1, 2)) {
+                            case "1":
+                                String disciplinaAssociada = "";
+                                String salaAssociada = "";
+                                String alunosPresentes = "";
+                                String conteudoProgramatico = "";
+                                
+                                System.out.println("recebeu:" + mensagem);
+>>>>>>> d172553ff169069f1a207db529f18925cd88c57b
 
+                                i = 3;
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
+                                    disciplinaAssociada = (disciplinaAssociada + mensagem.substring(i, i + 1));
+                                    i++;
+                                }
+                                i++;
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
+                                    salaAssociada = salaAssociada + mensagem.substring(i, i + 1);
+                                    i++;
+                                }
+                                i++;
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
+                                    alunosPresentes = alunosPresentes + mensagem.substring(i, i + 1);
+                                    i++;
+                                }
+                                i++;
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
+                                    conteudoProgramatico = conteudoProgramatico + mensagem.substring(i, i + 1);
+                                    i++;
+                                }
+                                mensagem = bancoAula.Inserir(disciplinaAssociada, salaAssociada, alunosPresentes, conteudoProgramatico) + "#";
+                                DatagramPacket pkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                ds.send(pkgo);
+                                System.out.println("enviou:" + mensagem);
+                                mensagem = "";
+                                break;
+                            case "2":
+                                System.out.println("PROFESSOR - EDITAR");
+                                break;
+                            case "3":
+                                System.out.println("PROFESSOR - DELETAR");
+                                break;
+                            case "4":
+                                System.out.println("PROFESSOR - CONSULTAR");
+                                break;
+                            case "5":
+                                System.out.println("recebeu:" + mensagem);
+                                mensagem = bancoAula.ConsultarProfessor();
+                                pkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                ds.send(pkgo);
+                                System.out.println("enviou:" + mensagem);
+                                break;
+                            default:
+                        }                   
+                    }
                 }
             } while (true);
         } catch (IOException | NumberFormatException e) {
