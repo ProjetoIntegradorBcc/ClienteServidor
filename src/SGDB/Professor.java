@@ -41,7 +41,7 @@ public class Professor {
         }
     }
 
-    public void Editar(int cod, int ra, String nome, int idade, String endereco, String departamento, String disciplinasMinistra, String linhasPesquisa) {
+    public int Editar(String cod, String ra, String nome, String idade, String endereco, String departamento, String disciplinasMinistra, String linhasPesquisa) {
 
         Connection con = new Professor().getConnection();
 
@@ -49,40 +49,40 @@ public class Professor {
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, ra);
+            stmt.setInt(1, Integer.parseInt(ra));
             stmt.setString(2, nome);
-            stmt.setInt(3, idade);
+            stmt.setInt(3, Integer.parseInt(idade));
             stmt.setString(4, endereco);
             stmt.setString(5, departamento);
             stmt.setString(6, disciplinasMinistra);
             stmt.setString(7, linhasPesquisa);
-            stmt.setInt(8, cod);
+            stmt.setInt(8, Integer.parseInt(cod));
             stmt.execute();
             stmt.close();
-
+            return 0;
         } catch (SQLException u) {
-            throw new RuntimeException(u);
+            return 1;
         }
     }
 
-    public void Deletar(int id) {
+    public int Deletar(String id) {
         Connection con = new Professor().getConnection();
 
         String sql = "DELETE FROM professor WHERE idAula = ?";
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, id);
+            stmt.setInt(1, Integer.parseInt(id));
             stmt.execute();
             stmt.close();
-
+            return 0;
         } catch (SQLException u) {
-            throw new RuntimeException(u);
+            return 1;
         }
 
     }
 
-    public String ConsultarProfessor(int id) {
+    public String ConsultarProfessor(String id) {
 
         Connection con = new Professor().getConnection();
         String sql = "SELECT * FROM professor where idProfessor = ?";
@@ -90,7 +90,7 @@ public class Professor {
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, id);
+            stmt.setInt(1, Integer.parseInt(id));
             ResultSet resultado = stmt.executeQuery();
             resultado.next();
             mensagem = mensagem + resultado.getInt("idProfessor") + "#"
