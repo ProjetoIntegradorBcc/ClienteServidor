@@ -286,15 +286,11 @@ class ThreadCliente extends Thread {
                                 pacoteSalas = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
                                 ds.send(pacoteSalas);
                         }
-<<<<<<< HEAD
+
                         break;
-                    case "5":
-                        System.out.println("AULAS");
-                        break;
-                    default:
-=======
-                    break;
+    
                     case "5":{
+                        DatagramPacket pacoteAulas;
                         SGDB.Aula bancoAula = new SGDB.Aula();
                         switch (mensagem.substring(1, 2)) {
                             case "1":
@@ -304,7 +300,7 @@ class ThreadCliente extends Thread {
                                 String conteudoProgramatico = "";
                                 
                                 System.out.println("recebeu:" + mensagem);
->>>>>>> d172553ff169069f1a207db529f18925cd88c57b
+
 
                                 i = 3;
                                 while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
@@ -327,8 +323,8 @@ class ThreadCliente extends Thread {
                                     i++;
                                 }
                                 mensagem = bancoAula.Inserir(disciplinaAssociada, salaAssociada, alunosPresentes, conteudoProgramatico) + "#";
-                                DatagramPacket pkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
-                                ds.send(pkgo);
+                                pacoteAulas = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                ds.send(pacoteAulas);
                                 System.out.println("enviou:" + mensagem);
                                 mensagem = "";
                                 break;
