@@ -8,7 +8,9 @@ package regraDeNegocio;
 
 import conexao.ConexaoServidor;
 import java.util.ArrayList;
+import vo.AlunosVO;
 import vo.AulaVO;
+import vo.DisciplinaVO;
 import vo.SalaVO;
 import vo.ProfessorVO;
 
@@ -47,6 +49,17 @@ public class ClienteRN {
             return conexao.enviaDataGrama(AVO); 
         }
     }
+    public String insereAlunos(AlunosVO alunoVO) {
+        AlunosRN alunoRN = new AlunosRN();
+        
+        String mensagemVOInvalido = alunoRN.validarCampos(alunoVO);
+        if(mensagemVOInvalido != null){
+            return mensagemVOInvalido;
+        }
+        else{
+            return conexao.enviaDataGrama(alunoVO); 
+        }
+    }
     
     public String insereSalas(SalaVO SVO) {
         SalaRN SRN = new SalaRN();
@@ -57,6 +70,18 @@ public class ClienteRN {
         }
         else{
             return conexao.enviaDataGrama(SVO); 
+        }
+    }
+    
+     public String insereDisciplina(DisciplinaVO DVO) {
+         DisciplinaRN DRN= new DisciplinaRN();
+        
+        String mensagemVOInvalido = DRN.validaCampos(DVO);
+        if(mensagemVOInvalido != null){
+            return mensagemVOInvalido;
+        }
+        else{
+            return conexao.enviaDataGrama(DVO); 
         }
     }
     
@@ -103,8 +128,18 @@ public class ClienteRN {
         return conexao.buscaProfessor();
     }
     
+    public ProfessorVO pesquisaProfessor(String id) {
+        System.out.println("Pesquisa Professor");
+        return conexao.pesquisaProfessor(id);
+    }
+    
     public ArrayList<AulaVO> buscaAula() {
         System.out.println("Busca Aula");
         return conexao.buscaAula();
+    }
+    
+     public ArrayList<DisciplinaVO> buscaDisciplina() {
+        System.out.println("Busca Disciplina");
+        return conexao.buscaDisciplina();
     }
 }

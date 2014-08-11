@@ -21,31 +21,31 @@ public class ProfessorRN {
      */
     String validaCampos(ProfessorVO PVO) {
         String mensagemCampoInvalido = validaRA(PVO.getRa());
-        if(mensagemCampoInvalido != null){
+        if (mensagemCampoInvalido != null) {
             return mensagemCampoInvalido;
         }
         mensagemCampoInvalido = validaNome(PVO.getNome());
-        if(mensagemCampoInvalido != null){
+        if (mensagemCampoInvalido != null) {
             return mensagemCampoInvalido;
         }
         mensagemCampoInvalido = validaIdade(PVO.getIdade());
-        if(mensagemCampoInvalido != null){
+        if (mensagemCampoInvalido != null) {
             return mensagemCampoInvalido;
         }
         mensagemCampoInvalido = validaDepartamento(PVO.getDepartamento());
-        if(mensagemCampoInvalido != null){
+        if (mensagemCampoInvalido != null) {
             return mensagemCampoInvalido;
         }
         mensagemCampoInvalido = validaDisciplinas(PVO.getDisciplinas());
-        if(mensagemCampoInvalido != null){
+        if (mensagemCampoInvalido != null) {
             return mensagemCampoInvalido;
         }
         mensagemCampoInvalido = validaEndereco(PVO.getEndereco());
-        if(mensagemCampoInvalido != null){
+        if (mensagemCampoInvalido != null) {
             return mensagemCampoInvalido;
         }
         mensagemCampoInvalido = validaPesquisa(PVO.getPesquisa());
-        if(mensagemCampoInvalido != null){
+        if (mensagemCampoInvalido != null) {
             return mensagemCampoInvalido;
         }
         return null;
@@ -59,22 +59,19 @@ public class ProfessorRN {
      * @return null em caso de campo valido
      * mensagem de erro em caso de campo invalido
      */
-    private String validaRA(String campoRA){
+    public String validaRA(String campoRA){
         int ra;
-        if(campoRA.isEmpty()){
+        if (campoRA.isEmpty()) {
             return "RA invalido - campo vazio";
-        }
-        else{
-            try{
+    } else {
+            try {
                 ra = Integer.parseInt(campoRA);
-                if(ra < 0){
+                if (ra < 0) {
                     return "RA invalido - insira um valor positivo";
-                }
-                else{
+            } else {
                     return null;
                 }
-            }
-            catch(NumberFormatException e){
+            } catch (NumberFormatException e) {
                 return "RA invalido - insira um valor numerico";
             }
         }
@@ -89,13 +86,11 @@ public class ProfessorRN {
      * Mensagem de erro em caso de campo invalido
      */
     public String validaNome(String campoNome) {
-        if(campoNome.isEmpty()){
+        if (campoNome.isEmpty()) {
             return "Nome invalido - campo vazio";
-        }
-        else if(campoNome.length() > 50){
+        } else if (campoNome.length() > 50) {
             return "Nome invalido - maximo de 50 caracteres";
-        }
-        else{
+        } else {
             return null;
         }
     }
@@ -108,22 +103,20 @@ public class ProfessorRN {
      * @return null em caso de campo valido
      * mensagem de erro em caso de campo invalido
      */
-    private String validaIdade(String campoIdade) {
+    public String validaIdade(String campoIdade) {
         int idade;
-        if(campoIdade.isEmpty()){
+        if (campoIdade.isEmpty()) {
             return "Idade invalida - campo vazio";
-        }
-        else{
-            try{
+        } else {
+            try {
                 idade = Integer.parseInt(campoIdade);
-                if(idade < 0){
-                    return "Idade invalida - insira um valor positivo";
-                }
-                else{
+                if (idade <= 0) {
+                    return "Idade invalida - insira um valor positivo"
+                            + " e maior que 0";
+                } else {
                     return null;
                 }
-            }
-            catch(NumberFormatException e){
+            } catch (NumberFormatException e) {
                 return "idade invalida - insira um valor numerico";
             }
         }
@@ -137,14 +130,12 @@ public class ProfessorRN {
      * @return null em caso de campo valido
      * Mensagem de erro em caso de campo invalido
      */
-    private String validaDepartamento(String campoDepartamento) {
-        if(campoDepartamento.isEmpty()){
+    public String validaDepartamento(String campoDepartamento) {
+        if (campoDepartamento.isEmpty()) {
             return "Departamento invalido - campo vazio";
-        }
-        else if(campoDepartamento.length() > 40){
+        } else if (campoDepartamento.length() > 40) {
             return "Departamento invalido - maximo de 40 caracteres";
-        }
-        else{
+        } else {
             return null;
         }
     }
@@ -157,14 +148,12 @@ public class ProfessorRN {
      * @return null em caso de campo valido
      * Mensagem de erro em caso de campo invalido
      */
-    private String validaDisciplinas(String campoDisciplinas) {
-        if(campoDisciplinas.isEmpty()){
+    public String validaDisciplinas(String campoDisciplinas) {
+        if (campoDisciplinas.isEmpty()) {
             return "Disciplinas invalidas - campo vazio";
-        }
-        else if(campoDisciplinas.length() > 100){
+        } else if (campoDisciplinas.length() > 100) {
             return "Disciplinas invalidas - maximo de 100 caracteres";
-        }
-        else{
+        } else {
             return null;
         }
     }
@@ -177,14 +166,12 @@ public class ProfessorRN {
      * @return null em caso de campo valido
      * Mensagem de erro em caso de campo invalido
      */
-    private String validaEndereco(String campoEndereco) {
-        if(campoEndereco.isEmpty()){
+    public String validaEndereco(String campoEndereco) {
+        if (campoEndereco.isEmpty()) {
             return "Endereco invalido - campo vazio";
-        }
-        else if(campoEndereco.length() > 150){
+        } else if (campoEndereco.length() > 150) {
             return "Endereco invalido - maximo de 150 caracteres";
-        }
-        else{
+        } else {
             return null;
         }
     }
@@ -197,15 +184,13 @@ public class ProfessorRN {
      * @return null em caso de campo valido
      * Mensagem de erro em caso de campo invalido
      */
-    private String validaPesquisa(String campoPesquisa) {
-        if(campoPesquisa.isEmpty()){
+    public String validaPesquisa(String campoPesquisa) {
+        if (campoPesquisa.isEmpty()) {
             return "Pesquisa invalida - campo vazio";
-        }
-        else if(campoPesquisa.length() > 100){
+        } else if (campoPesquisa.length() > 100) {
             return "Pesquisa invalida - maximo de 100 caracteres";
-        }
-        else{
+        } else {
             return null;
-        }        
+        }
     }
 }
