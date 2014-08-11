@@ -295,6 +295,11 @@ public class ClienteVisao extends javax.swing.JFrame {
         jpProfessor.add(jButtonInserirProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 120, 50));
 
         jButtonEditarProfessor.setText("Editar");
+        jButtonEditarProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarProfessorActionPerformed(evt);
+            }
+        });
         jpProfessor.add(jButtonEditarProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 120, 50));
 
         jButtonPesquisarProfessor.setText("Pesquisar");
@@ -371,7 +376,7 @@ public class ClienteVisao extends javax.swing.JFrame {
                         .addComponent(btEditarSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(btExcluirSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 472, Short.MAX_VALUE))
+                .addGap(0, 475, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -627,7 +632,7 @@ public class ClienteVisao extends javax.swing.JFrame {
                         .addComponent(jButtonExcluirAlunos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonBuscarAlunos)))
-                .addContainerGap(290, Short.MAX_VALUE))
+                .addContainerGap(300, Short.MAX_VALUE))
         );
         jpAlunosLayout.setVerticalGroup(
             jpAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -844,14 +849,12 @@ public class ClienteVisao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonPesquisarProfessorActionPerformed
 
     private void btInserirAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInserirAulaActionPerformed
-       
         AulaVO avo = new AulaVO();
 
         avo.setDisciplina(cbDisciplinaAula.getSelectedItem().toString());
         avo.setSala(cbSalaAula.getSelectedItem().toString());
         avo.setAlunosPresentes(tNumAlunos.getText());
         avo.setConteudoProgramatico(tConteudo.getText());
-        
         String resposta = (crn.insereAula(avo));
 
         switch (resposta) {
@@ -897,7 +900,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         svo.setRecursos(Recursos.getText());
         svo.setDepartamento(Departamento.getText());
         svo.setCapacidade(Capacidade.getText());
-        
+
         String resposta = (crn.insereSalas(svo));
 
         switch (resposta) {
@@ -963,6 +966,10 @@ public class ClienteVisao extends javax.swing.JFrame {
     private void jButtonInserirDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirDisciplinaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonInserirDisciplinaActionPerformed
+
+    private void jButtonEditarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarProfessorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEditarProfessorActionPerformed
 
     private void pesquisaCamposParaInserirComboBox(){
         //Trocar quando pesquisaDisciplina e pesquisaSala estiverem funcionando
