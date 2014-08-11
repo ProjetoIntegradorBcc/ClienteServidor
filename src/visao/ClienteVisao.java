@@ -82,7 +82,6 @@ public class ClienteVisao extends javax.swing.JFrame {
         jButtonInserirProfessor = new javax.swing.JButton();
         jButtonEditarProfessor = new javax.swing.JButton();
         jButtonPesquisarProfessor = new javax.swing.JButton();
-        jpDisciplinas = new javax.swing.JPanel();
         jpSalas = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         IdSala = new javax.swing.JTextField();
@@ -167,8 +166,8 @@ public class ClienteVisao extends javax.swing.JFrame {
         jScrollPane11 = new javax.swing.JScrollPane();
         jTableDisciplina = new javax.swing.JTable();
         jLabelPesquisar = new javax.swing.JLabel();
-        jTextFieldPesquisarDisciplina = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jTextFieldPesquisarDisciplina = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -758,10 +757,10 @@ public class ClienteVisao extends javax.swing.JFrame {
 
         jLabelPesquisar.setText("Pesquisar");
         jpDisciplinas.add(jLabelPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, -1, -1));
-        jpDisciplinas.add(jTextFieldPesquisarDisciplina, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 220, -1));
 
         jButton1.setText("Pesquisar");
         jpDisciplinas.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 70, -1, -1));
+        jpDisciplinas.add(jTextFieldPesquisarDisciplina, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 210, -1));
 
         Aulas.addTab("Disciplinas", jpDisciplinas);
 
@@ -1194,6 +1193,7 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldIdadeProfessor;
     private javax.swing.JTextField jTextFieldLinhaPesquisaProfessor;
     private javax.swing.JTextField jTextFieldNomeProfessor;
+    private javax.swing.JTextField jTextFieldPesquisarDisciplina;
     private javax.swing.JTextField jTextFieldPesquisarProfessor;
     private javax.swing.JTextField jTextFieldRAProfessor;
     private javax.swing.JTextField jTextFieldTItulo;
