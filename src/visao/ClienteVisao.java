@@ -14,7 +14,7 @@ import vo.AulaVO;
 import vo.DisciplinaVO;
 import vo.ProfessorVO;
 import vo.SalaVO;
-import vo.AlunosVO;
+import vo.AlunoVO;
 
 
 /**
@@ -38,7 +38,7 @@ public class ClienteVisao extends javax.swing.JFrame {
      * Criação de um ArrayList de objeto AlunosVO,
      * utilizado para armazenar os objetos que preenchem a jTable.
      */
-    private ArrayList<AlunosVO>listaAlunos= null;
+    private ArrayList<AlunoVO>listaAlunos= null;
     
     /**
      * Criação de um ArrayList de objeto DisciplinaVO,
@@ -980,14 +980,14 @@ public class ClienteVisao extends javax.swing.JFrame {
         /*
             Criacao do objeto vo.
         */
-        AlunosVO alunoVO = new AlunosVO();
+        AlunoVO alunoVO = new AlunoVO();
 
         /*
             Atribui ao objeto os valores dos campos 
         */
-        alunoVO.setRA(txtRaAlunos.getText());
+        alunoVO.setRa(txtRaAlunos.getText());
         alunoVO.setNome(txtNomeAlunos.getText());
-        alunoVO.setDatanasc(txtDatasNascAlunos.getText());
+        alunoVO.setIdade(txtDatasNascAlunos.getText());
         alunoVO.setCurso(txtCursoAlunos.getText());
         alunoVO.setAnoDeEntrada(txtAnoEntrada.getText());
         //alunoVO.setDisciplinasMatriculadas(jTableDiscMatriculadasAlunos.getText());

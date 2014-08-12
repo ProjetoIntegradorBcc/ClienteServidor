@@ -7,7 +7,7 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import vo.AlunosVO;
+import vo.AlunoVO;
 import vo.AulaVO;
 import vo.DisciplinaVO;
 import vo.SalaVO;
@@ -63,7 +63,7 @@ public class ConexaoServidor {
         return recebeDataGrama();
     }  
     
-     public String enviaDataGrama(AlunosVO alunoVO) {
+     public String enviaDataGrama(AlunoVO alunoVO) {
         
         String mensagem  = VOParaDataGrama(alunoVO);
         byte[] msg = mensagem.getBytes();
@@ -122,8 +122,8 @@ public class ConexaoServidor {
         return mensagem;
     }
     
-    private String VOParaDataGrama(AlunosVO alunoVO) {
-        String mensagem = "21#"+alunoVO.getRA()+"#"+alunoVO.getNome()+"#"+alunoVO.getDatanasc()
+    private String VOParaDataGrama(AlunoVO alunoVO) {
+        String mensagem = "21#"+alunoVO.getRa()+"#"+alunoVO.getNome()+"#"+alunoVO.getIdade()
             +"#"+alunoVO.getEndereco()+"#"+alunoVO.getCurso()+"#"
             +alunoVO.getAnoDeEntrada()+"#"+alunoVO.getDisciplinasMatriculadas()+"#"+alunoVO.getDisciplinasConcluidas()+"#";
         return mensagem;

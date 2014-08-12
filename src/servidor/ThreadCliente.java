@@ -1,12 +1,11 @@
 package servidor;
 
+import SGDB.Aluno;
 import SGDB.Professor;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Thread faz o servidor receber um datagrama do cliente.
@@ -32,16 +31,213 @@ class ThreadCliente extends Thread {
             byte[] msg = new byte[256];
             DatagramPacket pkg = new DatagramPacket(msg, msg.length);
 
+
             do {
                 String mensagem = "";
                 ds.receive(pkg);
                 porta = pkg.getPort();
                 ip = pkg.getAddress().getHostAddress();
                 mensagem = new String(pkg.getData(), 0, pkg.getLength());
-                switch (mensagem.substring(0, 1)) {
+                switch (mensagem.substring(0, 1)) 
+                {
                     case "1":
+                        SGDB.Aluno bancoAlunos = new SGDB.Aluno();
+                        String aluRa = "";
+                        String aluNome = "";
+                        String aluIdade = "";
+                        String aluEndereco = "";
+                        String aluCurso = "";
+                        String aluAnoDeEntradaNoCurso = "";
+                        String aluDisciplinasMatriculadas = "";
+                        String aluDisciplinasConcluidas = "";
+                        String aluId2 = "";
+                        DatagramPacket aluPkgo;
+                        switch(mensagem.substring(1, 2))
+                        {
+                            case "1":
+                                
+                                System.out.print("Recebeu:" + mensagem);
+                                
+                                i = 3;
+                                while(!("#".equals(mensagem.substring(i, i+1)))  && (i < mensagem.length()))
+                                {
+                                    aluRa = (aluRa + mensagem.substring(i, i+1));
+                                    i++;
+                                }
+                                i++;
+                                
+                                while(!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length()))
+                                {
+                                    aluNome = (aluNome + mensagem.substring(i, i+1));
+                                    i++;
+                                }
+                                i++;
+                                
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) 
+                                {
+                                    aluIdade = aluIdade + mensagem.substring(i, i + 1);
+                                    i++;
+                                }
+                                i++;
+                                
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) 
+                                {
+                                    aluEndereco = aluEndereco + mensagem.substring(i, i + 1);
+                                    i++;
+                                }
+                                i++;
+                                
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) 
+                                {
+                                    aluCurso = aluCurso + mensagem.substring(i, i + 1);
+                                    i++;
+                                }
+                                i++;
+                                
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) 
+                                {
+                                    aluAnoDeEntradaNoCurso = aluAnoDeEntradaNoCurso + mensagem.substring(i, i + 1);
+                                    i++;
+                                }
+                                i++;
+                                
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) 
+                                {
+                                    aluDisciplinasMatriculadas = aluDisciplinasMatriculadas + mensagem.substring(i, i + 1);
+                                    i++;
+                                }
+                                i++;
+                                
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) 
+                                {
+                                    aluDisciplinasConcluidas = aluDisciplinasConcluidas + mensagem.substring(i, i + 1);
+                                    i++;
+                                }
+                                i++;                                
+                                
+                                mensagem = bancoAlunos.Inserir(aluRa, aluNome, aluIdade, aluEndereco, aluCurso, aluAnoDeEntradaNoCurso, aluDisciplinasMatriculadas, aluDisciplinasConcluidas) + "#";
+                                aluPkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                ds.send(aluPkgo);
+                                System.out.println("enviou:" + mensagem);
+                                mensagem = "";
+                                
+                            case "2":
+                                System.out.println("ALUNOS - EDITAR");
+                                i = 3;
+                                
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) 
+                                {
+                                    aluId2 = (aluId2 + mensagem.substring(i, i + 1));
+                                    i++;
+                                }
+                                
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) 
+                                {
+                                    aluRa = (aluRa + mensagem.substring(i, i + 1));
+                                    i++;
+                                }
+                                i++;
+                                
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) 
+                                {
+                                    aluNome = (aluNome + mensagem.substring(i, i + 1));
+                                    i++;
+                                }
+                                i++;
+                                
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) 
+                                {
+                                    aluIdade = (aluIdade + mensagem.substring(i, i + 1));
+                                    i++;
+                                }
+                                i++;
+                                
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) 
+                                {
+                                    aluEndereco = (aluEndereco + mensagem.substring(i, i + 1));
+                                    i++;
+                                }
+                                i++;
+                                
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) 
+                                {
+                                    aluCurso = (aluCurso + mensagem.substring(i, i + 1));
+                                    i++;
+                                }
+                                i++;
+                                
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) 
+                                {
+                                    aluAnoDeEntradaNoCurso = (aluAnoDeEntradaNoCurso + mensagem.substring(i, i + 1));
+                                    i++;
+                                }
+                                i++;
+                                
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) 
+                                {
+                                    aluDisciplinasMatriculadas = (aluDisciplinasMatriculadas + mensagem.substring(i, i + 1));
+                                    i++;
+                                }
+                                i++;
+                                
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) 
+                                {
+                                    aluDisciplinasConcluidas = (aluDisciplinasConcluidas + mensagem.substring(i, i + 1));
+                                    i++;
+                                }
+                                
+                                mensagem = bancoAlunos.Editar(aluId2, aluRa, aluNome, aluIdade, aluEndereco, aluCurso, aluAnoDeEntradaNoCurso, aluDisciplinasMatriculadas, aluDisciplinasConcluidas) + "#";
+                                aluPkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                ds.send(aluPkgo);
+                                break;
+                                
+                            case "3":
+                                System.out.print("ALUNOS - DELETAR");
+                                
+                                i = 3;
+                                
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) 
+                                {
+                                    aluId2 = (aluId2 + mensagem.substring(i, i + 1));
+                                    i++;
+                                }
+                                
+                                mensagem = bancoAlunos.Deletar(aluId2) + "#";
+                                aluPkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                ds.send(aluPkgo);
+                                break;
+                            
+                            case "4":
+                                System.out.print("ALUNOS - CONSULTAR");
+                                
+                                i = 3;
+                                
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) 
+                                {
+                                    aluId2 = (aluId2 + mensagem.substring(i, i + 1));
+                                    i++;
+                                }
+                        
+                                mensagem = bancoAlunos.ConsultarAluno(aluId2) + "#";
+                                aluPkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                ds.send(aluPkgo);
+                                break;
+                                
+                            case "5":
+                                System.out.print("Recebeu: " + mensagem);
+                                mensagem = bancoAlunos.ConsultarAluno(aluId2);
+                                aluPkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                ds.send(aluPkgo);
+                                System.out.print("Enviou: " + mensagem);
+                                break;
+                            
+                            default:
+                                System.out.println("FATAL ERROR!");
+                                break;                                
+                        }
                         System.out.println("ALUNOS");
                         break;
+                        
                     case "2":
                         SGDB.Professor banco = new SGDB.Professor();
                         String ra = "";
@@ -53,9 +249,10 @@ class ThreadCliente extends Thread {
                         String linhasPesquisa = "";
                         String id2 = "";
                         DatagramPacket pkgo;
-                        System.out.println("recebeu:" + mensagem);
                         switch (mensagem.substring(1, 2)) {
                             case "1":
+                                System.out.println("recebeu:" + mensagem);
+
                                 i = 3;
                                 while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
                                     ra = (ra + mensagem.substring(i, i + 1));
@@ -93,13 +290,17 @@ class ThreadCliente extends Thread {
                                 }
                                 mensagem = banco.Inserir(ra, nome, idade, endereco, departamento, disciplinas, linhasPesquisa) + "#";
                                 pkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
-                                System.out.println("enviou:" + mensagem);
                                 ds.send(pkgo);
+                                System.out.println("enviou:" + mensagem);
                                 mensagem = "";
                                 break;
+                                
                             case "2":
+                                
                                 System.out.println("PROFESSOR - EDITAR");
+                                
                                 i = 3;
+                                
                                 while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
                                     id2 = (id2 + mensagem.substring(i, i + 1));
                                     i++;
@@ -154,8 +355,12 @@ class ThreadCliente extends Thread {
                                 ds.send(pkgo);
                                 break;
                             case "4":
+                                System.out.println("PROFESSOR - CONSULTAR");
                                 i = 3;
-                                id2 = (id2 + mensagem.substring(i, mensagem.length()));
+                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
+                                    id2 = (id2 + mensagem.substring(i, i + 1));
+                                    i++;
+                                }
                                 mensagem = banco.ConsultarProfessor(id2) + "#";
                                 pkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
                                 ds.send(pkgo);
@@ -282,19 +487,19 @@ class ThreadCliente extends Thread {
                         }
 
                         break;
-
-                    case "5": {
+    
+                    case "5":{
                         DatagramPacket pacoteAulas;
                         SGDB.Aula bancoAula = new SGDB.Aula();
-                        String disciplinaAssociada = "";
-                        String salaAssociada = "";
-                        String alunosPresentes = "";
-                        String conteudoProgramatico = "";
-                        String idAula = "";
                         switch (mensagem.substring(1, 2)) {
                             case "1":
-
+                                String disciplinaAssociada = "";
+                                String salaAssociada = "";
+                                String alunosPresentes = "";
+                                String conteudoProgramatico = "";
+                                
                                 System.out.println("recebeu:" + mensagem);
+
 
                                 i = 3;
                                 while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
@@ -323,73 +528,31 @@ class ThreadCliente extends Thread {
                                 mensagem = "";
                                 break;
                             case "2":
-                                System.out.println("AULAS - EDITAR");
-                                i = 3;
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
-                                    idAula = (idAula + mensagem.substring(i, i + 1));
-                                    i++;
-                                }
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
-                                    disciplinaAssociada = (disciplinaAssociada + mensagem.substring(i, i + 1));
-                                    i++;
-                                }
-                                i++;
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
-                                    salaAssociada = salaAssociada + mensagem.substring(i, i + 1);
-                                    i++;
-                                }
-                                i++;
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
-                                    alunosPresentes = alunosPresentes + mensagem.substring(i, i + 1);
-                                    i++;
-                                }
-                                i++;
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
-                                    conteudoProgramatico = conteudoProgramatico + mensagem.substring(i, i + 1);
-                                    i++;
-                                }
-                                mensagem = bancoAula.Editar(idAula, disciplinaAssociada, salaAssociada, alunosPresentes, conteudoProgramatico) + "#";
-                                pkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
-                                ds.send(pkgo);
+                                System.out.println("PROFESSOR - EDITAR");
                                 break;
                             case "3":
-                                System.out.println("AULA - DELETAR");
-                                i = 3;
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
-                                    idAula = (idAula + mensagem.substring(i, i + 1));
-                                    i++;
-                                }
-                                mensagem = bancoAula.Deletar(idAula) + "#";
-                                pkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
-                                ds.send(pkgo);
+                                System.out.println("PROFESSOR - DELETAR");
                                 break;
                             case "4":
-                                System.out.println("AULA - CONSULTAR");
-                                i = 3;
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
-                                    id2 = (idAula + mensagem.substring(i, i + 1));
-                                    i++;
-                                }
-                                mensagem = bancoAula.ConsultarAula(idAula) + "#";
-                                pkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
-                                ds.send(pkgo);
+                                System.out.println("PROFESSOR - CONSULTAR");
                                 break;
                             case "5":
                                 System.out.println("recebeu:" + mensagem);
-                                mensagem = bancoAula.ConsultarAula();
+                                //mensagem = bancoAula.ConsultarProfessor();
                                 pkgo = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
                                 ds.send(pkgo);
                                 System.out.println("enviou:" + mensagem);
                                 break;
                             default:
-                        }
+                        }                   
                     }
                 }
             } while (true);
-        } catch (IOException ex) {
-            Logger.getLogger(ThreadCliente.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NumberFormatException e) {
-            System.out.println("Excecao ocorrida na thread: " + e.getMessage());   
+        } catch (IOException | NumberFormatException e) {
+            System.out.println("Excecao ocorrida na thread: " + e.getMessage());
+            try {
+            } catch (Exception ec) {
+            }
         }
     }
 }

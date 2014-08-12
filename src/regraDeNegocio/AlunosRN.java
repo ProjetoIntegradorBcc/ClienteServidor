@@ -8,10 +8,10 @@ package regraDeNegocio;
  *
  * @author Rafael
  */
-import vo.AlunosVO;
+import vo.AlunoVO;
 public class AlunosRN {
-    String validarCampos(AlunosVO alunoVO) {
-        String mensagem = validaRaAluno(alunoVO.getRA().toString());
+    String validarCampos(AlunoVO alunoVO) {
+        String mensagem = validaRaAluno(alunoVO.getRa().toString());
         if(mensagem != null){
             return mensagem;
         }
