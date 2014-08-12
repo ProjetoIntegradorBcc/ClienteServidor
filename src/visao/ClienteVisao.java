@@ -38,7 +38,6 @@ public class ClienteVisao extends javax.swing.JFrame {
      * objetos que preenchem a jTable.
      */
     private ArrayList<AlunosVO> listaAlunos = null;
-
     /**
      * Criação de um ArrayList de objeto DisciplinaVO, utilizado para armazenar
      * os objetos que preenchem a jTable.
@@ -874,7 +873,8 @@ public class ClienteVisao extends javax.swing.JFrame {
             atualizaTabelaProfessor();
         } else {
             String nome = jTextFieldPesquisarProfessor.getText();
-            DefaultTableModel tabela = (DefaultTableModel) jTablePesquisarProfessor.getModel();
+            DefaultTableModel tabela = (DefaultTableModel)
+                    jTablePesquisarProfessor.getModel();
             tabela.setNumRows(0);
             for (ProfessorVO item : listaProfessor) {
                 if (item.getNome().equals(nome)) {
@@ -1086,6 +1086,10 @@ public class ClienteVisao extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonInserirDisciplinaActionPerformed
 
+     /**
+     * Metodo acionado pelo botao de edicao do form professor.
+     * @param evt
+     */
     private void jButtonEditarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarProfessorActionPerformed
         /*
          Criacao do objetto pvo.
@@ -1144,14 +1148,20 @@ public class ClienteVisao extends javax.swing.JFrame {
                 break;
         }
     }//GEN-LAST:event_jButtonEditarProfessorActionPerformed
-
+    /**
+     * Evento do mouse, quando clicado.
+     *
+     * @param evt
+     */
     private void jTablePesquisarProfessorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePesquisarProfessorMouseClicked
 
         DefaultTableModel tabela = (DefaultTableModel) jTablePesquisarProfessor.getModel();
-        String id = (String) tabela.getValueAt(jTablePesquisarProfessor.getSelectedRow(), 0);
+        String id = (String) tabela.getValueAt(
+                jTablePesquisarProfessor.getSelectedRow(), 0);
         ProfessorVO pvo = crn.pesquisaProfessor(id);
         if (pvo == null) {
-            JOptionPane.showMessageDialog(Departamento, "ERRO AO PROCURAR ELEMENTO", "ERRO", WIDTH);
+            JOptionPane.showMessageDialog(Departamento,
+                    "ERRO AO PROCURAR ELEMENTO", "ERRO", WIDTH);
         } else {
             jTextFieldCodigoProfessor.setText(pvo.getCodigo());
             jTextFieldRAProfessor.setText(pvo.getRa());
@@ -1175,6 +1185,11 @@ public class ClienteVisao extends javax.swing.JFrame {
         jTextFieldLinhaPesquisaProfessor.setText("");
     }//GEN-LAST:event_jButtonLimparTelaProfessorActionPerformed
 
+    /**
+     * Evento do mouse, quando clicado.
+     *
+     * @param evt
+     */
     private void pesquisaCamposParaInserirComboBox() {
         //Trocar quando pesquisaDisciplina e pesquisaSala estiverem funcionando
         //buscaDisciplina();
@@ -1199,7 +1214,8 @@ public class ClienteVisao extends javax.swing.JFrame {
             ip = JOptionPane.showInputDialog(mensagemValidacaoConexao);
             mensagemValidacaoConexao = crn.validaIP(ip);
             if (!mensagemValidacaoConexao.isEmpty()) {
-                System.out.println("Informe o ip do servidor " + mensagemValidacaoConexao);
+                System.out.println("Informe o ip do servidor "
+                        + mensagemValidacaoConexao);
             }
         } while (!mensagemValidacaoConexao.isEmpty());
         mensagemValidacaoConexao = "Informe a porta do servidor";
@@ -1207,20 +1223,28 @@ public class ClienteVisao extends javax.swing.JFrame {
             porta = JOptionPane.showInputDialog(mensagemValidacaoConexao);
             mensagemValidacaoConexao = crn.validaPorta(porta);
             if (!mensagemValidacaoConexao.isEmpty()) {
-                System.out.println("Informe a porta do servidor " + mensagemValidacaoConexao);
+                System.out.println("Informe a porta do servidor "
+                        + mensagemValidacaoConexao);
             }
         } while (!mensagemValidacaoConexao.isEmpty());
-        JOptionPane.showMessageDialog(rootPane, crn.validaConexao(ip, porta), "Conexao", WIDTH);
+        JOptionPane.showMessageDialog(rootPane,
+                crn.validaConexao(ip, porta), "Conexao", WIDTH);
     }
 
+    /**
+     * Metodo que atualiza o JTable, onde mostra os professores.
+     *
+     */
     private void atualizaTabelaProfessor() {
 
         listaProfessor = crn.buscaProfessor();
         if (listaProfessor == null) {
-            DefaultTableModel tabela = (DefaultTableModel) jTablePesquisarProfessor.getModel();
+            DefaultTableModel tabela = (DefaultTableModel)
+                    jTablePesquisarProfessor.getModel();
             tabela.setNumRows(0);
         } else {
-            DefaultTableModel tabela = (DefaultTableModel) jTablePesquisarProfessor.getModel();
+            DefaultTableModel tabela = (DefaultTableModel)
+                    jTablePesquisarProfessor.getModel();
             tabela.setNumRows(0);
             for (ProfessorVO item : listaProfessor) {
                 Object[] linha = {item.getCodigo(), item.getNome()};
@@ -1259,10 +1283,14 @@ public class ClienteVisao extends javax.swing.JFrame {
             }
         }
     }
-
+    /*
+     * Classe responsável por retornar os campos pesquisados e jogar
+     * no JTable
+     * 
+     */
     private void RetornaCamposPesquisa(ArrayList<vo.ProfessorVO> lista) {
-
-        DefaultTableModel model = (DefaultTableModel) jTablePesquisarProfessor.getModel();
+        DefaultTableModel model = (DefaultTableModel)
+                jTablePesquisarProfessor.getModel();
         for (vo.ProfessorVO item : lista) {
             jTextFieldCodigoProfessor.setText(item.getCodigo());
             jTextFieldRAProfessor.setText(item.getRa());

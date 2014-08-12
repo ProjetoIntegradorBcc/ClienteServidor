@@ -19,23 +19,23 @@ public class Salas {
     /**
      * variavel utilizada numero 2.
      */
-    public static final int NUMERO2 = 1;
+    public static final int NUMERO2 = 2;
     /**
      * variavel utilizada numero 3.
      */
-    public static final int NUMERO3 = 1;
+    public static final int NUMERO3 = 3;
     /**
      * variavel utilizada numero 4.
      */
-    public static final int NUMERO4 = 1;
+    public static final int NUMERO4 = 4;
     /**
      * variavel utilizada numero 5.
      */
-    public static final int NUMERO5 = 1;
+    public static final int NUMERO5 = 5;
     /**
      * variavel utilizada numero 6.
      */
-    public static final int NUMERO6 = 1;
+    public static final int NUMERO6 = 6;
 
     /**
      * Classe de conexao com o banco de dados.
