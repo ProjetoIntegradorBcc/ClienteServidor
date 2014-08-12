@@ -8,6 +8,7 @@ package regraDeNegocio;
 
 import conexao.ConexaoServidor;
 import java.util.ArrayList;
+import vo.AlunosVO;
 import vo.AulaVO;
 import vo.SalaVO;
 import vo.ProfessorVO;
@@ -45,6 +46,17 @@ public class ClienteRN {
         }
         else{
             return conexao.enviaDataGrama(AVO); 
+        }
+    }
+    public String insereAlunos(AlunosVO alunoVO) {
+        AlunosRN alunoRN = new AlunosRN();
+        
+        String mensagemVOInvalido = alunoRN.validarCampos(alunoVO);
+        if(mensagemVOInvalido != null){
+            return mensagemVOInvalido;
+        }
+        else{
+            return conexao.enviaDataGrama(alunoVO); 
         }
     }
     

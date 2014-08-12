@@ -7,6 +7,7 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import vo.AlunosVO;
 import vo.AulaVO;
 import vo.SalaVO;
 import vo.ProfessorVO;
@@ -59,7 +60,20 @@ public class ConexaoServidor {
             return "Erro ao enviar";
         }
         return recebeDataGrama();
-    }    
+    }  
+    
+     public String enviaDataGrama(AlunosVO alunoVO) {
+        
+        String mensagem  = VOParaDataGrama(alunoVO);
+        byte[] msg = mensagem.getBytes();
+        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
+        try {
+            this.ds.send(pacote);
+        } catch (IOException ex) {
+            return "Erro ao enviar";
+        }
+        return recebeDataGrama();
+    }
      
     public String recebeDataGrama(){
 
@@ -89,11 +103,17 @@ public class ConexaoServidor {
     }
     
     private String VOParaDataGrama(AulaVO AVO) {
-        String mensagem = "22#"+AVO.getDisciplina()+"#"+AVO.getSala()+"#"+AVO.getAlunosPresentes()
+        String mensagem = "51#"+AVO.getDisciplina()+"#"+AVO.getSala()+"#"+AVO.getAlunosPresentes()
             +"#"+AVO.getConteudoProgramatico();
         return mensagem;
     }
     
+    private String VOParaDataGrama(AlunosVO alunoVO) {
+        String mensagem = "21#"+alunoVO.getRA()+"#"+alunoVO.getNome()+"#"+alunoVO.getDatanasc()
+            +"#"+alunoVO.getEndereco()+"#"+alunoVO.getCurso()+"#"
+            +alunoVO.getAnoDeEntrada()+"#"+alunoVO.getDisciplinasMatriculadas()+"#"+alunoVO.getDisciplinasConcluidas()+"#";
+        return mensagem;
+    }
     
 
     public String estabeleceConexao(String ip, String porta) {
@@ -130,7 +150,7 @@ public class ConexaoServidor {
     
     public ArrayList<AulaVO> buscaAula() {
         
-        String mensagem = "25#";
+        String mensagem = "55#";
         byte[] msg = mensagem.getBytes();
         this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
         try {
