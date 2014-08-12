@@ -1077,7 +1077,62 @@ public class ClienteVisao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonInserirDisciplinaActionPerformed
 
     private void jButtonEditarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarProfessorActionPerformed
-        // TODO add your handling code here:
+        /*
+            Criacao do objetto pvo.
+        */
+        ProfessorVO pvo = new ProfessorVO();
+
+        /*
+            Atribui ao objeto os valores dos campos JtextField
+        */
+        pvo.setCodigo(jTextFieldCodigoProfessor.getText());
+        pvo.setRa(jTextFieldRAProfessor.getText());
+        pvo.setNome(jTextFieldNomeProfessor.getText());
+        pvo.setIdade(jTextFieldIdadeProfessor.getText());
+        pvo.setEndereco(jTextFieldEnderecoProfessor.getText());
+        pvo.setDepartamento(jTextFieldDepartamentoProfessor.getText());
+        pvo.setDisciplinas(jTextAreaDisciplinasProfessor.getText());
+        pvo.setPesquisa(jTextFieldLinhaPesquisaProfessor.getText());
+
+        /*
+            Envia o objeto para a regra de negocio.
+            Recebe uma string com o código da resposta
+            como definido no protocolo.
+        */
+        String resposta = (crn.insereProfessor(pvo));
+
+        /*
+            Informa ao usuario a resposta da regra de negocio.
+            Caso a insercao seja efetuada com sucesso, a jTable sera atualizada.
+        */
+        switch (resposta) {
+            case "0#":
+                atualizaTabelaProfessor();
+                JOptionPane.showMessageDialog(rootPane,
+                        "Inserido com sucesso :)",
+                        "Inserção no Banco de dados", WIDTH);
+                break;
+            case "1#":
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro na insercao no Banco de dados",
+                        "Inserção no Banco de dados", WIDTH);
+                break;
+            case "2#":
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro ao enviar o Datagrama",
+                        "Transmissão do Datagrama", WIDTH);
+                break;
+            case "3#":
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro ao enviar o Datagrama - Tempo limite excedido",
+                        "Transmissão do Datagrama", WIDTH);
+                break;
+            default:
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro inesperado: " + resposta,
+                        "Insercao", WIDTH);
+                break;
+        }
     }//GEN-LAST:event_jButtonEditarProfessorActionPerformed
 
     private void jTablePesquisarProfessorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePesquisarProfessorMouseClicked
