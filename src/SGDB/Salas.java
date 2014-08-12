@@ -6,30 +6,118 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-//Início da classe de conexão//
+/**
+ *
+ * @author jonas
+ */
 public class Salas {
 
-    public Connection getConnection() {
+    /**
+     * variavel utilizada numero 1.
+     */
+    public static final int NUMERO1 = 1;
+    /**
+     * variavel utilizada numero 2.
+     */
+    public static final int NUMERO2 = 1;
+    /**
+     * variavel utilizada numero 3.
+     */
+    public static final int NUMERO3 = 1;
+    /**
+     * variavel utilizada numero 4.
+     */
+    public static final int NUMERO4 = 1;
+    /**
+     * variavel utilizada numero 5.
+     */
+    public static final int NUMERO5 = 1;
+    /**
+     * variavel utilizada numero 6.
+     */
+    public static final int NUMERO6 = 1;
+
+    /**
+     * Classe de conexao com o banco de dados.
+     *
+     * @return retorno
+     */
+    public final Connection getConnection() {
         try {
-            return DriverManager.getConnection("jdbc:mysql://localhost/servidor", "root", "1234");
+            return DriverManager.getConnection("jdbc:mysql:"
+                    + "//localhost/servidor", "root", "1234");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public int Inserir(String descricaoLaboratorio, String numeroComputadores, String recursosDidaticos, String departamento, String capacidadeMaxima) {
+    /**
+     * Classe de inserção no banco de dados.
+     * @param descricaoLaboratorio
+     * @param numeroComputadores
+     * @param recursosDidaticos
+     * @param departamento
+     * @param capacidadeMaxima
+     *
+     * @return 0.
+     */
+    public final int inserir(String descricaoLaboratorio,
+            String numeroComputadores,
+            String recursosDidaticos,
+            String departamento,
+            String capacidadeMaxima) {
+
+        Connection con = new Salas().getConnection();
+
+        String sql = "INSERT INTO salas(descricaoLaboratorio,"
+                + " numeroComputadores, recursosDidaticos"
+                + ", departamento, capacidadeMaxima) VALUES(?,?,?,?,?)";
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(NUMERO1, descricaoLaboratorio);
+            stmt.setInt(NUMERO2, Integer.parseInt(numeroComputadores));
+            stmt.setString(NUMERO3, recursosDidaticos);
+            stmt.setString(NUMERO4, departamento);
+            stmt.setInt(NUMERO5, Integer.parseInt(capacidadeMaxima));
+            stmt.execute();
+            stmt.close();
+            return 0;
+
+        } catch (SQLException u) {
+            return 1;
+        }
+    }
+    /**
+     * Classe de edicao no banco de dados.
+     *
+     * @param id
+     * @param descricaoLaboratorio
+     * @param numeroComputadores
+     * @param recursosDidaticos
+     * @param departamento
+     * @param capacidadeMaxima
+     * @return 0.
+     */
+    public int editar(String id,
+            String descricaoLaboratorio,
+            String numeroComputadores,
+            String recursosDidaticos,
+            String departamento,
+            String capacidadeMaxima) {
 
         Connection con = new Professor().getConnection();
 
-        String sql = "INSERT INTO salas(descricaoLaboratorio, numeroComputadores, recursosDidaticos, departamento, capacidadeMaxima) VALUES(?,?,?,?,?)";
+        String sql = "UPDATE salas SET descricaoLaboratorio = ?,"
+                + " numeroComputadores = ?, recursosDidaticos = ?,"
+                + " departamento = ?, capacidadeMaxima = ? WHERE idSala = ?";
 
-        try {
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, descricaoLaboratorio);
-            stmt.setInt(2, Integer.parseInt(numeroComputadores));
-            stmt.setString(3, recursosDidaticos);
-            stmt.setString(4, departamento);
-            stmt.setInt(5, Integer.parseInt(capacidadeMaxima));
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(NUMERO1, descricaoLaboratorio);
+            stmt.setInt(NUMERO2, Integer.parseInt(numeroComputadores));
+            stmt.setString(NUMERO3, recursosDidaticos);
+            stmt.setString(NUMERO4, departamento);
+            stmt.setInt(NUMERO5, Integer.parseInt(capacidadeMaxima));
+            stmt.setInt(NUMERO6, Integer.parseInt(id));
             stmt.execute();
             stmt.close();
             return 0;
@@ -39,36 +127,18 @@ public class Salas {
         }
     }
 
-    public int Editar(String id, String descricaoLaboratorio, String numeroComputadores, String recursosDidaticos, String departamento, String capacidadeMaxima) {
-
-        Connection con = new Professor().getConnection();
-
-        String sql = "UPDATE salas SET descricaoLaboratorio = ?, numeroComputadores = ?, recursosDidaticos = ?, departamento = ?, capacidadeMaxima = ? WHERE idSala = ?";
-
-        try {
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, descricaoLaboratorio);
-            stmt.setInt(2, Integer.parseInt(numeroComputadores));
-            stmt.setString(3, recursosDidaticos);
-            stmt.setString(4, departamento);
-            stmt.setInt(5, Integer.parseInt(capacidadeMaxima));
-            stmt.setInt(6, Integer.parseInt(id));
-            stmt.execute();
-            stmt.close();
-            return 0;
-
-        } catch (SQLException u) {
-            return 1;
-        }
-    }
-
-    public int Deletar(String id) {
+    /**
+     * Classe de delecao no banco de dados.
+     *
+     * @param id
+     * @return 0.
+     */
+    public int deletar(String id) {
         Connection con = new Professor().getConnection();
 
         String sql = "DELETE FROM salas WHERE idSala = ?";
 
-        try {
-            PreparedStatement stmt = con.prepareStatement(sql);
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, Integer.parseInt(id));
             stmt.execute();
             stmt.close();
@@ -79,14 +149,18 @@ public class Salas {
 
     }
 
-    public String ConsultarSalas(int id) {
-
+    /**
+     * Classe de consultar Salas no banco de dados.
+     *
+     * @param id
+     * @return mensagem.
+     */
+    public String consultarSalas(int id) {
         Connection con = new Professor().getConnection();
         String sql = "SELECT * FROM salas where idSala = ?";
         String mensagem = "04#";
 
-        try {
-            PreparedStatement stmt = con.prepareStatement(sql);
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, id);
             ResultSet resultado = stmt.executeQuery();
             resultado.next();
@@ -104,17 +178,22 @@ public class Salas {
         }
 
     }
-
-    public String ConsultarSalas() {
+    /**
+     * Classe de consultar Salas no banco de dados.
+     * @return mensagem.
+     */
+    public final String consultarSalas() {
         String mensagem = "05#";
         Connection con = new Professor().getConnection();
         String sql = "SELECT * FROM salas";
 
-        try {
-            PreparedStatement stmt = con.prepareStatement(sql);
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
             ResultSet resultado = stmt.executeQuery();
             while (resultado.next()) {
-                mensagem = mensagem + resultado.getString("idSala") + "#" + resultado.getString("descricaoLaboratorio") + "#";
+                mensagem = mensagem
+                        + resultado.getString("idSala")
+                        + "#" + resultado.getString("descricaoLaboratorio")
+                        + "#";
             }
             stmt.close();
             return mensagem;
