@@ -251,7 +251,11 @@ class ThreadCliente extends Thread {
                         DatagramPacket pkgo;
                         switch (mensagem.substring(1, 2)) {
                             case "1":
+<<<<<<< HEAD
+=======
 
+
+>>>>>>> 6b04e1718cd1bb3af167cf414d85f5fb2d90630c
                                 System.out.println("recebeu:" + mensagem);
 
                                 i = 3;

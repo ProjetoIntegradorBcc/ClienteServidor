@@ -2,3 +2,4 @@ build/
 dist/
 .jacocoverage/
 nbprojetc/
+src/visao/ClienteVisao.java

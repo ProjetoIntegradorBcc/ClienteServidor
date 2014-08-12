@@ -13,8 +13,11 @@ import vo.AulaVO;
 import vo.DisciplinaVO;
 import vo.ProfessorVO;
 import vo.SalaVO;
+<<<<<<< HEAD
 import vo.AlunoVO;
 
+=======
+>>>>>>> 6b04e1718cd1bb3af167cf414d85f5fb2d90630c
 
 /**
  *
@@ -32,7 +35,8 @@ public class ClienteVisao extends javax.swing.JFrame {
      */
     private ArrayList<ProfessorVO> listaProfessor = null;
     private ArrayList<AulaVO> listaAula = null;
-
+<<<<<<< HEAD
+    
     /**
      * Criação de um ArrayList de objeto AlunosVO,
      * utilizado para armazenar os objetos que preenchem a jTable.
@@ -45,6 +49,8 @@ public class ClienteVisao extends javax.swing.JFrame {
      */
     private ArrayList<DisciplinaVO>listaDisciplinas= null;
 
+=======
+>>>>>>> 6b04e1718cd1bb3af167cf414d85f5fb2d90630c
     /**
      * Creates new form ClienteVisao.
      */
@@ -153,6 +159,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         txtAnoEntrada = new javax.swing.JTextField();
         jScrollPaneDiscMatriculadasAlunos = new javax.swing.JScrollPane();
         jTableDiscMatriculadasAlunos = new javax.swing.JTable();
+<<<<<<< HEAD
         jpDisciplinas = new javax.swing.JPanel();
         jLabelCodigoDisciplina = new javax.swing.JLabel();
         jLabelIdDisciplina = new javax.swing.JLabel();
@@ -180,6 +187,9 @@ public class ClienteVisao extends javax.swing.JFrame {
         jLabelPesquisar = new javax.swing.JLabel();
         jButtonPesquisarDisciplina = new javax.swing.JButton();
         jTextFieldPesquisarDisciplina = new javax.swing.JTextField();
+=======
+>>>>>>> 6b04e1718cd1bb3af167cf414d85f5fb2d90630c
+
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
         jDialog1Layout.setHorizontalGroup(
@@ -858,6 +868,8 @@ public class ClienteVisao extends javax.swing.JFrame {
 
         Aulas.addTab("Disciplinas", jpDisciplinas);
 
+=======
+>>>>>>> 6b04e1718cd1bb3af167cf414d85f5fb2d90630c
         getContentPane().add(Aulas, java.awt.BorderLayout.CENTER);
 
         pack();
@@ -1026,6 +1038,7 @@ public class ClienteVisao extends javax.swing.JFrame {
 
     private void jButtonInserirAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirAlunosActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         /*
             Criacao do objeto vo.
         */
@@ -1080,7 +1093,8 @@ public class ClienteVisao extends javax.swing.JFrame {
                         "Insercao", WIDTH);
                 break;
         }
-
+=======
+>>>>>>> 6b04e1718cd1bb3af167cf414d85f5fb2d90630c
     }//GEN-LAST:event_jButtonInserirAlunosActionPerformed
 
     private void jButtonEditarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarProfessorActionPerformed
@@ -1323,13 +1337,13 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JButton jButtonExcluirProfessor;
     private javax.swing.JButton jButtonInserirAlunos;
     private javax.swing.JButton jButtonInserirProfessor;
-
+<<<<<<< HEAD
     private javax.swing.JButton jButtonPesquisarDisciplina;
     private javax.swing.JButton jButtonPesquisarProfessor;
-
+=======
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonPesquisar1;
-
+>>>>>>> 6b04e1718cd1bb3af167cf414d85f5fb2d90630c
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

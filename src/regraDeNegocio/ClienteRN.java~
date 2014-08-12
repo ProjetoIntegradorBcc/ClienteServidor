@@ -118,6 +118,7 @@ public class ClienteRN {
         return conexao.buscaProfessor();
     }
     
+<<<<<<< HEAD
     public ProfessorVO pesquisaProfessor(String id) {
         System.out.println("Pesquisa Professor");
         return conexao.pesquisaProfessor(id);
@@ -128,7 +129,8 @@ public class ClienteRN {
         return conexao.pesquisaDisciplina(id);
     }
     
-
+=======
+>>>>>>> 6b04e1718cd1bb3af167cf414d85f5fb2d90630c
     public ArrayList<AulaVO> buscaAula() {
         System.out.println("Busca Aula");
         return conexao.buscaAula();
