@@ -15,6 +15,8 @@ import java.util.logging.Logger;
  */
 class ThreadCliente extends Thread {
 
+    public static final int NUMERO3 = 1;
+
     /**
      * criando datagrama.
      */
@@ -174,6 +176,9 @@ class ThreadCliente extends Thread {
                         ServidorDisciplinas serv3 = new ServidorDisciplinas(pkg, mensagem);
                         System.out.println("DISCIPLINAS");
                         break;
+                    /* AQUI PRA BAIXO
+                     * PROPRIEDADE JONAS, DIOGO, LUMA
+                     */
                     case "4":
                         DatagramPacket pacoteSalas;
                         SGDB.Salas salas = new SGDB.Salas();
@@ -186,102 +191,165 @@ class ThreadCliente extends Thread {
 
                         switch (mensagem.substring(1, 2)) {
                             case "1":
-                                i = 3;
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
-                                    descricaoLaboratorio4 = (descricaoLaboratorio4 + mensagem.substring(i, i + 1));
+                                i = NUMERO3;
+                                while (!("#".equals(mensagem.substring(i, i + 1)
+                                )) && (i < mensagem.length())) {
+                                    descricaoLaboratorio4
+                                            = (descricaoLaboratorio4
+                                            + mensagem.substring(i, i + 1));
                                     i++;
                                 }
                                 i++;
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
-                                    numeroComputadores4 = numeroComputadores4 + mensagem.substring(i, i + 1);
+                                while (!("#".equals(mensagem.substring(i, i + 1)
+                                )) && (i < mensagem.length())) {
+                                    numeroComputadores4
+                                            = numeroComputadores4
+                                            + mensagem.substring(i, i + 1);
                                     i++;
                                 }
                                 i++;
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
-                                    recursosDidaticos4 = recursosDidaticos4 + mensagem.substring(i, i + 1);
+                                while (!("#".equals(mensagem.substring(i, i + 1)
+                                )) && (i < mensagem.length())) {
+                                    recursosDidaticos4
+                                            = recursosDidaticos4
+                                            + mensagem.substring(i, i + 1);
                                     i++;
                                 }
                                 i++;
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
-                                    departamento4 = departamento4 + mensagem.substring(i, i + 1);
+                                while (!("#".equals(mensagem.substring(i, i + 1)
+                                )) && (i < mensagem.length())) {
+                                    departamento4
+                                            = departamento4
+                                            + mensagem.substring(i, i + 1);
                                     i++;
                                 }
                                 i++;
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
-                                    capacidadeMaximaAlunos4 = capacidadeMaximaAlunos4 + mensagem.substring(i, i + 1);
+                                while (!("#".equals(mensagem.substring(i, i + 1)
+                                )) && (i < mensagem.length())) {
+                                    capacidadeMaximaAlunos4
+                                            = capacidadeMaximaAlunos4
+                                            + mensagem.substring(i, i + 1);
                                     i++;
                                 }
-                                mensagem = salas.Inserir(descricaoLaboratorio4, numeroComputadores4, recursosDidaticos4, departamento4, capacidadeMaximaAlunos4) + "#";
-                                pacoteSalas = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                mensagem = salas.inserir(descricaoLaboratorio4,
+                                        numeroComputadores4, recursosDidaticos4,
+                                        departamento4, capacidadeMaximaAlunos4)
+                                        + "#";
+                                pacoteSalas = new DatagramPacket(
+                                        mensagem.getBytes(),
+                                        mensagem.getBytes().length,
+                                        InetAddress.getByName(ip), porta);
                                 ds.send(pacoteSalas);
                                 break;
                             case "2":
-                                i = 3;
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
+                                i = NUMERO3;
+                                while (!("#".equals(mensagem.substring(i, i + 1)
+                                )) && (i < mensagem.length())) {
                                     id4 = (id4 + mensagem.substring(i, i + 1));
                                     i++;
                                 }
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
-                                    descricaoLaboratorio4 = (descricaoLaboratorio4 + mensagem.substring(i, i + 1));
+                                while (!("#".equals(mensagem.substring(i, i + 1)
+                                )) && (i < mensagem.length())) {
+                                    descricaoLaboratorio4
+                                            = (descricaoLaboratorio4
+                                            + mensagem.substring(i, i + 1));
                                     i++;
                                 }
                                 i++;
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
-                                    numeroComputadores4 = numeroComputadores4 + mensagem.substring(i, i + 1);
+                                while (!("#".equals(mensagem.substring(i, i + 1)
+                                )) && (i < mensagem.length())) {
+                                    numeroComputadores4
+                                            = numeroComputadores4
+                                            + mensagem.substring(i, i + 1);
                                     i++;
                                 }
                                 i++;
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
-                                    recursosDidaticos4 = recursosDidaticos4 + mensagem.substring(i, i + 1);
+                                while (!("#".equals(mensagem.substring(i, i + 1)
+                                )) && (i < mensagem.length())) {
+                                    recursosDidaticos4
+                                            = recursosDidaticos4
+                                            + mensagem.substring(i, i + 1);
                                     i++;
                                 }
                                 i++;
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
-                                    departamento4 = departamento4 + mensagem.substring(i, i + 1);
+                                while (!("#".equals(mensagem.substring(i, i + 1)
+                                )) && (i < mensagem.length())) {
+                                    departamento4
+                                            = departamento4
+                                            + mensagem.substring(i, i + 1);
                                     i++;
                                 }
                                 i++;
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
-                                    capacidadeMaximaAlunos4 = capacidadeMaximaAlunos4 + mensagem.substring(i, i + 1);
+                                while (!("#".equals(mensagem.substring(i, i + 1)
+                                )) && (i < mensagem.length())) {
+                                    capacidadeMaximaAlunos4
+                                            = capacidadeMaximaAlunos4
+                                            + mensagem.substring(i, i + 1);
                                     i++;
                                 }
 
-                                mensagem = salas.Editar(id4, descricaoLaboratorio4, numeroComputadores4, recursosDidaticos4, departamento4, capacidadeMaximaAlunos4) + "#";
-                                pacoteSalas = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                mensagem = salas.editar(id4,
+                                        descricaoLaboratorio4,
+                                        numeroComputadores4,
+                                        recursosDidaticos4,
+                                        departamento4,
+                                        capacidadeMaximaAlunos4) + "#";
+                                pacoteSalas = new DatagramPacket(
+                                        mensagem.getBytes(),
+                                        mensagem.getBytes().length,
+                                        InetAddress.getByName(ip), porta);
                                 ds.send(pacoteSalas);
                                 break;
                             case "3":
-                                i = 3;
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
+                                i = NUMERO3;
+                                while (!("#".equals(mensagem.substring(i, i + 1)
+                                )) && (i < mensagem.length())) {
                                     id4 = (id4 + mensagem.substring(i, i + 1));
                                     i++;
                                 }
-                                mensagem = salas.Deletar(id4) + "#";
-                                pacoteSalas = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                mensagem = salas.deletar(id4) + "#";
+                                pacoteSalas = new DatagramPacket(
+                                        mensagem.getBytes(),
+                                        mensagem.getBytes().length,
+                                        InetAddress.getByName(ip), porta);
                                 ds.send(pacoteSalas);
                                 break;
                             case "4":
-                                i = 3;
-                                while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
+                                i = NUMERO3;
+                                while (!("#".equals(mensagem.substring(i, i + 1)
+                                )) && (i < mensagem.length())) {
                                     id4 = (id4 + mensagem.substring(i, i + 1));
                                     i++;
                                 }
-                                mensagem = salas.ConsultarSalas(Integer.parseInt(id4));
-                                pacoteSalas = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                mensagem = salas.consultarSalas(
+                                        Integer.parseInt(id4));
+                                pacoteSalas = new DatagramPacket(
+                                        mensagem.getBytes(),
+                                        mensagem.getBytes().length,
+                                        InetAddress.getByName(ip), porta);
                                 ds.send(pacoteSalas);
                                 break;
                             case "5":
-                                mensagem = salas.ConsultarSalas();
-                                pacoteSalas = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                mensagem = salas.consultarSalas();
+                                pacoteSalas = new DatagramPacket(
+                                        mensagem.getBytes(),
+                                        mensagem.getBytes().length,
+                                        InetAddress.getByName(ip), porta);
                                 ds.send(pacoteSalas);
                                 break;
                             default:
                                 mensagem = "1#";
-                                pacoteSalas = new DatagramPacket(mensagem.getBytes(), mensagem.getBytes().length, InetAddress.getByName(ip), porta);
+                                pacoteSalas = new DatagramPacket(
+                                        mensagem.getBytes(),
+                                        mensagem.getBytes().length,
+                                        InetAddress.getByName(ip), porta);
                                 ds.send(pacoteSalas);
                         }
 
                         break;
+                    /* AQUI PRA CIMA
+                     * PROPRIEDADE JONAS, DIOGO, LUMA
+                     */
 
                     case "5": {
                         DatagramPacket pacoteAulas;
@@ -385,11 +453,12 @@ class ThreadCliente extends Thread {
                         }
                     }
                 }
+
             } while (true);
         } catch (IOException ex) {
             Logger.getLogger(ThreadCliente.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NumberFormatException e) {
-            System.out.println("Excecao ocorrida na thread: " + e.getMessage());   
+            System.out.println("Excecao ocorrida na thread: " + e.getMessage());
         }
     }
 }

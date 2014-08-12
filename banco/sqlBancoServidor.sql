@@ -1,4 +1,4 @@
-CREATE TABLE Alunos(
+CREATE TABLE alunos(
 idAluno INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 RA INT,
 nome Varchar(50),
@@ -10,7 +10,7 @@ disciplinasMatriculadas Varchar(100),
 disciplinasConcluidas Varchar(100)
 );
 
-CREATE TABLE Professor(
+CREATE TABLE professor(
 idProfessor INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 RA INT,
 nome Varchar(50),
@@ -21,7 +21,7 @@ disciplinasMinistra Varchar(100),
 linhasPesquisa Varchar(100)
 );
 
-CREATE TABLE Disciplinas(
+CREATE TABLE disciplinas(
 idDisciplina INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 titulo Varchar(50),
 preRequisitos Varchar(150),
@@ -30,7 +30,7 @@ ementa Varchar(400),
 disciplinasDependentes Varchar(150)
 );
 
-CREATE TABLE Salas(
+CREATE TABLE salas(
 idSala INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 descricaoLaboratorio Varchar(50),
 numeroComputadores Integer,
@@ -39,7 +39,7 @@ departamento Varchar(50),
 capacidadeMaxima Integer
 );
 
-CREATE TABLE Aulas(
+CREATE TABLE aulas(
 idAula INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 conteudoProgramatico Varchar(510),
 disciplinaAssociada Varchar(150),
