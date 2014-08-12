@@ -18,144 +18,163 @@ import vo.ProfessorVO;
  * @author diogo
  */
 public class ConexaoServidor {
-    
-    private DatagramSocket ds;
-    private InetAddress ip;
-    private int porta;
-    private DatagramPacket pacote;
-    
-    public String enviaDataGrama(ProfessorVO PVO) {
-        
-        String mensagem  = VOParaDataGrama(PVO);
-        byte[] msg = mensagem.getBytes();
-        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
-        try {
-            this.ds.send(pacote);
-        } catch (IOException ex) {
-            return "Erro ao enviar";
-        }
-        return recebeDataGrama();
-    }
-    
-    public String enviaDataGrama(String idProfessor) {
-        
-        String mensagem = "23#"+idProfessor+"#";
-        byte[] msg = mensagem.getBytes();
-        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
-        try {
-            this.ds.send(pacote);
-        } catch (IOException ex) {
-            return "Erro ao enviar";
-        }
-        return recebeDataGrama();
-    }
-    
-    public String enviaDataGrama(SalaVO SVO) {
-        
-        String mensagem  = VOParaDataGrama(SVO);
-        byte[] msg = mensagem.getBytes();
-        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
-        try {
-            this.ds.send(pacote);
-        } catch (IOException ex) {
-            return "Erro ao enviar";
-        }
-        return recebeDataGrama();
-    }
-    
-    public String enviaDataGrama(AulaVO AVO) {
-        
-        String mensagem  = VOParaDataGrama(AVO);
-        byte[] msg = mensagem.getBytes();
-        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
-        try {
-            this.ds.send(pacote);
-        } catch (IOException ex) {
-            return "Erro ao enviar";
-        }
-        return recebeDataGrama();
-    }  
-    
-     public String enviaDataGrama(AlunosVO alunoVO) {
-        
-        String mensagem  = VOParaDataGrama(alunoVO);
-        byte[] msg = mensagem.getBytes();
-        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
-        try {
-            this.ds.send(pacote);
-        } catch (IOException ex) {
-            return "Erro ao enviar";
-        }
-        return recebeDataGrama();
-    }
-     
-     public String enviaDataGrama(DisciplinaVO DVO) {
-        
-        String mensagem  = VOParaDataGrama(DVO);
-        byte[] msg = mensagem.getBytes();
-        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
-        try {
-            this.ds.send(pacote);
-        } catch (IOException ex) {
-            return "Erro ao enviar";
-        }
-        return recebeDataGrama();
-    }
-     
-    public String recebeDataGrama(){
 
-        byte[] resposta = new byte[256];
+     /**
+     * variavel utilizada numero 256.
+     */
+    public static final int NUMERO256 = 256;
+
+     /**
+     * variavel utilizada numero 3.
+     */
+    public static final int NUMERO3 = 3;  
+    /**
+     * DatagramaSocket.
+     */
+    private DatagramSocket ds;
+    /**
+     * InetAddress.
+     */
+    private InetAddress ip;
+    /**
+     * Variavel porta.
+     */
+    private int porta;
+    /**
+     * DatagramaSocket.
+     */
+    private DatagramPacket pacote;
+
+    public String enviaDataGrama(ProfessorVO PVO) {
+        String mensagem = VOParaDataGrama(PVO);
+        byte[] msg = mensagem.getBytes();
+        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
+        try {
+            this.ds.send(pacote);
+        } catch (IOException ex) {
+            return "Erro ao enviar";
+        }
+        return recebeDataGrama();
+    }
+
+    public String enviaDataGrama(String idProfessor) {
+
+        String mensagem = "23#" + idProfessor + "#";
+        byte[] msg = mensagem.getBytes();
+        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
+        try {
+            this.ds.send(pacote);
+        } catch (IOException ex) {
+            return "Erro ao enviar";
+        }
+        return recebeDataGrama();
+    }
+
+    public String enviaDataGrama(SalaVO SVO) {
+
+        String mensagem = VOParaDataGrama(SVO);
+        byte[] msg = mensagem.getBytes();
+        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
+        try {
+            this.ds.send(pacote);
+        } catch (IOException ex) {
+            return "Erro ao enviar";
+        }
+        return recebeDataGrama();
+    }
+
+    public String enviaDataGrama(AulaVO AVO) {
+
+        String mensagem = VOParaDataGrama(AVO);
+        byte[] msg = mensagem.getBytes();
+        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
+        try {
+            this.ds.send(pacote);
+        } catch (IOException ex) {
+            return "Erro ao enviar";
+        }
+        return recebeDataGrama();
+    }
+
+    public String enviaDataGrama(AlunosVO alunoVO) {
+
+        String mensagem = VOParaDataGrama(alunoVO);
+        byte[] msg = mensagem.getBytes();
+        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
+        try {
+            this.ds.send(pacote);
+        } catch (IOException ex) {
+            return "Erro ao enviar";
+        }
+        return recebeDataGrama();
+    }
+
+    public String enviaDataGrama(DisciplinaVO DVO) {
+
+        String mensagem = VOParaDataGrama(DVO);
+        byte[] msg = mensagem.getBytes();
+        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
+        try {
+            this.ds.send(pacote);
+        } catch (IOException ex) {
+            return "Erro ao enviar";
+        }
+        return recebeDataGrama();
+    }
+
+    public String recebeDataGrama() {
+
+        byte[] resposta = new byte[NUMERO256];
         pacote = new DatagramPacket(resposta, resposta.length);
         //tratar tempo limite excedido aqui
-            try {
-                ds.receive(pacote);
-                String r = new String(pacote.getData(), 0, pacote.getLength());
-                return r;
-            } catch (IOException ex) {
-                return "2#";
-            }
+        try {
+            ds.receive(pacote);
+            String r = new String(pacote.getData(), 0, pacote.getLength());
+            return r;
+        } catch (IOException ex) {
+            return "2#";
+        }
     }
-    
+
     private String VOParaDataGrama(ProfessorVO PVO) {
         String mensagem;
-        if(PVO.getCodigo()==null){
+        if (PVO.getCodigo() == null) {
             mensagem = "21#";
+        } else {
+            mensagem = "22#" + PVO.getCodigo() + "#";
         }
-        else{
-            mensagem = "22#"+PVO.getCodigo()+"#";
-        }
-        mensagem = mensagem +PVO.getRa()+"#"+PVO.getNome()+"#"+PVO.getIdade()
-            +"#"+PVO.getEndereco()+"#"+PVO.getDepartamento()+"#"
-            +PVO.getDisciplinas()+"#"+PVO.getPesquisa()+"#";
+        mensagem = mensagem + PVO.getRa()
+                + "#" + PVO.getNome() + "#" + PVO.getIdade()
+                + "#" + PVO.getEndereco() + "#" + PVO.getDepartamento() + "#"
+                + PVO.getDisciplinas() + "#" + PVO.getPesquisa() + "#";
         return mensagem;
     }
-    
+
     private String VOParaDataGrama(SalaVO SVO) {
-        String mensagem = "41#"+SVO.getDescricao()+"#"+SVO.getNumComputadores()+"#"+SVO.getRecursos()+"#"
-                +SVO.getDepartamento()+"#"+SVO.getCapacidade();
+        String mensagem = "41#" + SVO.getDescricao()+ "#" + SVO.getNumComputadores() + "#" + SVO.getRecursos() + "#"
+                + SVO.getDepartamento() + "#" + SVO.getCapacidade();
         return mensagem;
     }
-    
+
     private String VOParaDataGrama(AulaVO AVO) {
-        String mensagem = "51#"+AVO.getDisciplina()+"#"+AVO.getSala()+"#"+AVO.getAlunosPresentes()
-            +"#"+AVO.getConteudoProgramatico();
+        String mensagem = "51#" + AVO.getDisciplina() + "#" + AVO.getSala() + "#" + AVO.getAlunosPresentes()
+                + "#" + AVO.getConteudoProgramatico();
         return mensagem;
     }
-    
+
     private String VOParaDataGrama(AlunosVO alunoVO) {
-        String mensagem = "21#"+alunoVO.getRA()+"#"+alunoVO.getNome()+"#"+alunoVO.getDatanasc()
-            +"#"+alunoVO.getEndereco()+"#"+alunoVO.getCurso()+"#"
-            +alunoVO.getAnoDeEntrada()+"#"+alunoVO.getDisciplinasMatriculadas()+"#"+alunoVO.getDisciplinasConcluidas()+"#";
+        String mensagem = "21#" + alunoVO.getRA() + "#" + alunoVO.getNome() + "#" + alunoVO.getDatanasc()
+                + "#" + alunoVO.getEndereco() + "#" + alunoVO.getCurso() + "#"
+                + alunoVO.getAnoDeEntrada() + "#" + alunoVO.getDisciplinasMatriculadas() + "#" + alunoVO.getDisciplinasConcluidas() + "#";
         return mensagem;
     }
-    
-     private String VOParaDataGrama(DisciplinaVO DVO) {
-        String mensagem = "21#"+DVO.getIdDisciplina()+"#"+DVO.getTitulo()+"#"+DVO.getPreRequisitos()
-            +"#"+DVO.getAvaliacao()+"#"+DVO.getEmenta()+"#"
-            +DVO.getDependencias()+"#";
+
+    private String VOParaDataGrama(DisciplinaVO DVO) {
+        String mensagem = "21#" + DVO.getIdDisciplina() + "#" + DVO.getTitulo() + "#" + DVO.getPreRequisitos()
+                + "#" + DVO.getAvaliacao() + "#" + DVO.getEmenta() + "#"
+                + DVO.getDependencias() + "#";
         return mensagem;
     }
-    
 
     public String estabeleceConexao(String ip, String porta) {
         try {
@@ -173,7 +192,7 @@ public class ConexaoServidor {
     }
 
     public ArrayList<ProfessorVO> buscaProfessor() {
-        
+
         String mensagem = "25#";
         byte[] msg = mensagem.getBytes();
         this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
@@ -186,10 +205,10 @@ public class ConexaoServidor {
         String resposta = recebeDataGrama();
         return converteDataGramaBuscaProfessor(resposta);
     }
-    
+
     public ProfessorVO pesquisaProfessor(String id) {
-        
-        String mensagem = "24#"+id;
+
+        String mensagem = "24#" + id;
         byte[] msg = mensagem.getBytes();
         this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
         try {
@@ -202,9 +221,9 @@ public class ConexaoServidor {
         System.out.println(resposta);
         return converteDataGramaPesquisaProfessor(resposta);
     }
-    
+
     public ArrayList<AulaVO> buscaAula() {
-        
+
         String mensagem = "55#";
         byte[] msg = mensagem.getBytes();
         this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
@@ -219,9 +238,9 @@ public class ConexaoServidor {
         System.out.println("***");
         return dataGramaAulaParaVO(resposta);
     }
-    
+
     public ArrayList<DisciplinaVO> buscaDisciplina() {
-        
+
         String mensagem = "25#";
         byte[] msg = mensagem.getBytes();
         this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
@@ -237,11 +256,10 @@ public class ConexaoServidor {
         return dataGramaDisciplinaParaVO(resposta);
     }
 
-    
     private ArrayList<AulaVO> dataGramaAulaParaVO(String resposta) {
         System.out.println(resposta);
         System.out.println(resposta.substring(0, 3));
-        switch(resposta.substring(0, 3)){
+        switch (resposta.substring(0, 3)) {
             case "04#":
                 return null;
             case "05#":
@@ -251,12 +269,11 @@ public class ConexaoServidor {
                 return null;
         }
     }
-    
-    
+
     private ArrayList<DisciplinaVO> dataGramaDisciplinaParaVO(String resposta) {
         System.out.println(resposta);
         System.out.println(resposta.substring(0, 3));
-        switch(resposta.substring(0, 3)){
+        switch (resposta.substring(0, 3)) {
             case "04#":
                 return null;
             case "05#":
@@ -271,7 +288,7 @@ public class ConexaoServidor {
         String nome = "", id = "";
         ArrayList<ProfessorVO> professores = new ArrayList<>();
         if (!mensagem.isEmpty()) {
-            int i = 3;
+            int i = NUMERO3;
             while (i < mensagem.length()) {
                 ProfessorVO p = new ProfessorVO();
                 nome = "";
@@ -303,12 +320,13 @@ public class ConexaoServidor {
             return null;
         }
     }
-    
+
     private ProfessorVO converteDataGramaPesquisaProfessor(String mensagem) {
         String id = "", ra = "", nome = "", idade = "", endereco = "",
-            departamento = "", disciplinasMinistradas = "", linhasPesquisas = "";
+                departamento = "", disciplinasMinistradas = "",
+                linhasPesquisas = "";
         if (!mensagem.isEmpty()) {
-            int i = 3;
+            int i = NUMERO3;
             ProfessorVO p = new ProfessorVO();
             while (i < mensagem.length()) {
                 if (!"#".equals(mensagem.substring(i, i + 1))) {
@@ -366,7 +384,8 @@ public class ConexaoServidor {
             i++;
             while (i < mensagem.length()) {
                 if (!"#".equals(mensagem.substring(i, i + 1))) {
-                    disciplinasMinistradas = disciplinasMinistradas + mensagem.substring(i, i + 1);
+                    disciplinasMinistradas = disciplinasMinistradas
+                            + mensagem.substring(i, i + 1);
                 } else {
                     break;
                 }
@@ -375,13 +394,14 @@ public class ConexaoServidor {
             i++;
             while (i < mensagem.length()) {
                 if (!"#".equals(mensagem.substring(i, i + 1))) {
-                    linhasPesquisas = linhasPesquisas + mensagem.substring(i, i + 1);
+                    linhasPesquisas = linhasPesquisas
+                            + mensagem.substring(i, i + 1);
                 } else {
                     break;
                 }
                 i++;
             }
-            
+
             p.setCodigo(id);
             p.setRa(ra);
             p.setNome(nome);
@@ -395,7 +415,7 @@ public class ConexaoServidor {
             return null;
         }
     }
-    
+
     private ArrayList<AulaVO> converteDataGramaPesquisaAula(String mensagem) {
         String disciplina = "", sala = "";
         ArrayList<AulaVO> aulas = new ArrayList<>();
@@ -433,8 +453,7 @@ public class ConexaoServidor {
             return null;
         }
     }
-    
-    
+
     private ArrayList<DisciplinaVO> converteDataGramaPesquisaDisciplina(String mensagem) {
         String titulo = "", id = "";
         ArrayList<DisciplinaVO> disciplinas = new ArrayList<>();
@@ -473,5 +492,4 @@ public class ConexaoServidor {
         }
     }
 
-    
 }
