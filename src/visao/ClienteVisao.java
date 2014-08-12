@@ -168,12 +168,12 @@ public class ClienteVisao extends javax.swing.JFrame {
         jScrollPane10 = new javax.swing.JScrollPane();
         jTextAreaDisciplinasDependentes = new javax.swing.JTextArea();
         jButtonInserirDisciplina = new javax.swing.JButton();
-        jButtonEditar = new javax.swing.JButton();
+        jButtonEditarDIsciplina = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
         jScrollPane11 = new javax.swing.JScrollPane();
         jTablePesquisarDisciplina = new javax.swing.JTable();
         jLabelPesquisar = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonPesquisarDisciplina = new javax.swing.JButton();
         jTextFieldPesquisarDisciplina = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -748,8 +748,13 @@ public class ClienteVisao extends javax.swing.JFrame {
         });
         jpDisciplinas.add(jButtonInserirDisciplina, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, 120, 50));
 
-        jButtonEditar.setText("Editar");
-        jpDisciplinas.add(jButtonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 490, 120, 50));
+        jButtonEditarDIsciplina.setText("Editar");
+        jButtonEditarDIsciplina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarDIsciplinaActionPerformed(evt);
+            }
+        });
+        jpDisciplinas.add(jButtonEditarDIsciplina, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 490, 120, 50));
 
         jButtonExcluir.setText("Excluir");
         jpDisciplinas.add(jButtonExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 490, 120, 50));
@@ -770,6 +775,11 @@ public class ClienteVisao extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTablePesquisarDisciplina.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTablePesquisarDisciplinaMouseClicked(evt);
+            }
+        });
         jScrollPane11.setViewportView(jTablePesquisarDisciplina);
 
         jpDisciplinas.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 300, 370));
@@ -777,8 +787,13 @@ public class ClienteVisao extends javax.swing.JFrame {
         jLabelPesquisar.setText("Pesquisar");
         jpDisciplinas.add(jLabelPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, -1, -1));
 
-        jButton1.setText("Pesquisar");
-        jpDisciplinas.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 70, -1, -1));
+        jButtonPesquisarDisciplina.setText("Pesquisar");
+        jButtonPesquisarDisciplina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisarDisciplinaActionPerformed(evt);
+            }
+        });
+        jpDisciplinas.add(jButtonPesquisarDisciplina, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 70, -1, -1));
         jpDisciplinas.add(jTextFieldPesquisarDisciplina, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 210, -1));
 
         Aulas.addTab("Disciplinas", jpDisciplinas);
@@ -1098,6 +1113,89 @@ public class ClienteVisao extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_jTablePesquisarProfessorMouseClicked
 
+    private void jButtonEditarDIsciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarDIsciplinaActionPerformed
+        // TODO add your handling code here:
+        /*
+         Criacao do objetto pvo.
+         */
+        DisciplinaVO dvo = new DisciplinaVO();
+        
+        /*
+            Atribui ao objeto os valores dos campos JtextField
+        */
+        dvo.setIdDisciplina(Integer.parseInt(jTextFieldIDDisciplina.getText()));
+        dvo.setTitulo(jTextFieldTItulo.getText());
+        dvo.setPreRequisitos(jTextAreaPreRequisitos.getText());
+        dvo.setAvaliacao(jTextAreaMetodoAvaliacao.getText());
+        dvo.setEmenta(jTextAreaEmenta.getText());
+        dvo.setDependencias(jTextAreaDisciplinasDependentes.getText());
+        
+        /*
+            Envia o objeto para a regra de negocio.
+            Recebe uma string com o código da resposta
+            como definido no protocolo.
+        */
+        String resposta = (crn.insereDisciplina(dvo));
+        
+        
+        /*
+         Informa ao usuario a resposta da regra de negocio.
+         Caso a insercao seja efetuada com sucesso, a jTable sera atualizada.
+         */
+        switch (resposta) {
+            case "0#":
+                atualizaTabelaProfessor();
+                JOptionPane.showMessageDialog(rootPane,
+                        "Inserido com sucesso :)",
+                        "Inserção no Banco de dados", WIDTH);
+                break;
+            case "1#":
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro na insercao no Banco de dados",
+                        "Inserção no Banco de dados", WIDTH);
+                break;
+            case "2#":
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro ao enviar o Datagrama",
+                        "Transmissão do Datagrama", WIDTH);
+                break;
+            case "3#":
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro ao enviar o Datagrama - Tempo limite excedido",
+                        "Transmissão do Datagrama", WIDTH);
+                break;
+            default:
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro inesperado: " + resposta,
+                        "Insercao", WIDTH);
+                break;
+        }
+        
+    }//GEN-LAST:event_jButtonEditarDIsciplinaActionPerformed
+
+    private void jButtonPesquisarDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarDisciplinaActionPerformed
+        // TODO add your handling code here:
+         if(jTextFieldPesquisarDisciplina.getText().isEmpty()){
+            atualizaTabelaDisciplina();
+        }
+        else{
+           String nome = jTextFieldPesquisarDisciplina.getText();
+           DefaultTableModel tabela = (DefaultTableModel) jTablePesquisarDisciplina.getModel();
+            tabela.setNumRows(0);
+            for (DisciplinaVO item : listaDisciplinas) {
+                if(item.getTitulo().equals(nome)){
+                    Object[] linha = {item.getTitulo()};
+                    tabela.addRow(linha);
+                }
+            }
+        }
+    }//GEN-LAST:event_jButtonPesquisarDisciplinaActionPerformed
+
+    private void jTablePesquisarDisciplinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePesquisarDisciplinaMouseClicked
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jTablePesquisarDisciplinaMouseClicked
+
     private void pesquisaCamposParaInserirComboBox(){
         //Trocar quando pesquisaDisciplina e pesquisaSala estiverem funcionando
         //buscaDisciplina();
@@ -1265,10 +1363,9 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JButton btPesquisarAula;
     private javax.swing.JComboBox cbDisciplinaAula;
     private javax.swing.JComboBox cbSalaAula;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBuscarAlunos;
-    private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonEditarAlunos;
+    private javax.swing.JButton jButtonEditarDIsciplina;
     private javax.swing.JButton jButtonEditarProfessor;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonExcluirAlunos;
@@ -1276,6 +1373,7 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JButton jButtonInserirAlunos;
     private javax.swing.JButton jButtonInserirDisciplina;
     private javax.swing.JButton jButtonInserirProfessor;
+    private javax.swing.JButton jButtonPesquisarDisciplina;
     private javax.swing.JButton jButtonPesquisarProfessor;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;

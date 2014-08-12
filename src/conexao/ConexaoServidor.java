@@ -216,6 +216,22 @@ public class ConexaoServidor {
         System.out.println("***");
         return dataGramaDisciplinaParaVO(resposta);
     }
+    
+    public ArrayList<DisciplinaVO> pesquisaDisciplina(String id) {
+        
+        String mensagem = "24#"+id;
+        byte[] msg = mensagem.getBytes();
+        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
+        try {
+            this.ds.send(pacote);
+        } catch (IOException ex) {
+            return null;
+        }
+        System.out.println("Enviou");
+        String resposta = recebeDataGrama();
+        System.out.println(resposta);
+        return converteDataGramaPesquisaDisciplina(resposta);
+    }
 
     
     private ArrayList<AulaVO> dataGramaAulaParaVO(String resposta) {
