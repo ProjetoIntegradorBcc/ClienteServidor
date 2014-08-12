@@ -26,9 +26,19 @@ public class ClienteRN {
      * @param PVO Objeto professor recebido da interface
      * @return dadada
      */
-    public String insereProfessor(ProfessorVO PVO) {
+    public String insereProfessor(int tipoOperacao, ProfessorVO PVO) {
         ProfessorRN PRN = new ProfessorRN();
         
+        if(tipoOperacao == 1){
+            if(PVO.getCodigo().isEmpty()){
+                return "Campo idProfessor não especificado";
+            }
+        }
+        else{
+            if(!PVO.getCodigo().isEmpty()){
+                return "idProfessor ja existe";
+            }
+        }
         String mensagemVOInvalido = PRN.validaCampos(PVO);
         if(mensagemVOInvalido != null){
             return mensagemVOInvalido;
@@ -142,6 +152,9 @@ public class ClienteRN {
 
     public String deletaProfessor(String idProfessor) {
         
+        if(idProfessor.isEmpty()){
+            return "idProfessor não especificado";
+        }
         return conexao.enviaDataGrama(idProfessor);
     }
 }

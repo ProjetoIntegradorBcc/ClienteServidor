@@ -819,6 +819,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         /*
          Atribui ao objeto os valores dos campos JtextField
          */
+        pvo.setCodigo(jTextFieldCodigoProfessor.getText());
         pvo.setRa(jTextFieldRAProfessor.getText());
         pvo.setNome(jTextFieldNomeProfessor.getText());
         pvo.setIdade(jTextFieldIdadeProfessor.getText());
@@ -832,7 +833,7 @@ public class ClienteVisao extends javax.swing.JFrame {
          Recebe uma string com o código da resposta
          como definido no protocolo.
          */
-        String resposta = (crn.insereProfessor(pvo));
+        String resposta = (crn.insereProfessor(0, pvo));
 
         /*
          Informa ao usuario a resposta da regra de negocio.
@@ -1119,7 +1120,7 @@ public class ClienteVisao extends javax.swing.JFrame {
          Recebe uma string com o código da resposta
          como definido no protocolo.
          */
-        String resposta = (crn.insereProfessor(pvo));
+        String resposta = (crn.insereProfessor(1, pvo));
 
         /*
          Informa ao usuario a resposta da regra de negocio.
@@ -1149,7 +1150,7 @@ public class ClienteVisao extends javax.swing.JFrame {
                 break;
             default:
                 JOptionPane.showMessageDialog(rootPane,
-                        "Erro inesperado: " + resposta,
+                        "Campos incompletos: " + resposta,
                         "Insercao", WIDTH);
                 break;
         }
@@ -1232,8 +1233,8 @@ public class ClienteVisao extends javax.swing.JFrame {
                 break;
             default:
                 JOptionPane.showMessageDialog(rootPane,
-                        "Erro inesperado: " + resposta,
-                        "Insercao", WIDTH);
+                        "Campos incompletos: " + resposta,
+                        "Remocao", WIDTH);
                 break;
         }
         limparTelaProfessor();
