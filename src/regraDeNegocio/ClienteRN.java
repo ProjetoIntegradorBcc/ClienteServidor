@@ -85,9 +85,6 @@ public class ClienteRN {
         }
     }
     
-    public String alteraProfessor(ProfessorVO PVO){
-        return "mensagem";
-    }
     public String validaConexao(String ip, String porta) {
         return conexao.estabeleceConexao(ip, porta);
     }
@@ -141,5 +138,10 @@ public class ClienteRN {
      public ArrayList<DisciplinaVO> buscaDisciplina() {
         System.out.println("Busca Disciplina");
         return conexao.buscaDisciplina();
+    }
+
+    public String deletaProfessor(String idProfessor) {
+        
+        return conexao.enviaDataGrama(idProfessor);
     }
 }

@@ -297,6 +297,11 @@ public class ClienteVisao extends javax.swing.JFrame {
         jpProfessor.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 350, -1));
 
         jButtonExcluirProfessor.setText("Excluir");
+        jButtonExcluirProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirProfessorActionPerformed(evt);
+            }
+        });
         jpProfessor.add(jButtonExcluirProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 390, 120, 50));
 
         jButtonInserirProfessor.setText("Inserir");
@@ -861,6 +866,7 @@ public class ClienteVisao extends javax.swing.JFrame {
                         "Insercao", WIDTH);
                 break;
         }
+        limparTelaProfessor();
     }//GEN-LAST:event_jButtonInserirProfessorActionPerformed
 
     /**
@@ -1123,13 +1129,13 @@ public class ClienteVisao extends javax.swing.JFrame {
             case "0#":
                 atualizaTabelaProfessor();
                 JOptionPane.showMessageDialog(rootPane,
-                        "Inserido com sucesso :)",
-                        "Inserção no Banco de dados", WIDTH);
+                        "Alterado com sucesso :)",
+                        "Alteracao no Banco de dados", WIDTH);
                 break;
             case "1#":
                 JOptionPane.showMessageDialog(rootPane,
-                        "Erro na insercao no Banco de dados",
-                        "Inserção no Banco de dados", WIDTH);
+                        "Erro na atualizacao do Banco de dados",
+                        "Atualizacao no Banco de dados", WIDTH);
                 break;
             case "2#":
                 JOptionPane.showMessageDialog(rootPane,
@@ -1147,6 +1153,7 @@ public class ClienteVisao extends javax.swing.JFrame {
                         "Insercao", WIDTH);
                 break;
         }
+        limparTelaProfessor();
     }//GEN-LAST:event_jButtonEditarProfessorActionPerformed
     /**
      * Evento do mouse, quando clicado.
@@ -1174,7 +1181,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTablePesquisarProfessorMouseClicked
 
-    private void jButtonLimparTelaProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparTelaProfessorActionPerformed
+    private void limparTelaProfessor(){
         jTextFieldCodigoProfessor.setText("");
         jTextFieldRAProfessor.setText("");
         jTextFieldNomeProfessor.setText("");
@@ -1183,7 +1190,54 @@ public class ClienteVisao extends javax.swing.JFrame {
         jTextFieldDepartamentoProfessor.setText("");
         jTextAreaDisciplinasProfessor.setText("");
         jTextFieldLinhaPesquisaProfessor.setText("");
+    }
+    private void jButtonLimparTelaProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparTelaProfessorActionPerformed
+        limparTelaProfessor();
     }//GEN-LAST:event_jButtonLimparTelaProfessorActionPerformed
+
+    private void jButtonExcluirProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirProfessorActionPerformed
+        
+        /*
+         Envia o código do professor para a regra de negocio.
+         Recebe uma string com o código da resposta
+         como definido no protocolo.
+         */
+        String resposta = (crn.deletaProfessor(jTextFieldCodigoProfessor.getText()));
+
+        /*
+         Informa ao usuario a resposta da regra de negocio.
+         Caso a insercao seja efetuada com sucesso, a jTable sera atualizada.
+         */
+        switch (resposta) {
+            case "0#":
+                atualizaTabelaProfessor();
+                JOptionPane.showMessageDialog(rootPane,
+                        "Deletado com sucesso :)",
+                        "Remocao no Banco de dados", WIDTH);
+                break;
+            case "1#":
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro na remocao no Banco de dados",
+                        "Remocao no Banco de dados", WIDTH);
+                break;
+            case "2#":
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro ao enviar o Datagrama",
+                        "Transmissão do Datagrama", WIDTH);
+                break;
+            case "3#":
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro ao enviar o Datagrama - Tempo limite excedido",
+                        "Transmissão do Datagrama", WIDTH);
+                break;
+            default:
+                JOptionPane.showMessageDialog(rootPane,
+                        "Erro inesperado: " + resposta,
+                        "Insercao", WIDTH);
+                break;
+        }
+        limparTelaProfessor();
+    }//GEN-LAST:event_jButtonExcluirProfessorActionPerformed
 
     /**
      * Evento do mouse, quando clicado.

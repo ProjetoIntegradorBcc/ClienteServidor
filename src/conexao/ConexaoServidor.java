@@ -37,6 +37,19 @@ public class ConexaoServidor {
         return recebeDataGrama();
     }
     
+    public String enviaDataGrama(String idProfessor) {
+        
+        String mensagem = "23#"+idProfessor+"#";
+        byte[] msg = mensagem.getBytes();
+        this.pacote = new DatagramPacket(msg, msg.length, ip, porta);
+        try {
+            this.ds.send(pacote);
+        } catch (IOException ex) {
+            return "Erro ao enviar";
+        }
+        return recebeDataGrama();
+    }
+    
     public String enviaDataGrama(SalaVO SVO) {
         
         String mensagem  = VOParaDataGrama(SVO);
