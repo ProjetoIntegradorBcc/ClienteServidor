@@ -868,7 +868,7 @@ public class ClienteVisao extends javax.swing.JFrame {
             tabela.setNumRows(0);
             for (ProfessorVO item : listaProfessor) {
                 if(item.getNome().equals(nome)){
-                    Object[] linha = {item.getNome()};
+                    Object[] linha = {item.getCodigo(), item.getNome()};
                     tabela.addRow(linha);
                 }
             }
