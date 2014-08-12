@@ -34,11 +34,6 @@ public class ClienteRN {
                 return "Campo idProfessor não especificado";
             }
         }
-        else{
-            if(!PVO.getCodigo().isEmpty()){
-                return "idProfessor ja existe";
-            }
-        }
         String mensagemVOInvalido = PRN.validaCampos(PVO);
         if(mensagemVOInvalido != null){
             return mensagemVOInvalido;

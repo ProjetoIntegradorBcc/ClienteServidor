@@ -819,7 +819,6 @@ public class ClienteVisao extends javax.swing.JFrame {
         /*
          Atribui ao objeto os valores dos campos JtextField
          */
-        pvo.setCodigo(jTextFieldCodigoProfessor.getText());
         pvo.setRa(jTextFieldRAProfessor.getText());
         pvo.setNome(jTextFieldNomeProfessor.getText());
         pvo.setIdade(jTextFieldIdadeProfessor.getText());
