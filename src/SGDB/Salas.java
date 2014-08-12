@@ -59,7 +59,7 @@ public class Salas {
      * @param departamento
      * @param capacidadeMaxima
      *
-     * @return 0.
+     * @return 0 caso a insercao seja efetuada com sucesso, 1 caso contrario.
      */
     public final int inserir(String descricaoLaboratorio,
             String numeroComputadores,

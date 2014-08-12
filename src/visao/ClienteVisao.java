@@ -16,7 +16,6 @@ import vo.ProfessorVO;
 import vo.SalaVO;
 import vo.AlunosVO;
 
-
 /**
  *
  * @author lucas
@@ -28,23 +27,23 @@ public class ClienteVisao extends javax.swing.JFrame {
      */
     private final ClienteRN crn = new ClienteRN();
     /**
-     * Criação de um ArrayList de objeto ProfessorVO,
-     * utilizado para armazenar os objetos que preenchem a jTable.
+     * Criação de um ArrayList de objeto ProfessorVO, utilizado para armazenar
+     * os objetos que preenchem a jTable.
      */
     private ArrayList<ProfessorVO> listaProfessor = null;
     private ArrayList<AulaVO> listaAula = null;
-    
+
     /**
-     * Criação de um ArrayList de objeto AlunosVO,
-     * utilizado para armazenar os objetos que preenchem a jTable.
+     * Criação de um ArrayList de objeto AlunosVO, utilizado para armazenar os
+     * objetos que preenchem a jTable.
      */
-    private ArrayList<AlunosVO>listaAlunos= null;
-    
+    private ArrayList<AlunosVO> listaAlunos = null;
+
     /**
-     * Criação de um ArrayList de objeto DisciplinaVO,
-     * utilizado para armazenar os objetos que preenchem a jTable.
+     * Criação de um ArrayList de objeto DisciplinaVO, utilizado para armazenar
+     * os objetos que preenchem a jTable.
      */
-    private ArrayList<DisciplinaVO>listaDisciplinas= null;
+    private ArrayList<DisciplinaVO> listaDisciplinas = null;
 
     /**
      * Creates new form ClienteVisao.
@@ -54,6 +53,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         iniciaConexao();
         pesquisaCamposParaInserirComboBox();
     }
+
     /**
      * Definições de layout.
      */
@@ -89,6 +89,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         jButtonInserirProfessor = new javax.swing.JButton();
         jButtonEditarProfessor = new javax.swing.JButton();
         jButtonPesquisarProfessor = new javax.swing.JButton();
+        jButtonLimparTelaProfessor = new javax.swing.JButton();
         jpSalas = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         IdSala = new javax.swing.JTextField();
@@ -232,6 +233,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         jTextFieldEnderecoProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jpProfessor.add(jTextFieldEnderecoProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 350, -1));
 
+        jTextFieldCodigoProfessor.setEditable(false);
         jTextFieldCodigoProfessor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jpProfessor.add(jTextFieldCodigoProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 40, -1));
 
@@ -296,7 +298,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         jpProfessor.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 350, -1));
 
         jButtonExcluirProfessor.setText("Excluir");
-        jpProfessor.add(jButtonExcluirProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 390, 120, 50));
+        jpProfessor.add(jButtonExcluirProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 390, 120, 50));
 
         jButtonInserirProfessor.setText("Inserir");
         jButtonInserirProfessor.addActionListener(new java.awt.event.ActionListener() {
@@ -304,7 +306,7 @@ public class ClienteVisao extends javax.swing.JFrame {
                 jButtonInserirProfessorActionPerformed(evt);
             }
         });
-        jpProfessor.add(jButtonInserirProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 120, 50));
+        jpProfessor.add(jButtonInserirProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 120, 50));
 
         jButtonEditarProfessor.setText("Editar");
         jButtonEditarProfessor.addActionListener(new java.awt.event.ActionListener() {
@@ -312,7 +314,7 @@ public class ClienteVisao extends javax.swing.JFrame {
                 jButtonEditarProfessorActionPerformed(evt);
             }
         });
-        jpProfessor.add(jButtonEditarProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 120, 50));
+        jpProfessor.add(jButtonEditarProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 120, 50));
 
         jButtonPesquisarProfessor.setText("Pesquisar");
         jButtonPesquisarProfessor.addActionListener(new java.awt.event.ActionListener() {
@@ -321,6 +323,14 @@ public class ClienteVisao extends javax.swing.JFrame {
             }
         });
         jpProfessor.add(jButtonPesquisarProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, 90, 30));
+
+        jButtonLimparTelaProfessor.setText("Limpar");
+        jButtonLimparTelaProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimparTelaProfessorActionPerformed(evt);
+            }
+        });
+        jpProfessor.add(jButtonLimparTelaProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 110, 50));
 
         Aulas.addTab("Professor", jpProfessor);
 
@@ -789,22 +799,22 @@ public class ClienteVisao extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Atribui ao objeto pvo os dados dos campos da tela.
-     * Envia este objeto para a validacao pela regra de negocio.
-     * caso algum campo esteja invalido,
-     * uma mensagem será exibida informando o erro.
-     * Caso todos estejam corretos, o objeto será enviado para o servidor.
+     * Atribui ao objeto pvo os dados dos campos da tela. Envia este objeto para
+     * a validacao pela regra de negocio. caso algum campo esteja invalido, uma
+     * mensagem será exibida informando o erro. Caso todos estejam corretos, o
+     * objeto será enviado para o servidor.
+     *
      * @param evt clique do mouse
      */
     private void jButtonInserirProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirProfessorActionPerformed
         /*
-            Criacao do objetto pvo.
-        */
+         Criacao do objetto pvo.
+         */
         ProfessorVO pvo = new ProfessorVO();
 
         /*
-            Atribui ao objeto os valores dos campos JtextField
-        */
+         Atribui ao objeto os valores dos campos JtextField
+         */
         pvo.setRa(jTextFieldRAProfessor.getText());
         pvo.setNome(jTextFieldNomeProfessor.getText());
         pvo.setIdade(jTextFieldIdadeProfessor.getText());
@@ -814,16 +824,16 @@ public class ClienteVisao extends javax.swing.JFrame {
         pvo.setPesquisa(jTextFieldLinhaPesquisaProfessor.getText());
 
         /*
-            Envia o objeto para a regra de negocio.
-            Recebe uma string com o código da resposta
-            como definido no protocolo.
-        */
+         Envia o objeto para a regra de negocio.
+         Recebe uma string com o código da resposta
+         como definido no protocolo.
+         */
         String resposta = (crn.insereProfessor(pvo));
 
         /*
-            Informa ao usuario a resposta da regra de negocio.
-            Caso a insercao seja efetuada com sucesso, a jTable sera atualizada.
-        */
+         Informa ao usuario a resposta da regra de negocio.
+         Caso a insercao seja efetuada com sucesso, a jTable sera atualizada.
+         */
         switch (resposta) {
             case "0#":
                 atualizaTabelaProfessor();
@@ -856,18 +866,18 @@ public class ClienteVisao extends javax.swing.JFrame {
 
     /**
      * Atualiza a jTable ao fazer uma pesquisa.
+     *
      * @param evt clique do mouse
      */
     private void jButtonPesquisarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarProfessorActionPerformed
-        if(jTextFieldPesquisarProfessor.getText().isEmpty()){
+        if (jTextFieldPesquisarProfessor.getText().isEmpty()) {
             atualizaTabelaProfessor();
-        }
-        else{
-           String nome = jTextFieldPesquisarProfessor.getText();
-           DefaultTableModel tabela = (DefaultTableModel) jTablePesquisarProfessor.getModel();
+        } else {
+            String nome = jTextFieldPesquisarProfessor.getText();
+            DefaultTableModel tabela = (DefaultTableModel) jTablePesquisarProfessor.getModel();
             tabela.setNumRows(0);
             for (ProfessorVO item : listaProfessor) {
-                if(item.getNome().equals(nome)){
+                if (item.getNome().equals(nome)) {
                     Object[] linha = {item.getCodigo(), item.getNome()};
                     tabela.addRow(linha);
                 }
@@ -963,31 +973,31 @@ public class ClienteVisao extends javax.swing.JFrame {
     private void jButtonInserirAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirAlunosActionPerformed
         // TODO add your handling code here:
         /*
-            Criacao do objeto vo.
-        */
+         Criacao do objeto vo.
+         */
         AlunosVO alunoVO = new AlunosVO();
 
         /*
-            Atribui ao objeto os valores dos campos 
-        */
+         Atribui ao objeto os valores dos campos 
+         */
         alunoVO.setRA(txtRaAlunos.getText());
         alunoVO.setNome(txtNomeAlunos.getText());
         alunoVO.setDatanasc(txtDatasNascAlunos.getText());
         alunoVO.setCurso(txtCursoAlunos.getText());
         alunoVO.setAnoDeEntrada(txtAnoEntrada.getText());
         //alunoVO.setDisciplinasMatriculadas(jTableDiscMatriculadasAlunos.getText());
-        
+
 
         /*
-            Envia o objeto para a regra de negocio.
-            retornastring de resposta
-        */
+         Envia o objeto para a regra de negocio.
+         retornastring de resposta
+         */
         String resposta = (crn.insereAlunos(alunoVO));
 
         /*
-            Informa ao usuario a resposta da regra de negocio.
-            Caso a insercao seja efetuada com sucesso, a jTable sera atualizada.
-        */
+         Informa ao usuario a resposta da regra de negocio.
+         Caso a insercao seja efetuada com sucesso, a jTable sera atualizada.
+         */
         switch (resposta) {
             case "0#":
                 atualizaTabelaProfessor();
@@ -1021,31 +1031,31 @@ public class ClienteVisao extends javax.swing.JFrame {
     private void jButtonInserirDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirDisciplinaActionPerformed
         // TODO add your handling code here:
         /*
-            Criacao do objetto dvo.
-        */
+         Criacao do objetto dvo.
+         */
         DisciplinaVO dvo = new DisciplinaVO();
 
         /*
-            Atribui ao objeto os valores dos campos JtextField
-        */
+         Atribui ao objeto os valores dos campos JtextField
+         */
         dvo.setIdDisciplina(Integer.parseInt(jTextFieldIDDisciplina.getText()));
         dvo.setTitulo(jTextFieldTItulo.getText());
         dvo.setPreRequisitos(jTextAreaPreRequisitos.getText());
         dvo.setAvaliacao(jTextAreaMetodoAvaliacao.getText());
         dvo.setEmenta(jTextAreaEmenta.getText());
         dvo.setDependencias(jTextAreaDisciplinasDependentes.getText());
-        
+
         /*
-            Envia o objeto para a regra de negocio.
-            Recebe uma string com o código da resposta
-            como definido no protocolo.
-        */
+         Envia o objeto para a regra de negocio.
+         Recebe uma string com o código da resposta
+         como definido no protocolo.
+         */
         String resposta = (crn.insereDisciplina(dvo));
-        
+
         /*
-            Informa ao usuario a resposta da regra de negocio.
-            Caso a insercao seja efetuada com sucesso, a jTable sera atualizada.
-        */
+         Informa ao usuario a resposta da regra de negocio.
+         Caso a insercao seja efetuada com sucesso, a jTable sera atualizada.
+         */
         switch (resposta) {
             case "0#":
                 atualizaTabelaDisciplina();
@@ -1078,13 +1088,13 @@ public class ClienteVisao extends javax.swing.JFrame {
 
     private void jButtonEditarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarProfessorActionPerformed
         /*
-            Criacao do objetto pvo.
-        */
+         Criacao do objetto pvo.
+         */
         ProfessorVO pvo = new ProfessorVO();
 
         /*
-            Atribui ao objeto os valores dos campos JtextField
-        */
+         Atribui ao objeto os valores dos campos JtextField
+         */
         pvo.setCodigo(jTextFieldCodigoProfessor.getText());
         pvo.setRa(jTextFieldRAProfessor.getText());
         pvo.setNome(jTextFieldNomeProfessor.getText());
@@ -1095,16 +1105,16 @@ public class ClienteVisao extends javax.swing.JFrame {
         pvo.setPesquisa(jTextFieldLinhaPesquisaProfessor.getText());
 
         /*
-            Envia o objeto para a regra de negocio.
-            Recebe uma string com o código da resposta
-            como definido no protocolo.
-        */
+         Envia o objeto para a regra de negocio.
+         Recebe uma string com o código da resposta
+         como definido no protocolo.
+         */
         String resposta = (crn.insereProfessor(pvo));
 
         /*
-            Informa ao usuario a resposta da regra de negocio.
-            Caso a insercao seja efetuada com sucesso, a jTable sera atualizada.
-        */
+         Informa ao usuario a resposta da regra de negocio.
+         Caso a insercao seja efetuada com sucesso, a jTable sera atualizada.
+         */
         switch (resposta) {
             case "0#":
                 atualizaTabelaProfessor();
@@ -1136,7 +1146,7 @@ public class ClienteVisao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEditarProfessorActionPerformed
 
     private void jTablePesquisarProfessorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePesquisarProfessorMouseClicked
-        
+
         DefaultTableModel tabela = (DefaultTableModel) jTablePesquisarProfessor.getModel();
         String id = (String) tabela.getValueAt(jTablePesquisarProfessor.getSelectedRow(), 0);
         ProfessorVO pvo = crn.pesquisaProfessor(id);
@@ -1151,10 +1161,21 @@ public class ClienteVisao extends javax.swing.JFrame {
             jTextFieldDepartamentoProfessor.setText(pvo.getDepartamento());
             jTextAreaDisciplinasProfessor.setText(pvo.getDisciplinas());
             jTextFieldLinhaPesquisaProfessor.setText(pvo.getPesquisa());
-        }        
+        }
     }//GEN-LAST:event_jTablePesquisarProfessorMouseClicked
 
-    private void pesquisaCamposParaInserirComboBox(){
+    private void jButtonLimparTelaProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparTelaProfessorActionPerformed
+        jTextFieldCodigoProfessor.setText("");
+        jTextFieldRAProfessor.setText("");
+        jTextFieldNomeProfessor.setText("");
+        jTextFieldIdadeProfessor.setText("");
+        jTextFieldEnderecoProfessor.setText("");
+        jTextFieldDepartamentoProfessor.setText("");
+        jTextAreaDisciplinasProfessor.setText("");
+        jTextFieldLinhaPesquisaProfessor.setText("");
+    }//GEN-LAST:event_jButtonLimparTelaProfessorActionPerformed
+
+    private void pesquisaCamposParaInserirComboBox() {
         //Trocar quando pesquisaDisciplina e pesquisaSala estiverem funcionando
         //buscaDisciplina();
         cbDisciplinaAula.addItem("Escolha uma Disciplina");
@@ -1162,7 +1183,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         cbDisciplinaAula.addItem("Análise de Algoritmos");
         cbDisciplinaAula.addItem("Teoria dos Grafos");
         cbDisciplinaAula.addItem("PLP");
-        
+
         //buscaSala();
         cbSalaAula.addItem("Escolha uma Sala");
         cbSalaAula.addItem("C204");
@@ -1170,7 +1191,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         cbSalaAula.addItem("L011");
         cbSalaAula.addItem("L007");
     }
-    
+
     private void iniciaConexao() {
         String ip, porta, mensagemValidacaoConexao;
         mensagemValidacaoConexao = "Informe o ip do servidor";
@@ -1207,7 +1228,7 @@ public class ClienteVisao extends javax.swing.JFrame {
             }
         }
     }
-    
+
     private void atualizaTabelaAula() {
         listaAula = crn.buscaAula();
         if (listaAula == null) {
@@ -1217,12 +1238,12 @@ public class ClienteVisao extends javax.swing.JFrame {
             DefaultTableModel tabela = (DefaultTableModel) tableAula.getModel();
             tabela.setNumRows(0);
             for (AulaVO item : listaAula) {
-                Object[] linha = {item.getDisciplina()+""+item.getSala()};
+                Object[] linha = {item.getDisciplina() + "" + item.getSala()};
                 tabela.addRow(linha);
             }
         }
     }
-    
+
     private void atualizaTabelaDisciplina() {
 
         listaDisciplinas = crn.buscaDisciplina();
@@ -1254,7 +1275,7 @@ public class ClienteVisao extends javax.swing.JFrame {
 
         }
     }
-    
+
     private void RetornaCamposPesquisaDisciplina(ArrayList<vo.DisciplinaVO> lista) {
 
         DefaultTableModel model = (DefaultTableModel) jTablePesquisarDisciplina.getModel();
@@ -1332,6 +1353,7 @@ public class ClienteVisao extends javax.swing.JFrame {
     private javax.swing.JButton jButtonInserirAlunos;
     private javax.swing.JButton jButtonInserirDisciplina;
     private javax.swing.JButton jButtonInserirProfessor;
+    private javax.swing.JButton jButtonLimparTelaProfessor;
     private javax.swing.JButton jButtonPesquisarProfessor;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
