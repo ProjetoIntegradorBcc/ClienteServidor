@@ -61,7 +61,7 @@ public class Professor {
                       String endereco, String departamento, 
                       String disciplinasMinistra, 
                       String linhasPesquisa) {
-
+        
         Connection con = new Professor().getConnection();
 
         String sql = "UPDATE professor SET RA = ?, nome = ?, idade = ?,"

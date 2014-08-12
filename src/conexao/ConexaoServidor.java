@@ -104,7 +104,14 @@ public class ConexaoServidor {
     }
     
     private String VOParaDataGrama(ProfessorVO PVO) {
-        String mensagem = "21#"+PVO.getRa()+"#"+PVO.getNome()+"#"+PVO.getIdade()
+        String mensagem;
+        if(PVO.getCodigo()==null){
+            mensagem = "21#";
+        }
+        else{
+            mensagem = "22#"+PVO.getCodigo()+"#";
+        }
+        mensagem = mensagem +PVO.getRa()+"#"+PVO.getNome()+"#"+PVO.getIdade()
             +"#"+PVO.getEndereco()+"#"+PVO.getDepartamento()+"#"
             +PVO.getDisciplinas()+"#"+PVO.getPesquisa()+"#";
         return mensagem;

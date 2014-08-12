@@ -1143,6 +1143,7 @@ public class ClienteVisao extends javax.swing.JFrame {
         if (pvo == null) {
             JOptionPane.showMessageDialog(Departamento, "ERRO AO PROCURAR ELEMENTO", "ERRO", WIDTH);
         } else {
+            jTextFieldCodigoProfessor.setText(pvo.getCodigo());
             jTextFieldRAProfessor.setText(pvo.getRa());
             jTextFieldNomeProfessor.setText(pvo.getNome());
             jTextFieldIdadeProfessor.setText(pvo.getIdade());

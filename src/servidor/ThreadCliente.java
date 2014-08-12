@@ -98,12 +98,12 @@ class ThreadCliente extends Thread {
                                 mensagem = "";
                                 break;
                             case "2":
-                                System.out.println("PROFESSOR - EDITAR");
                                 i = 3;
                                 while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
                                     id2 = (id2 + mensagem.substring(i, i + 1));
                                     i++;
                                 }
+                                i++;
                                 while (!("#".equals(mensagem.substring(i, i + 1))) && (i < mensagem.length())) {
                                     ra = (ra + mensagem.substring(i, i + 1));
                                     i++;
